@@ -35,6 +35,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         menuChofer = new javax.swing.JMenu();
         menuAgregarChofer = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,6 +77,9 @@ public class Principal extends javax.swing.JFrame {
         menuChofer.add(menuAgregarChofer);
 
         jMenuBar1.add(menuChofer);
+
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/operador.png"))); // NOI18N
+        jMenuBar1.add(jMenu1);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pasajero2.png"))); // NOI18N
         jMenuBar1.add(jMenu4);
@@ -157,6 +161,7 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
