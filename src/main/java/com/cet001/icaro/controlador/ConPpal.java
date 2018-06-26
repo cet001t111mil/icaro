@@ -47,6 +47,7 @@ public class ConPpal implements ActionListener {
                 NuevoChofer nChof = new NuevoChofer();
                 nChof.setTitle("Nuevo Chofer");
                 nChof.setVisible(true);
+                ConNChof connchof = new ConNChof (nChof);
                 break;
             }
             case "nviaje": {
@@ -54,6 +55,7 @@ public class ConPpal implements ActionListener {
                 NuevoViaje nVven = new NuevoViaje();
                 nVven.setTitle("Nuevo Viaje");
                 nVven.setVisible(true);
+                
                
                 
             }
