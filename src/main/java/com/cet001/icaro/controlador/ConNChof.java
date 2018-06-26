@@ -33,7 +33,8 @@ public class ConNChof implements ActionListener {
         String dni = nuevoChofer.dni.getText();
         String comision = nuevoChofer.comision.getText();
         Chofer chof = new Chofer (Double.parseDouble(comision),dni,nombre,apellido,Integer.parseInt(legajo),"C");
-        System.out.println(chof.toString());
+        
+        
     }
 
 

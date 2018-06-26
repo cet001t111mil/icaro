@@ -40,6 +40,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         menuChofer = new javax.swing.JMenu();
         menuAgregarChofer = new javax.swing.JMenuItem();
@@ -79,6 +80,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem1);
+
+        jMenuItem8.setText("Cobrar Viaje...");
+        jMenu2.add(jMenuItem8);
 
         jMenuItem7.setText("Cancelar Viaje...");
         jMenu2.add(jMenuItem7);
@@ -271,6 +275,7 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
