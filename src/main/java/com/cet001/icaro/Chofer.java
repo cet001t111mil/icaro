@@ -1,18 +1,34 @@
-
 package com.cet001.icaro;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.DiscriminatorColumn;
 
+import javax.persistence.Entity;
 
-public class Chofer extends Empleado {
+//@Entity
+//@DiscriminatorColumn(name = "CH")
+public class Chofer extends Empleado implements Serializable{
+
+    private static final long serialVersionUID = -6744894858606796067L;
     private double comision;
 
-    public Chofer(String nombre, String apellido, String dni, int nroLegajo,double comision, String tipoEmpleado) {
-        super(nombre, apellido, dni, nroLegajo,tipoEmpleado);
-        this.comision = comision;
-       
+    public Chofer() {
     }
+
+    public Chofer(double comision) {
+        this.comision = comision;
+    }
+
+    public Chofer(double comision, String dni, String nombre, String apellido, int nroLegajo, String tipoEmpleado) {
+        super(dni, nombre, apellido, nroLegajo, tipoEmpleado);
+        this.comision = comision;
+    }
+    
+    
+
+
     public double obtenerFacturacionTotal (List<Viaje> viajes, Calendar i,Calendar f){
 //////        sum
 //////        recorrer lista 

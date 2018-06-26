@@ -1,30 +1,52 @@
 package com.cet001.icaro;
 
-public abstract class Empleado {
+import java.io.Serializable;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
+//@Entity
+//@Inheritance(InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name = "tipo_empleado")
+public abstract class Empleado implements Serializable {
+
+    private static final long serialVersionUID = -933026923467806480L;
+//    @Id
+    protected int nroLegajo;
+    protected String dni;
     protected String nombre;
     protected String apellido;
-    protected String dni;//va a ser primary key de tabla empleado
-    protected int nroLegajo;
     protected String tipoEmpleado;
 
-    public Empleado(String nombre, String apellido, String dni, int nroLegajo, String tipoEmpleado) {
+    public Empleado() {
+    }
+
+    public Empleado(String dni, String nombre, String apellido, int nroLegajo, String tipoEmpleado) {
+        this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.dni = dni;
         this.nroLegajo = nroLegajo;
         this.tipoEmpleado = tipoEmpleado;
     }
 
-    public abstract double calcularSueldo(double importe);   
-    
+    public abstract double calcularSueldo(double importe);
 
     @Override
     public String toString() {
-        return "Empleado:" + "nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", nroLegajo=" + nroLegajo;
+        return "Empleado{" + "dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", nroLegajo=" + nroLegajo + ", tipoEmpleado=" + tipoEmpleado + '}';
     }
 
     //métodos setters & getters
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -41,14 +63,6 @@ public abstract class Empleado {
         this.apellido = apellido;
     }
 
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
     public int getNroLegajo() {
         return nroLegajo;
     }
@@ -57,12 +71,12 @@ public abstract class Empleado {
         this.nroLegajo = nroLegajo;
     }
 
-    public void setTipoEmpleado(String tipoEmpleado) {
-        this.tipoEmpleado = tipoEmpleado;
-    }
-
     public String getTipoEmpleado() {
         return tipoEmpleado;
+    }
+
+    public void setTipoEmpleado(String tipoEmpleado) {
+        this.tipoEmpleado = tipoEmpleado;
     }
 
 }

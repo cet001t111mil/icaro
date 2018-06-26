@@ -1,50 +1,66 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.cet001.icaro;
 
-/**
- *
- * @author ponsa
- */
-public class MovimientoDeSaldo {
+import java.io.Serializable;
+
+
+public class MovimientoDeSaldo implements Serializable{
+
+    private static final long serialVersionUID = 4592438298290387661L;
+    private int id ;
     private double importe;
-    private int id_cliente;
-    private String tipo_comprobante;
-    public MovimientoDeSaldo (){
-        
+    private String tipoComprobante;
+    private Cliente cliente;
+
+    public MovimientoDeSaldo() {
     }
-    
-    public MovimientoDeSaldo (double importe, int id_cliente, String tipo_comprobante ){
-        this.id_cliente=id_cliente;
+
+    public MovimientoDeSaldo(int id, double importe, String tipoComprobante, Cliente cliente) {
+        this.id = id;
         this.importe = importe;
-        this.tipo_comprobante=tipo_comprobante;
+        this.tipoComprobante = tipoComprobante;
+        this.cliente = cliente;
     }
-    
+
+    @Override
+    public String toString() {
+        return "MovimientoDeSaldo{" + "id=" + id + ", importe=" + importe + ", tipoComprobante=" + tipoComprobante + ", cliente=" + cliente + '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public double getImporte() {
         return importe;
-    }
-
-    public int getId_cliente() {
-        return id_cliente;
-    }
-
-    public String getTipo_comprobante() {
-        return tipo_comprobante;
     }
 
     public void setImporte(double importe) {
         this.importe = importe;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public String getTipoComprobante() {
+        return tipoComprobante;
     }
 
-    public void setTipo_comprobante(String tipo_comprobante) {
-        this.tipo_comprobante = tipo_comprobante;
+    public void setTipoComprobante(String tipoComprobante) {
+        this.tipoComprobante = tipoComprobante;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    
+    
+    
+
     
 }

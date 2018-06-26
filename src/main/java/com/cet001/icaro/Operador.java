@@ -1,16 +1,29 @@
 
 package com.cet001.icaro;
 
+import java.io.Serializable;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
 
-public class Operador extends Empleado{
+//@Entity
+//@DiscriminatorColumn(name = "OP")
+public class Operador extends Empleado implements Serializable{
+
+    private static final long serialVersionUID = -2539942624498235346L;
     private double sueldo;
 
-    public Operador(String nombre, String apellido, String dni, int nroLegajo,double sueldo,String tipoEmpleado) {
-        super(nombre, apellido, dni, nroLegajo,tipoEmpleado);
-        this.sueldo = sueldo;
-        
-       
+    public Operador() {
     }
+
+    public Operador(double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public Operador(double sueldo, String dni, String nombre, String apellido, int nroLegajo, String tipoEmpleado) {
+        super(dni, nombre, apellido, nroLegajo, tipoEmpleado);
+        this.sueldo = sueldo;
+    }
+    
     
     @Override
     public double calcularSueldo(double importe) {

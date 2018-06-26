@@ -1,26 +1,45 @@
-
 package com.cet001.icaro;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-class Vehiculo {
-    protected String marca;
-    protected String modelo;
-    protected int anio;
-    protected boolean enViaje;
-    protected String patente;
-    
+class Vehiculo implements Serializable {
+
+    private static final long serialVersionUID = 4172404774480436129L;
+    private String patente;
+    private String marca;
+    private String modelo;
+    private int anio;
+    private boolean enViaje;
+    private boolean disponible;
+    private List<Viaje> viajes = new ArrayList<>();
+
+    public Vehiculo() {
+    }
+
     /*no incluímos en el constructor atributo "enViaje" xq no en todos los casos se tiene o necesita esa información al
     instanciar un objeto de la Clase Vehiculo*/
-    public Vehiculo(String marca, String modelo, int anio, String patente) {
+    public Vehiculo(String patente, String marca, String modelo, int anio, boolean disponible) {
+        this.patente = patente;
         this.marca = marca;
         this.modelo = modelo;
         this.anio = anio;
-        this.patente = patente;
+        this.disponible = disponible;
     }
 
     @Override
     public String toString() {
-        return "Vehiculo:" + "marca=" + marca + ", modelo=" + modelo +  ", anio=" + anio + ", patente=" + patente;
+        return "Vehiculo{" + "patente=" + patente + ", marca=" + marca + ", modelo=" + modelo + ", anio=" + anio + ", enViaje=" + enViaje + ", disponible=" + disponible + '}';
+    }
+
+    //setters & getters
+    public String getPatente() {
+        return patente;
+    }
+
+    public void setPatente(String patente) {
+        this.patente = patente;
     }
 
     public String getMarca() {
@@ -55,14 +74,12 @@ class Vehiculo {
         this.enViaje = enViaje;
     }
 
-    public String getPatente() {
-        return patente;
+    public boolean isDisponible() {
+        return disponible;
     }
 
-    public void setPatente(String patente) {
-        this.patente = patente;
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
-    
-    
-    
+
 }
