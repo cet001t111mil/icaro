@@ -3,19 +3,28 @@ package com.cet001.icaro.modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+@Entity (name="cliente")
 public class Cliente implements Serializable {
-
+    
     private static final long serialVersionUID = 1044152195801582698L;
+    @Id
     private int idCliente;
     private String nombre;
     private String apellido;
     private String direccion;
     private double saldo;
     private double limiteDeCredito;
+    @OneToMany
+    @JoinColumn(name="idCliente")  
     private List<TelefonoCliente> telefonos = new ArrayList<>();
+    
+    @OneToMany
+    @JoinColumn(name="idCliente")  
     private List<MovimientoDeSaldo> movSal = new ArrayList<>();
     private List<Viaje> viajes = new ArrayList<>();
 
