@@ -7,9 +7,12 @@ package com.cet001.icaro.controlador;
 
 import java.awt.event.ActionListener;
 import com.cet001.icaro.vista.Principal;
-import com.cet001.icaro.modelo.Viaje;
+import com.cet001.icaro.vista.NuevoChofer;
 import com.cet001.icaro.vista.NuevoViaje;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JMenuItem;
+
 
 /**
  *
@@ -17,23 +20,45 @@ import java.awt.event.ActionEvent;
  */
 public class ConPpal implements ActionListener {
 
+    
     private Principal wPrincipal;
-    private Viaje viaje;
+    
 
-    public ConPpal(Principal wPrincipal, Viaje viaje) {
-        this.viaje = viaje;
+    public ConPpal(Principal wPrincipal) {
+        
         this.wPrincipal = wPrincipal;
+        this.wPrincipal.menuAgregarChofer.addActionListener(this);
         this.wPrincipal.jMenuItem1.addActionListener(this);
+        
+        
     }
 
     public void iniciar() {
         this.wPrincipal.setTitle("Icaro Gestion Remis");
-
-
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
-        NuevoViaje nVven = new NuevoViaje();
-        nVven.setVisible(true);
+        
+        String opcion = e.getActionCommand();
+                
+        switch (opcion) {
+            case "nChof": {
+                NuevoChofer nChof = new NuevoChofer();
+                nChof.setTitle("Nuevo Chofer");
+                nChof.setVisible(true);
+                break;
+            }
+            case "nviaje": {
+                System.out.println("nuevo viaje");
+                NuevoViaje nVven = new NuevoViaje();
+                nVven.setTitle("Nuevo Viaje");
+                nVven.setVisible(true);
+               
+                
+            }
+        }
+
     }
+
 }

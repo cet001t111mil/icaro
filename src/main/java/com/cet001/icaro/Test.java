@@ -21,10 +21,10 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Viaje via = new Viaje();
+        
         Principal pri = new Principal();
         
-        ConPpal con = new ConPpal (pri,via);
+        ConPpal con = new ConPpal (pri);
         con.iniciar();
         pri.setVisible(true);
         
