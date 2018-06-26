@@ -9,12 +9,12 @@ package com.cet001.icaro.vista;
  *
  * @author ponsa
  */
-public class Princpial extends javax.swing.JFrame {
+public class Principal extends javax.swing.JFrame {
 
     /**
      * Creates new form Princpial
      */
-    public Princpial() {
+    public Principal() {
         initComponents();
         
         
@@ -73,8 +73,7 @@ public class Princpial extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         //Agregar viaje 
-     NuevoViaje nVven = new NuevoViaje();
-        nVven.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -94,20 +93,21 @@ public class Princpial extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Princpial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Princpial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Princpial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Princpial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Princpial().setVisible(true);
+                new Principal().setVisible(true);
             }
         });
     }
@@ -117,6 +117,6 @@ public class Princpial extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    public javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

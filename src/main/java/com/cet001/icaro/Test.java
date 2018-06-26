@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cet001.icaro.modelo;
+package com.cet001.icaro;
 
+import com.cet001.icaro.controlador.ConPpal;
+import com.cet001.icaro.modelo.Viaje;
+import com.cet001.icaro.vista.Principal;
 import java.awt.Window;
 
 /**
@@ -18,8 +21,13 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-           Window w = new com.cet001.icaro.vista.Princpial();
-       w.setVisible(true);
+        Viaje via = new Viaje();
+        Principal pri = new Principal();
+        
+        ConPpal con = new ConPpal (pri,via);
+        con.iniciar();
+        pri.setVisible(true);
+        
     }
     
 }
