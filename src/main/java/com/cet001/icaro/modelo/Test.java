@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cet001.icaro;
+package com.cet001.icaro.modelo;
 
 import java.awt.Window;
 
@@ -18,7 +18,7 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-           Window w = new visual.Princpial();
+           Window w = new com.cet001.icaro.vista.Princpial();
        w.setVisible(true);
     }
     

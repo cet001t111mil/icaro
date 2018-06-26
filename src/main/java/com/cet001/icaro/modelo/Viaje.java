@@ -1,5 +1,5 @@
 
-package com.cet001.icaro;
+package com.cet001.icaro.modelo;
 
 import java.io.Serializable;
 import java.util.Calendar;
