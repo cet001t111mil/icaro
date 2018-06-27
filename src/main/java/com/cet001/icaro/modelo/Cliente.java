@@ -3,32 +3,51 @@ package com.cet001.icaro.modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
+@Entity (name="cliente")
 public class Cliente implements Serializable {
-
+    
     private static final long serialVersionUID = 1044152195801582698L;
+    @Id
     private int idCliente;
     private String nombre;
     private String apellido;
     private String direccion;
     private double saldo;
     private double limiteDeCredito;
+    
+    @OneToMany
+    @JoinColumn(name="idCliente")  
     private List<TelefonoCliente> telefonos = new ArrayList<>();
+    
+    @OneToMany
+    @JoinColumn(name="idCliente")  
     private List<MovimientoDeSaldo> movSal = new ArrayList<>();
+    @OneToMany
+    @JoinColumn(name="idCliente")  
     private List<Viaje> viajes = new ArrayList<>();
 
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String nombre, String apellido, double saldo, String direccion, double limiteDeCredito) {
-        this.idCliente = idCliente;
+    public Cliente(String nombre, String apellido, double saldo, String direccion) {
+        
         this.nombre = nombre;
         this.apellido = apellido;
         this.saldo = saldo;
         this.direccion = direccion;
-        this.limiteDeCredito = limiteDeCredito;
+        limiteDeCredito=0;
+        TelefonoCliente tel =new TelefonoCliente ();
+        telefonos.add(tel);
+        MovimientoDeSaldo mov = new MovimientoDeSaldo();
+        movSal.add(mov);
+        Viaje viaje = new Viaje();
+        viajes.add(viaje);
     }
 
     public void sumSaldo(double importe) {
