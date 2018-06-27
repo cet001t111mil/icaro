@@ -60,6 +60,7 @@ public class ConPpal implements ActionListener {
                 NuevoCliente nVclien = new NuevoCliente();
                 nVclien.setTitle("Nuevo Cliente");
                 nVclien.setVisible(true);
+                ConNCliente conNclien = new ConNCliente(nVclien);
 
             }
         }
