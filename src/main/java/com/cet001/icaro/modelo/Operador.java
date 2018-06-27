@@ -5,8 +5,8 @@ import java.io.Serializable;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 
-//@Entity
-//@DiscriminatorColumn(name = "OP")
+@Entity
+@DiscriminatorColumn(name = "OP") 
 public class Operador extends Empleado implements Serializable{
 
     private static final long serialVersionUID = -2539942624498235346L;
@@ -19,8 +19,8 @@ public class Operador extends Empleado implements Serializable{
         this.sueldo = sueldo;
     }
 
-    public Operador(double sueldo, String dni, String nombre, String apellido, int nroLegajo, String tipoEmpleado) {
-        super(dni, nombre, apellido, nroLegajo, tipoEmpleado);
+    public Operador(double sueldo, String dni, String nombre, String apellido, int nro_legajo, String tipo_empleado) {
+        super(dni, nombre, apellido, nro_legajo, tipo_empleado);
         this.sueldo = sueldo;
     }
     
