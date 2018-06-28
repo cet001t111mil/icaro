@@ -51,6 +51,14 @@ public class NuevoChofer extends javax.swing.JFrame {
             }
         });
 
+        nombre.setText("kdkdkd");
+
+        apellido.setText("euiueu");
+
+        dni.setText("1234567");
+
+        comision.setText("1");
+
         jLabel1.setText("N° Legajo");
 
         jLabel2.setText("Nombre");
