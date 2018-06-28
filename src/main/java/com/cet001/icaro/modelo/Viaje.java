@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 @Entity
 public class Viaje implements Serializable {
@@ -20,6 +21,7 @@ public class Viaje implements Serializable {
     private int idViaje; // Falta ponerlo en el DC) - Sil
     private String origen;
     private String destino;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar fecha;
     private double importe;
     @Column(name = "forma_de_pago")
