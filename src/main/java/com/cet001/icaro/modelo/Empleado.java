@@ -1,6 +1,7 @@
 package com.cet001.icaro.modelo;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,28 +16,30 @@ public abstract class Empleado implements Serializable {
 
     private static final long serialVersionUID = -933026923467806480L;
     @Id
-    protected int nro_legajo;
+    @Column(name = "nro_legajo")
+    protected int nroLegajo;
     protected String dni;
     protected String nombre;
     protected String apellido;
-    protected String tipo_empleado;
+    @Column(name = "tipo_empleado")
+    protected String tipoEmpleado;
 
     public Empleado() {
     }
 
-    public Empleado(String dni, String nombre, String apellido, int nro_legajo,String tipo_empleado) {
+    public Empleado(String dni, String nombre, String apellido, int nroLegajo,String tipoEmpleado) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.nro_legajo = nro_legajo;
-        this.tipo_empleado = tipo_empleado;
+        this.nroLegajo = nroLegajo;
+        this.tipoEmpleado = tipoEmpleado;
     }
 
     public abstract double calcularSueldo(double importe);
 
     @Override
     public String toString() {
-        return "Empleado{" + "dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", nroLegajo=" + nro_legajo + ", tipoEmpleado=" + tipo_empleado + '}';
+        return "Empleado{" + "dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", nroLegajo=" + nroLegajo + ", tipoEmpleado=" + tipoEmpleado + '}';
     }
 
     //métodos setters & getters
@@ -64,21 +67,23 @@ public abstract class Empleado implements Serializable {
         this.apellido = apellido;
     }
 
-    public int getNro_legajo() {
-        return nro_legajo;
+    public int getNroLegajo() {
+        return nroLegajo;
     }
 
-    public void setNro_legajo(int nro_legajo) {
-        this.nro_legajo = nro_legajo;
+    public void setNroLegajo(int nroLegajo) {
+        this.nroLegajo = nroLegajo;
     }
 
-    public String getTipo_empleado() {
-        return tipo_empleado;
+    public String getTipoEmpleado() {
+        return tipoEmpleado;
     }
 
-    public void setTipo_empleado(String tipo_empleado) {
-        this.tipo_empleado = tipo_empleado;
+    public void setTipoEmpleado(String tipoEmpleado) {
+        this.tipoEmpleado = tipoEmpleado;
     }
+
+   
 
 
  

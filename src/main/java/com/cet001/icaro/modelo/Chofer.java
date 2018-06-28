@@ -26,8 +26,8 @@ public class Chofer extends Empleado implements Serializable{
         this.comision = comision;
     }
 
-    public Chofer(double comision, String dni, String nombre, String apellido, int nro_legajo, String tipo_empleado) {
-        super(dni, nombre, apellido, nro_legajo, tipo_empleado);
+    public Chofer(double comision, String dni, String nombre, String apellido, int nroLegajo, String tipoEmpleado) {
+        super(dni, nombre, apellido, nroLegajo, tipoEmpleado);
         this.comision = comision;
     }
     
