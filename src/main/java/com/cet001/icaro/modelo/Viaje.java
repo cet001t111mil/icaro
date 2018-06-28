@@ -3,8 +3,13 @@ package com.cet001.icaro.modelo;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import javax.persistence.*;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Viaje implements Serializable {
@@ -42,7 +47,7 @@ public class Viaje implements Serializable {
    disponibles al instanciar un objeto Viaje
 */
     public Viaje(int id, String origen, Calendar fecha, Vehiculo movil, Cliente cliente, Chofer chofer) {
-        this.id = id;
+        this.idViaje = id;
         this.origen = origen;
         this.fecha = fecha;
         this.movil = movil;
@@ -52,16 +57,16 @@ public class Viaje implements Serializable {
 
     @Override
     public String toString() {
-        return "Viaje{" + "origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", movil=" + movil + ", importe=" + importe + ", cliente=" + cliente + ", chofer=" + chofer + ", id=" + id + '}';
+        return "Viaje{" + "origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", movil=" + movil + ", importe=" + importe + ", cliente=" + cliente + ", chofer=" + chofer + ", id=" + idViaje + '}';
     }
     //Métodos settters & getters:
 
     public int getId() {
-        return id;
+        return idViaje;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idViaje = id;
     }
 
     public String getOrigen() {
