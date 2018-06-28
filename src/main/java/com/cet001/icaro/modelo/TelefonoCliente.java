@@ -1,15 +1,21 @@
 package com.cet001.icaro.modelo;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 class TelefonoCliente implements Serializable {
+@Id
+private int id_cliente;
 
     private static final long serialVersionUID = 6217477364203581943L;
 
+@Entity
     static class Numero implements Serializable {
-
         private static final long serialVersionUID = -5309486314614506660L;
+        @Id
         private String codArea;
+        
         private String nroTel;
 
         public Numero() {
@@ -73,7 +79,5 @@ class TelefonoCliente implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
-    
 
 }

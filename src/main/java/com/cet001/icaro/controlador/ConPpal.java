@@ -56,7 +56,6 @@ public class ConPpal implements ActionListener {
                 break;
             }
             case "agreCliente": {
-                System.out.println("nuevo cliente");
                 NuevoCliente nVclien = new NuevoCliente();
                 nVclien.setTitle("Nuevo Cliente");
                 nVclien.setVisible(true);

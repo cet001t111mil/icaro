@@ -126,6 +126,11 @@ public class Principal extends javax.swing.JFrame {
 
         agreCliente.setText("Agregar Cliente...");
         agreCliente.setActionCommand("agreCliente");
+        agreCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agreClienteActionPerformed(evt);
+            }
+        });
         jMenu4.add(agreCliente);
 
         jMenuItem3.setText("Eliminar Cliente...");
@@ -220,6 +225,10 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void agreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agreClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agreClienteActionPerformed
 
     /**
      * @param args the command line arguments

@@ -96,6 +96,9 @@
                 <Property name="text" type="java.lang.String" value="Agregar Cliente..."/>
                 <Property name="actionCommand" type="java.lang.String" value="agreCliente"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agreClienteActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>

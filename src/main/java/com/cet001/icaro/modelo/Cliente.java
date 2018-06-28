@@ -1,5 +1,6 @@
 package com.cet001.icaro.modelo;
 
+import com.cet001.icaro.modelo.TelefonoCliente.Numero;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Cliente implements Serializable {
     
     @OneToMany
     @JoinColumn(name="idCliente")  
-    private List<TelefonoCliente> telefonos = new ArrayList<>();
+    private List<Numero> telefonos = new ArrayList<>();
     
     @OneToMany
     @JoinColumn(name="idCliente")  
@@ -42,7 +43,7 @@ public class Cliente implements Serializable {
         this.saldo = saldo;
         this.direccion = direccion;
         limiteDeCredito=0;
-        TelefonoCliente tel =new TelefonoCliente ();
+        Numero tel =new Numero ();
         telefonos.add(tel);
         MovimientoDeSaldo mov = new MovimientoDeSaldo();
         movSal.add(mov);
@@ -112,11 +113,11 @@ public class Cliente implements Serializable {
         this.limiteDeCredito = limiteDeCredito;
     }
 
-    public List<TelefonoCliente> getTelefonos() {
+    public List<Numero> getTelefonos() {
         return telefonos;
     }
 
-    public void setTelefonos(List<TelefonoCliente> telefonos) {
+    public void setTelefonos(List<Numero> telefonos) {
         this.telefonos = telefonos;
     }
 

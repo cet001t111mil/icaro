@@ -2,14 +2,19 @@
 package com.cet001.icaro.modelo;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-
+@Entity
 public class MovimientoDeSaldo implements Serializable{
 
     private static final long serialVersionUID = 4592438298290387661L;
+    @Id
     private int id ;
     private double importe;
     private String tipoComprobante;
+    @ManyToOne
     private Cliente cliente;
 
     public MovimientoDeSaldo() {
