@@ -3,22 +3,27 @@ package com.cet001.icaro.modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.*;
 
+@Entity
 class Vehiculo implements Serializable {
 
     private static final long serialVersionUID = 4172404774480436129L;
+    @Id
     private String patente;
     private String marca;
     private String modelo;
     private int anio;
+    @Column(name="en_viaje")
     private boolean enViaje;
     private boolean disponible;
+    @OneToMany
     private List<Viaje> viajes = new ArrayList<>();
 
     public Vehiculo() {
     }
 
-    /*no incluímos en el constructor atributo "enViaje" xq no en todos los casos se tiene o necesita esa información al
+    /*No incluímos en el constructor atributo "enViaje" xq no en todos los casos se tiene o necesita esa información al
     instanciar un objeto de la Clase Vehiculo*/
     public Vehiculo(String patente, String marca, String modelo, int anio, boolean disponible) {
         this.patente = patente;

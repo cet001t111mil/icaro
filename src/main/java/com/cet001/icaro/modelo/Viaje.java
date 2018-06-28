@@ -3,24 +3,44 @@ package com.cet001.icaro.modelo;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.*;
 
 
-public class Viaje implements Serializable{
+@Entity
+public class Viaje implements Serializable {
 
     private static final long serialVersionUID = -5103238759854604732L;
-    private int id;
+    @Id
+    @Column(name = "id_viaje")
+    private int idViaje; // Falta ponerlo en el DC) - Sil
     private String origen;
     private String destino;
     private Calendar fecha;
     private double importe;
+    @Column(name = "forma_de_pago")
     private int formaDePago;
+    
+    @ManyToOne
+    @JoinColumn(name="nro_legajo_operador")
+    private Operador operador; 
+
+    @ManyToOne
+    @JoinColumn(name = "patente")
     private Vehiculo movil;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
+    
+    @ManyToOne
+    @JoinColumn(name="nro_legajo_chofer")
     private Chofer chofer;
 
     public Viaje() {
     }
-// Constructor con todos los atributos menos: destino,importe,forma de pago, ya que podrían no estar disponibles al instanciar un objeto Viaje
+/* Constructor con todos los atributos menos: destino,importe,forma de pago, ya que podrían no estar 
+   disponibles al instanciar un objeto Viaje
+*/
     public Viaje(int id, String origen, Calendar fecha, Vehiculo movil, Cliente cliente, Chofer chofer) {
         this.id = id;
         this.origen = origen;
@@ -29,13 +49,12 @@ public class Viaje implements Serializable{
         this.cliente = cliente;
         this.chofer = chofer;
     }
-    
-   
+
     @Override
     public String toString() {
         return "Viaje{" + "origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", movil=" + movil + ", importe=" + importe + ", cliente=" + cliente + ", chofer=" + chofer + ", id=" + id + '}';
     }
-    //métodos settters & getters
+    //Métodos settters & getters:
 
     public int getId() {
         return id;
@@ -108,5 +127,5 @@ public class Viaje implements Serializable{
     public void setChofer(Chofer chofer) {
         this.chofer = chofer;
     }
-    
+
 }
