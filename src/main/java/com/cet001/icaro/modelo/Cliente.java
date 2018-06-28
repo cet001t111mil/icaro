@@ -23,14 +23,14 @@ public class Cliente implements Serializable {
     private double limiteDeCredito;
     
     @OneToMany
-    @JoinColumn(name="idCliente")  
+    @JoinColumn(name="CODAREA")  
     private List<Numero> telefonos = new ArrayList<>();
     
     @OneToMany
-    @JoinColumn(name="idCliente")  
+    @JoinColumn(name="id_movimiento")  
     private List<MovimientoDeSaldo> movSal = new ArrayList<>();
     @OneToMany
-    @JoinColumn(name="idCliente")  
+    @JoinColumn(name="id_viaje")  
     private List<Viaje> viajes = new ArrayList<>();
 
     public Cliente() {

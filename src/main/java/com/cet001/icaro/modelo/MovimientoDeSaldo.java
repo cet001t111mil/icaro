@@ -11,7 +11,7 @@ public class MovimientoDeSaldo implements Serializable{
 
     private static final long serialVersionUID = 4592438298290387661L;
     @Id
-    private int id ;
+    private int id_movimiento ;
     private double importe;
     private String tipoComprobante;
     @ManyToOne
@@ -20,8 +20,8 @@ public class MovimientoDeSaldo implements Serializable{
     public MovimientoDeSaldo() {
     }
 
-    public MovimientoDeSaldo(int id, double importe, String tipoComprobante, Cliente cliente) {
-        this.id = id;
+    public MovimientoDeSaldo(int id_movimiento, double importe, String tipoComprobante, Cliente cliente) {
+        this.id_movimiento = id_movimiento;
         this.importe = importe;
         this.tipoComprobante = tipoComprobante;
         this.cliente = cliente;
@@ -29,15 +29,15 @@ public class MovimientoDeSaldo implements Serializable{
 
     @Override
     public String toString() {
-        return "MovimientoDeSaldo{" + "id=" + id + ", importe=" + importe + ", tipoComprobante=" + tipoComprobante + ", cliente=" + cliente + '}';
+        return "MovimientoDeSaldo{" + "id=" + id_movimiento + ", importe=" + importe + ", tipoComprobante=" + tipoComprobante + ", cliente=" + cliente + '}';
     }
 
     public int getId() {
-        return id;
+        return id_movimiento;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int id_movimiento) {
+        this.id_movimiento = id_movimiento;
     }
 
     public double getImporte() {

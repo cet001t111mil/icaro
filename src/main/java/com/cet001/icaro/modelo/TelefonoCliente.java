@@ -1,11 +1,13 @@
 package com.cet001.icaro.modelo;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+@Embeddable
 class TelefonoCliente implements Serializable {
-@Id
+//@Id
 private int id_cliente;
 
     private static final long serialVersionUID = 6217477364203581943L;
@@ -14,8 +16,10 @@ private int id_cliente;
     static class Numero implements Serializable {
         private static final long serialVersionUID = -5309486314614506660L;
         @Id
-        private String codArea;
-        
+        @Column(name="CODAREA")
+        private String codArea ;
+        @Id
+        @Column(name="NROTEL")
         private String nroTel;
 
         public Numero() {
