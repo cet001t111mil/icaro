@@ -4,53 +4,46 @@ import com.cet001.icaro.modelo.TelefonoCliente.Numero;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-@Entity (name="cliente")
+@Entity(name = "cliente")
 public class Cliente implements Serializable {
-    
+
     private static final long serialVersionUID = 1044152195801582698L;
     @Id
+    @Column(name = "id_cliente")
     private int idCliente;
     private String nombre;
     private String apellido;
     private String direccion;
     private double saldo;
+    @Column(name = "limite_de_credito")
     private double limiteDeCredito;
-    
-    @OneToMany
-    @JoinColumn(name="CODAREA")  
-    private List<Numero> telefonos = new ArrayList<>();
-    
-    @OneToMany
-    @JoinColumn(name="id_movimiento")  
+
+    @OneToMany(mappedBy = "cliente")
+    private List<TelefonoCliente> telefonos = new ArrayList<>();
+    @OneToMany(mappedBy = "cliente")
     private List<MovimientoDeSaldo> movSal = new ArrayList<>();
-    @OneToMany
-    @JoinColumn(name="id_viaje")  
+    @OneToMany(mappedBy = "cliente")
     private List<Viaje> viajes = new ArrayList<>();
 
     public Cliente() {
     }
 
     public Cliente(String nombre, String apellido, double saldo, String direccion) {
-        
+
         this.nombre = nombre;
         this.apellido = apellido;
         this.saldo = saldo;
         this.direccion = direccion;
-        limiteDeCredito=0;
-        Numero tel =new Numero ();
-        telefonos.add(tel);
-        MovimientoDeSaldo mov = new MovimientoDeSaldo();
-        movSal.add(mov);
-        Viaje viaje = new Viaje();
-        viajes.add(viaje);
+        limiteDeCredito = 0;
     }
-
+//hacerlo en BD si conviente
     public void sumSaldo(double importe) {
         saldo = this.saldo + importe;
     }
@@ -113,11 +106,11 @@ public class Cliente implements Serializable {
         this.limiteDeCredito = limiteDeCredito;
     }
 
-    public List<Numero> getTelefonos() {
+    public List<TelefonoCliente> getTelefonos() {
         return telefonos;
     }
 
-    public void setTelefonos(List<Numero> telefonos) {
+    public void setTelefonos(List<TelefonoCliente> telefonos) {
         this.telefonos = telefonos;
     }
 

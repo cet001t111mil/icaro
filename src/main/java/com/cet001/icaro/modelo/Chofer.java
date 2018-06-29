@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.List;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -15,8 +14,7 @@ public class Chofer extends Empleado implements Serializable{
 
     private static final long serialVersionUID = -6744894858606796067L;
     private double comision;
-    @OneToMany
-    @JoinColumn(name = "nro_legajo")
+    @OneToMany (mappedBy = "chofer")
     private List<Viaje> viajes = new ArrayList<>();
 
     public Chofer() {
@@ -26,8 +24,8 @@ public class Chofer extends Empleado implements Serializable{
         this.comision = comision;
     }
 
-    public Chofer(double comision, String dni, String nombre, String apellido, int nroLegajo, String tipoEmpleado) {
-        super(dni, nombre, apellido, nroLegajo, tipoEmpleado);
+    public Chofer(double sueldo, double comision, String dni, String nombre, String apellido, int nroLegajo, String tipoEmpleado) {
+        super(dni, nombre, apellido, nroLegajo, tipoEmpleado,sueldo);
         this.comision = comision;
     }
     
@@ -46,7 +44,12 @@ public class Chofer extends Empleado implements Serializable{
         return totalDeViajes * comision;
     }
 
-//cuando terminemos de ver en clase la forma de hacer un select por hibernate completamos este metodo
+##############///////TERMINAR
+    @Override
+    public double getSueldo(){
+    return super.getSueldo()+this.calcularSueldo(sueldo)
+}
+    
     
     @Override
     public String toString(){

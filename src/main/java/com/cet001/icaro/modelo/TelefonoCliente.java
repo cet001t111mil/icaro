@@ -5,21 +5,20 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-@Embeddable
-class TelefonoCliente implements Serializable {
-//@Id
-private int id_cliente;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class TelefonoCliente implements Serializable {
 
     private static final long serialVersionUID = 6217477364203581943L;
 
-@Entity
     static class Numero implements Serializable {
+
         private static final long serialVersionUID = -5309486314614506660L;
-        @Id
-        @Column(name="CODAREA")
-        private String codArea ;
-        @Id
-        @Column(name="NROTEL")
+        @Column(name = "cod_area")
+        private String codArea;
+        @Column(name = "nro_telefono")
         private String nroTel;
 
         public Numero() {
@@ -52,7 +51,10 @@ private int id_cliente;
         }
 
     }
+    @Id
     private Numero numero;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
     public TelefonoCliente() {
