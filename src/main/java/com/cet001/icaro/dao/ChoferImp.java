@@ -22,12 +22,13 @@ import javax.persistence.criteria.CriteriaQuery;
  */
 public class ChoferImp {
 
-    public ChoferImp() {
+    public ChoferImp() { //dejamos el constructor vacio por si necesitamos usar spring
+        
 
     }
 
-    public ChoferImp(Chofer chof) {
-        try {
+    public void guardarChofer (Chofer chof) { 
+        try { 
             System.out.println("persistido chofer");
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
             EntityManager manager = emf.createEntityManager();
@@ -41,7 +42,7 @@ public class ChoferImp {
             ex.printStackTrace();
         }
     }
-
+    
     public List<Chofer> getChoferes() {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");

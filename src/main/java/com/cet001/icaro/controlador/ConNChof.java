@@ -34,7 +34,9 @@ public class ConNChof implements ActionListener {
         String comision = nuevoChofer.comision.getText();
         Chofer chof = new Chofer (Double.parseDouble(comision),dni,nombre,apellido,Integer.parseInt(legajo),"CH");
         
-        ChoferImp chI = new ChoferImp (chof);
+        ChoferImp chI = new ChoferImp ();
+        chI.guardarChofer(chof);
+        
         
     }
 
