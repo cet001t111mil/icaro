@@ -7,6 +7,7 @@ package com.cet001.icaro.controlador;
 
 import com.cet001.icaro.dao.ChoferImp;
 import com.cet001.icaro.modelo.Chofer;
+import com.cet001.icaro.modelo.Empleado;
 import com.cet001.icaro.vista.NuevoChofer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +33,7 @@ public class ConNChof implements ActionListener {
         String apellido = nuevoChofer.apellido.getText();
         String dni = nuevoChofer.dni.getText();
         String comision = nuevoChofer.comision.getText();
-        Chofer chof = new Chofer (Double.parseDouble(comision),dni,nombre,apellido,Integer.parseInt(legajo),"CH");
+        Empleado chof = new Chofer (333, Double.parseDouble(comision),dni,nombre,apellido,Integer.parseInt(legajo),"CH");
         
         ChoferImp chI = new ChoferImp ();
         chI.guardarChofer(chof);

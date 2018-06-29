@@ -6,6 +6,7 @@
 package com.cet001.icaro.dao;
 
 import com.cet001.icaro.modelo.Chofer;
+import com.cet001.icaro.modelo.Empleado;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -27,7 +28,7 @@ public class ChoferImp {
 
     }
 
-    public void guardarChofer (Chofer chof) { 
+    public void guardarChofer (Empleado chof) { 
         try { 
             System.out.println("persistido chofer");
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
