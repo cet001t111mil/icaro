@@ -17,7 +17,7 @@ class Vehiculo implements Serializable {
     @Column(name="en_viaje")
     private boolean enViaje;
     private boolean disponible;
-    @OneToMany(mappedBy="movil")
+    @OneToMany(mappedBy="movil")//
     private List<Viaje> viajes = new ArrayList<>();
 
     public Vehiculo() {
