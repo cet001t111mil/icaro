@@ -48,11 +48,16 @@ public class ChoferImp {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
         EntityManager manager = emf.createEntityManager();
-        CriteriaBuilder cb = manager.getCriteriaBuilder();
+        CriteriaBuilder cb = manager.getCriteriaBuilder();//error aca
+        
          CriteriaQuery<Chofer> q = cb.createQuery(Chofer.class);
          TypedQuery<Chofer> query = manager.createQuery(q);
          List<Chofer> results = query.getResultList();
-        return results;
+        for (Chofer e : results ){
+            e.toString();
+        }
+         
+         return results;
 
 //return  (List<Chofer>) manager.("SELECT e FROM e");
 

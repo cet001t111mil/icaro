@@ -33,7 +33,8 @@ public class ConNChof implements ActionListener {
         String apellido = nuevoChofer.apellido.getText();
         String dni = nuevoChofer.dni.getText();
         String comision = nuevoChofer.comision.getText();
-        Empleado chof = new Chofer (333, Double.parseDouble(comision),dni,nombre,apellido,Integer.parseInt(legajo),"CH");
+        String sueldo = nuevoChofer.sueldo.getText();
+        Empleado chof = new Chofer (Double.parseDouble(sueldo), Double.parseDouble(comision),dni,nombre,apellido,Integer.parseInt(legajo),"CH");
         
         ChoferImp chI = new ChoferImp ();
         chI.guardarChofer(chof);
