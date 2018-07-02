@@ -32,7 +32,8 @@ public class ConNViaje implements ActionListener {
         String fecha = nuevoViaje.fecha.getText();
         String movil = nuevoViaje.movil.getText();
         String cliente = nuevoViaje.cliente.getText();
-        String chofer = nuevoViaje.chofer.getText(); //si yo recibo el id del chofer, lo puedo buscar , instanciar y agregar al constructor de viaje 
+         //si yo recibo el id del chofer, lo puedo buscar , instanciar y agregar al constructor de viaje 
+        System.out.println("sdfs"+nuevoViaje.jComboChoferNV.getName());
     }
     
 }
