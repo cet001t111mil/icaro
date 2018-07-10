@@ -40,7 +40,7 @@ public class ClienteImp {
         manager.getTransaction().begin();
         List<Cliente> results = new ArrayList<>();
         results = manager.createQuery("Select c"
-                + "from Clliente c").getResultList();
+                + "from Cliente c").getResultList();
         for (Cliente e : results) {
             e.toString();
         }
