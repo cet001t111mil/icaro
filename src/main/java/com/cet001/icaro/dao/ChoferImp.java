@@ -12,10 +12,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
+
 
 /**
  *
@@ -24,12 +21,11 @@ import javax.persistence.criteria.CriteriaQuery;
 public class ChoferImp {
 
     public ChoferImp() { //dejamos el constructor vacio por si necesitamos usar spring
-        
 
     }
 
-    public void guardarChofer (Empleado chof) { 
-        try { 
+    public void guardarChofer(Empleado chof) {
+        try {
             System.out.println("persistido chofer");
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
             EntityManager manager = emf.createEntityManager();
@@ -43,23 +39,21 @@ public class ChoferImp {
             ex.printStackTrace();
         }
     }
-    
-    public List<Chofer> getChoferes() {
 
+    public List<Chofer> getChoferes() {
+//còdigo modificado ver si es correcto (x tema herencia de Clase Empleado)
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
         EntityManager manager = emf.createEntityManager();
-        CriteriaBuilder cb = manager.getCriteriaBuilder();//error aca
-        
-         CriteriaQuery<Chofer> q = cb.createQuery(Chofer.class);
-         TypedQuery<Chofer> query = manager.createQuery(q);
-         List<Chofer> results = query.getResultList();
-        for (Chofer e : results ){
+        manager.getTransaction().begin();
+        List<Chofer> results = new ArrayList<>();
+        results = manager.createQuery("Select e"
+                + "from Empleado e"
+                + "where tipo_empleado = ?1").setParameter(1, "CH").getResultList();
+        for (Chofer e : results) {
             e.toString();
         }
-         
-         return results;
 
-//return  (List<Chofer>) manager.("SELECT e FROM e");
-
+        return results;
     }
+
 }

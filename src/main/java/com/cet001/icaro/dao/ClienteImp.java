@@ -6,6 +6,8 @@
 package com.cet001.icaro.dao;
 
 import com.cet001.icaro.modelo.Cliente;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -18,11 +20,10 @@ public class ClienteImp {
 
     public ClienteImp(Cliente clien) {
         try {
- System.out.println("persistido");
+            System.out.println("persistido");
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
             EntityManager manager = emf.createEntityManager();
             manager.getTransaction().begin();
-
             manager.persist(clien);
             manager.getTransaction().commit();
             manager.close();
@@ -31,4 +32,20 @@ public class ClienteImp {
             ex.printStackTrace();
         }
     }
+
+ //método agregado   
+    public List<Cliente> getClientes() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
+        EntityManager manager = emf.createEntityManager();
+        manager.getTransaction().begin();
+        List<Cliente> results = new ArrayList<>();
+        results = manager.createQuery("Select c"
+                + "from Clliente c").getResultList();
+        for (Cliente e : results) {
+            e.toString();
+        }
+
+        return results;
+    }
+
 }
