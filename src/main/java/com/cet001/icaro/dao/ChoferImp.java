@@ -52,7 +52,10 @@ public class ChoferImp {
         for (Chofer e : results) {
             e.toString();
         }
-
+//???? ver las 3 líneas siguientes
+        manager.getTransaction().commit();
+        manager.close();
+        emf.close();
         return results;
     }
 

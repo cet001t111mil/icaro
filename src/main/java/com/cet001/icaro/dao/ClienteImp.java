@@ -33,7 +33,7 @@ public class ClienteImp {
         }
     }
 
- //método agregado   
+    //método agregado   
     public List<Cliente> getClientes() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
         EntityManager manager = emf.createEntityManager();
@@ -44,7 +44,10 @@ public class ClienteImp {
         for (Cliente e : results) {
             e.toString();
         }
-
+//???? ver las 3 líneas siguientes
+        manager.getTransaction().commit();
+        manager.close();
+        emf.close();
         return results;
     }
 
