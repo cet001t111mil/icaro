@@ -1,15 +1,14 @@
 package com.cet001.icaro.modelo;
 
-import com.cet001.icaro.modelo.TelefonoCliente.Numero;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+
 
 @Entity(name = "cliente")
 public class Cliente implements Serializable {
@@ -21,6 +20,7 @@ public class Cliente implements Serializable {
     private String nombre;
     private String apellido;
     private String direccion;
+    private boolean activo;
     private double saldo;
     @Column(name = "limite_de_credito")
     private double limiteDeCredito;
@@ -41,7 +41,10 @@ public class Cliente implements Serializable {
         this.apellido = apellido;
         this.saldo = saldo;
         this.direccion = direccion;
-        limiteDeCredito = 0;
+        this.activo = true;
+        this.limiteDeCredito = 0;
+        
+        
     }
 //hacerlo en BD si conviente
     public void sumSaldo(double importe) {
@@ -54,8 +57,10 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", saldo=" + saldo + ", direccion=" + direccion + ", limiteDeCredito=" + limiteDeCredito + ", telefonos=" + telefonos + ", movSal=" + movSal + ", viajes=" + viajes + '}';
+        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", activo=" + activo + ", saldo=" + saldo + ", limiteDeCredito=" + limiteDeCredito + ", telefonos=" + telefonos + '}';
     }
+
+    
 
     //métodos setters & getters
     public int getIdCliente() {
@@ -97,6 +102,15 @@ public class Cliente implements Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+    
 
     public double getLimiteDeCredito() {
         return limiteDeCredito;

@@ -17,6 +17,7 @@ class Vehiculo implements Serializable {
     @Column(name="en_viaje")
     private boolean enViaje;
     private boolean disponible;
+    private boolean activo;
     @OneToMany(mappedBy="movil")//
     private List<Viaje> viajes = new ArrayList<>();
 
@@ -31,13 +32,15 @@ class Vehiculo implements Serializable {
         this.modelo = modelo;
         this.anio = anio;
         this.disponible = disponible;
+        this.activo = true;
     }
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "patente=" + patente + ", marca=" + marca + ", modelo=" + modelo + ", anio=" + anio + ", enViaje=" + enViaje + ", disponible=" + disponible + '}';
+        return "Vehiculo{" + "patente=" + patente + ", marca=" + marca + ", modelo=" + modelo + ", anio=" + anio + ", enViaje=" + enViaje + ", disponible=" + disponible + ", activo=" + activo + '}';
     }
 
+    
     //setters & getters
     public String getPatente() {
         return patente;
@@ -86,5 +89,18 @@ class Vehiculo implements Serializable {
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public List<Viaje> getViajes() {
+        return viajes;
+    }
+    
 
 }

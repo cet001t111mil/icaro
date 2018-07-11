@@ -18,7 +18,7 @@ public class Viaje implements Serializable {
     private static final long serialVersionUID = -5103238759854604732L;
     @Id
     @Column(name = "id_viaje")
-    private int idViaje; // Falta ponerlo en el DC) - Sil
+    private int idViaje;
     private String origen;
     private String destino;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -26,10 +26,8 @@ public class Viaje implements Serializable {
     private double importe;
     @Column(name = "forma_de_pago")
     private int formaDePago;
+    private boolean activo;
     
-    @ManyToOne
-    @JoinColumn(name="nro_legajo_operador")
-    private Operador operador; 
 
     @ManyToOne
     @JoinColumn(name = "patente")
@@ -55,22 +53,26 @@ public class Viaje implements Serializable {
         this.movil = movil;
         this.cliente = cliente;
         this.chofer = chofer;
+        this.activo = true;
     }
 
     @Override
     public String toString() {
-        return "Viaje{" + "origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", movil=" + movil + ", importe=" + importe + ", cliente=" + cliente + ", chofer=" + chofer + ", id=" + idViaje + '}';
+        return "Viaje{" + "idViaje=" + idViaje + ", origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", importe=" + importe + ", formaDePago=" + formaDePago + ", activo=" + activo + ", movil=" + movil + ", cliente=" + cliente + ", chofer=" + chofer + '}';
     }
+
+    
     //Métodos settters & getters:
 
-    public int getId() {
+    public int getIdViaje() {
         return idViaje;
     }
 
-    public void setId(int id) {
-        this.idViaje = id;
+    public void setIdViaje(int idViaje) {
+        this.idViaje = idViaje;
     }
 
+  
     public String getOrigen() {
         return origen;
     }
@@ -134,5 +136,14 @@ public class Viaje implements Serializable {
     public void setChofer(Chofer chofer) {
         this.chofer = chofer;
     }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+    
 
 }

@@ -24,6 +24,7 @@ public abstract class Empleado implements Serializable {
     @Column(name = "tipo_empleado")
     protected String tipoEmpleado;
     protected double sueldo;
+    protected boolean activo;
 
     public Empleado() {
     }
@@ -35,14 +36,17 @@ public abstract class Empleado implements Serializable {
         this.nroLegajo = nroLegajo;
         this.tipoEmpleado = tipoEmpleado;
         this.sueldo = sueldo;
+        this.activo = true;
     }
 
     public abstract double calcularSueldo(double importe);
 
     @Override
     public String toString() {
-        return "Empleado{" + "dni=" + dni + ", nombre=" + nombre + " apellido=" + apellido + ", nroLegajo=" + nroLegajo + ", tipoEmpleado=" + tipoEmpleado + '}';
+        return "Empleado{" + "nroLegajo=" + nroLegajo + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", tipoEmpleado=" + tipoEmpleado + ", sueldo=" + sueldo + ", activo=" + activo + '}';
     }
+
+    
 
     //métodos setters & getters
     public String getDni() {
@@ -91,6 +95,14 @@ public abstract class Empleado implements Serializable {
 
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
    
