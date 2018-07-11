@@ -3,6 +3,7 @@ package com.cet001.icaro.modelo;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -13,6 +14,7 @@ public class TelefonoCliente implements Serializable {
 
     private static final long serialVersionUID = 6217477364203581943L;
 
+    @Embeddable
     static class Numero implements Serializable {
 
         private static final long serialVersionUID = -5309486314614506660L;
@@ -51,7 +53,7 @@ public class TelefonoCliente implements Serializable {
         }
 
     }
-    @Id
+    @EmbeddedId
     private Numero numero;
     @ManyToOne
     @JoinColumn(name = "id_cliente")
