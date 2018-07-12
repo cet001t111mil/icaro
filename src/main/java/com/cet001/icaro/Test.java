@@ -7,6 +7,8 @@ package com.cet001.icaro;
 
 import com.cet001.icaro.controlador.PrincipalController;
 import com.cet001.icaro.dao.DaoImpl;
+import com.cet001.icaro.modelo.Chofer;
+import com.cet001.icaro.modelo.Empleado;
 import com.cet001.icaro.modelo.Viaje;
 import com.cet001.icaro.vista.PrincipalView;
 import java.awt.Window;
@@ -29,6 +31,8 @@ public class Test {
         con.iniciar();
         pri.setVisible(true);
         
+   
+    
     }
     
 }

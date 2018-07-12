@@ -42,21 +42,21 @@ public class DaoImpl {
             ex.printStackTrace();
         }
     }
-    
+
     //en los métodos que devuelven listas no hice try/catch todavía xq me da conflicto con "return"
     // ?????????????????
-  
-
     public List<Cliente> getClientes() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
         EntityManager manager = emf.createEntityManager();
         manager.getTransaction().begin();
+
         List<Cliente> results = new ArrayList<>();
         results = manager.createQuery("Select c"
                 + "from Cliente c").getResultList();
         for (Cliente e : results) {
             e.toString();
         }
+
         manager.getTransaction().commit();
         manager.close();
         emf.close();
@@ -148,9 +148,8 @@ public class DaoImpl {
             ex.printStackTrace();
         }
     }
-    
-       
-        public List<Vehiculo> getVehiculos() {
+
+    public List<Vehiculo> getVehiculos() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
         EntityManager manager = emf.createEntityManager();
         manager.getTransaction().begin();
@@ -167,7 +166,8 @@ public class DaoImpl {
         return results;
 
     }
-        public List<Vehiculo> getVehiculosActivos() {
+
+    public List<Vehiculo> getVehiculosActivos() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
         EntityManager manager = emf.createEntityManager();
         manager.getTransaction().begin();
@@ -184,8 +184,7 @@ public class DaoImpl {
 
         return results;
 
-    }   
-        
+    }
 
     public void guardarChofer(Empleado chof) {
         try {
@@ -220,7 +219,7 @@ public class DaoImpl {
         return results;
     }
 
-        public List<Chofer> getChoferesActivos() {
+    public List<Chofer> getChoferesActivos() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
         EntityManager manager = emf.createEntityManager();
         manager.getTransaction().begin();
@@ -239,6 +238,7 @@ public class DaoImpl {
         emf.close();
         return results;
     }
+
     public void guardarOperador(Empleado operador) {
         try {
             System.out.println("persistido operador");
@@ -254,7 +254,8 @@ public class DaoImpl {
             ex.printStackTrace();
         }
     }
-        public List<Operador> getOperadores() {
+
+    public List<Operador> getOperadores() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
         EntityManager manager = emf.createEntityManager();
         manager.getTransaction().begin();
@@ -271,7 +272,8 @@ public class DaoImpl {
         return results;
     }
 //éste me parece que no tiene mucho sentido no????
-        public List<Operador> getOperadoresActivos() {
+
+    public List<Operador> getOperadoresActivos() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
         EntityManager manager = emf.createEntityManager();
         manager.getTransaction().begin();
@@ -282,7 +284,7 @@ public class DaoImpl {
         query.setParameter(1, "OP");
         query.setParameter(2, true);
         results = query.getResultList();
-     
+
         for (Operador e : results) {
             e.toString();
         }
@@ -291,8 +293,8 @@ public class DaoImpl {
         emf.close();
         return results;
     }
-        
-            public List<Empleado> getEmpleados() {
+
+    public List<Empleado> getEmpleados() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
         EntityManager manager = emf.createEntityManager();
         manager.getTransaction().begin();
@@ -306,6 +308,45 @@ public class DaoImpl {
         manager.close();
         emf.close();
         return results;
-    }    
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /*Hice estos 3 métodos para manejarnos con invocaciones en lugar de estar creando los objetos EntityManager 
+    y EntitiManagerFacotry y estar abriendo y cerrando recursos manualmente en cada método.
+    Si están de acuerdo, los paso para arriba, en esta misma clase y acomodo los métodos que ya tenemos hechos
+    
+    */
+    
+    private EntityManagerFactory crearEMF() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("MyPersistenceUnit");
+        return emf;
+    }
+
+    public EntityManager iniciarTransaccion(EntityManagerFactory emf) {
+        emf = crearEMF();
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        return em;
+    }
+
+    private void finalizarTransaccion(EntityManagerFactory emf,EntityManager em) {
+         em.getTransaction().commit();
+        em.close();
+        emf.close(); em.getTransaction().commit();
+        em.close();
+        emf.close();
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void modificarNombre(String nombre, int nroLegajo) {
+        EntityManagerFactory emf=crearEMF();
+        EntityManager em = iniciarTransaccion(emf);
+
+        Empleado chof = em.find(Chofer.class, nroLegajo);
+        chof.setNroLegajo(nroLegajo);
+        em.persist(chof);
+        
+        finalizarTransaccion(emf,em);
+
+    }
 
 }
