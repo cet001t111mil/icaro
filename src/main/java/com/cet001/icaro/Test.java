@@ -6,6 +6,7 @@
 package com.cet001.icaro;
 
 import com.cet001.icaro.controlador.PrincipalController;
+import com.cet001.icaro.dao.DaoImpl;
 import com.cet001.icaro.modelo.Viaje;
 import com.cet001.icaro.vista.PrincipalView;
 import java.awt.Window;
@@ -21,10 +22,10 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+        String perUnit ="remiseria?zeroDateTimeBehavior=convertToNullPU";
         PrincipalView pri = new PrincipalView();
-        
-        PrincipalController con = new PrincipalController (pri);
+        DaoImpl dao =new DaoImpl (perUnit);
+        PrincipalController con = new PrincipalController (pri,dao);
         con.iniciar();
         pri.setVisible(true);
         

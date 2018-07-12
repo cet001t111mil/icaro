@@ -5,6 +5,7 @@
  */
 package com.cet001.icaro.controlador;
 
+import com.cet001.icaro.dao.DaoImpl;
 import java.awt.event.ActionListener;
 import com.cet001.icaro.vista.PrincipalView;
 import com.cet001.icaro.vista.NuevoChoferView;
@@ -23,17 +24,20 @@ public class PrincipalController implements ActionListener {//esta es la clase d
 
     private PrincipalView wPrincipal;//esta variable alojará un objeto cuya parte visible para el usuario será la ventana principal del programa.
 
-    public PrincipalController(PrincipalView wPrincipal) {//el constructor recibe por parámetro al objeto mencionado
-
+    public PrincipalController(PrincipalView wPrincipal,DaoImpl dao) {//el constructor recibe por parámetro al objeto mencionado
+        
         this.wPrincipal = wPrincipal;//asignación del obj.a la variable declarada inicialmente
         this.wPrincipal.menuAgregarChofer.addActionListener(this);//esto conecta al controlador con el menú del chofer en la opción "nuevo chofer" para detectar el click en dicha opción.
         this.wPrincipal.jMenuItem1.addActionListener(this);//esto conecta al controlador con el menu del viaje en la opción "nuevo viaje" para detectar el click en dicha opción.
         this.wPrincipal.agreCliente.addActionListener(this);//esto conecta al controlador con el menu del cliente en la opción "agregar cliente" para detectar el click en dicha opción.
         this.wPrincipal.menuAgregarOperador.addActionListener(this);
+        
     }
 
     public void iniciar() {
         this.wPrincipal.setTitle("Icaro Gestion Remis");//asignación de título a la variable wPrincipal.
+        
+
     }
 
     /*Al dar click sobre un botón o sobre una alternativa de un menú de la ventana se creará 1 evento, es

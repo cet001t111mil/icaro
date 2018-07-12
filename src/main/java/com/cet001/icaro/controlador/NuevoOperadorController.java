@@ -5,10 +5,18 @@
  */
 package com.cet001.icaro.controlador;
 
+import com.cet001.icaro.vista.NuevoOperadorView;
+
 /**
  *
  * @author ponsa
  */
 class NuevoOperadorController {
+    private NuevoOperadorView nuevoOperador;
+    
+    public NuevoOperadorController (NuevoOperadorView nuevoOperador){
+        this.nuevoOperador=nuevoOperador;
+        
+    };
     
 }
