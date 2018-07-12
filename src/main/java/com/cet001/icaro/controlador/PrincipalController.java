@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import com.cet001.icaro.vista.PrincipalView;
 import com.cet001.icaro.vista.NuevoChoferView;
 import com.cet001.icaro.vista.NuevoClienteView;
+import com.cet001.icaro.vista.NuevoOperadorView;
 import com.cet001.icaro.vista.NuevoViajeView;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -28,7 +29,7 @@ public class PrincipalController implements ActionListener {//esta es la clase d
         this.wPrincipal.menuAgregarChofer.addActionListener(this);//esto conecta al controlador con el menú del chofer en la opción "nuevo chofer" para detectar el click en dicha opción.
         this.wPrincipal.jMenuItem1.addActionListener(this);//esto conecta al controlador con el menu del viaje en la opción "nuevo viaje" para detectar el click en dicha opción.
         this.wPrincipal.agreCliente.addActionListener(this);//esto conecta al controlador con el menu del cliente en la opción "agregar cliente" para detectar el click en dicha opción.
-     
+        this.wPrincipal.menuAgregarOperador.addActionListener(this);
     }
 
     public void iniciar() {
@@ -47,6 +48,14 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
         String opcion = e.getActionCommand();
 
         switch (opcion) {//en función del comando devuelto por el método gAC, se entrará en 1 de las sig. alternativas
+            case "nOpe": {//ver más abajo
+                NuevoOperadorView nOpe = new NuevoOperadorView();//se crea 1 obj. de tipo NuevoChofer
+                nOpe.setTitle("Nuevo Operador");
+                nOpe.setVisible(true);//hace visible al usuario el formulario para registrar los datos de 1 nuevo chofer (son los datos que luego se asignarán a nChof)
+                NuevoOperadorController conNOpe = new NuevoOperadorController(nOpe);//se crea 1 obj. controlador que "controlará" a nChof
+                break;
+            }
+            
             case "nChof": {//ver más abajo
                 NuevoChoferView nChof = new NuevoChoferView();//se crea 1 obj. de tipo NuevoChofer
                 nChof.setTitle("Nuevo Chofer");

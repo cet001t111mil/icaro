@@ -46,7 +46,7 @@ public class PrincipalView extends javax.swing.JFrame {
         menuAgregarChofer = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        menuAgregarOperador = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         agreCliente = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -117,8 +117,14 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/operador.png"))); // NOI18N
 
-        jMenuItem5.setText("Agregar Operador...");
-        jMenu1.add(jMenuItem5);
+        menuAgregarOperador.setText("Agregar Operador...");
+        menuAgregarOperador.setActionCommand("nOpe");
+        menuAgregarOperador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAgregarOperadorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuAgregarOperador);
 
         jMenuBar1.add(jMenu1);
 
@@ -230,6 +236,10 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_agreClienteActionPerformed
 
+    private void menuAgregarOperadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgregarOperadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuAgregarOperadorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -283,7 +293,6 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
@@ -291,6 +300,7 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JMenuItem menuAgregarChofer;
+    public javax.swing.JMenuItem menuAgregarOperador;
     public javax.swing.JMenu menuChofer;
     // End of variables declaration//GEN-END:variables
 }
