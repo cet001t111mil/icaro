@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-class Vehiculo implements Serializable {
+public class Vehiculo implements Serializable {
 
     private static final long serialVersionUID = 4172404774480436129L;
     @Id
