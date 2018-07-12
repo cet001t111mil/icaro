@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.cet001.icaro.vista;
-import com.cet001.icaro.dao.ChoferImp;
+import com.cet001.icaro.dao.DaoImpl;
 import com.cet001.icaro.modelo.Chofer;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +12,12 @@ import java.util.List;
  *
  * @author ponsa
  */
-public class NuevoViaje extends javax.swing.JFrame {
+public class NuevoViajeView extends javax.swing.JFrame {
 
     /**
      * Creates new form NuevoViaje
      */
-    public NuevoViaje() {
+    public NuevoViajeView() {
         initComponents();
     }
 
@@ -216,20 +216,21 @@ this.dispose();        // TODO add your handling code here:
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NuevoViaje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NuevoViajeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NuevoViaje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NuevoViajeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NuevoViaje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NuevoViajeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NuevoViaje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NuevoViajeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NuevoViaje().setVisible(true);
+                new NuevoViajeView().setVisible(true);
             }
         });
     }

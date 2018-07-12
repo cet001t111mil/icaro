@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package com.cet001.icaro.dao;
+import com.cet001.icaro.modelo.Cliente;
+
 
 /**
  *
  * @author ponsa
  */
-public class iViajeDao {
+public interface InterfaceDao {
+    
     
 }

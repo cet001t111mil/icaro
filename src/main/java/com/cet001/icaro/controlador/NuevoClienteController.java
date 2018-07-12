@@ -5,20 +5,21 @@
  */
 package com.cet001.icaro.controlador;
 
-import com.cet001.icaro.dao.ClienteImp;
+
+import com.cet001.icaro.dao.DaoImpl;
 import com.cet001.icaro.modelo.Cliente;
-import com.cet001.icaro.vista.NuevoCliente;
+import com.cet001.icaro.vista.NuevoClienteView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /**
  *
  * @author ponsa
  */
-public class ConNCliente implements ActionListener {
+public class NuevoClienteController implements ActionListener {
 
-    private NuevoCliente nuevoCliente;
+    private NuevoClienteView nuevoCliente;
 
-    public ConNCliente(NuevoCliente nuevoCliente) {
+    public NuevoClienteController(NuevoClienteView nuevoCliente) {
         this.nuevoCliente = nuevoCliente;
         this.nuevoCliente.jButton2.addActionListener(this);
     }
@@ -35,7 +36,9 @@ public class ConNCliente implements ActionListener {
 
         Cliente clien = new Cliente(nombre, apellido, Double.parseDouble(saldo), direccion);
         
-        ClienteImp clienI = new ClienteImp(clien);
+        DaoImpl dao = new DaoImpl();
+       dao.GuardarCliente(clien);
+       
   
         
 }

@@ -5,9 +5,9 @@
  */
 package com.cet001.icaro;
 
-import com.cet001.icaro.controlador.ConPpal;
+import com.cet001.icaro.controlador.PrincipalController;
 import com.cet001.icaro.modelo.Viaje;
-import com.cet001.icaro.vista.Principal;
+import com.cet001.icaro.vista.PrincipalView;
 import java.awt.Window;
 
 /**
@@ -22,9 +22,9 @@ public class Test {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Principal pri = new Principal();
+        PrincipalView pri = new PrincipalView();
         
-        ConPpal con = new ConPpal (pri);
+        PrincipalController con = new PrincipalController (pri);
         con.iniciar();
         pri.setVisible(true);
         

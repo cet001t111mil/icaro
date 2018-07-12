@@ -6,7 +6,7 @@
 
 
 package com.cet001.icaro.controlador;
-import com.cet001.icaro.vista.NuevoViaje;
+import com.cet001.icaro.vista.NuevoViajeView;
 import com.cet001.icaro.modelo.Viaje;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,10 +14,10 @@ import java.awt.event.ActionListener;
  *
  * @author ponsa
  */
-public class ConNViaje implements ActionListener {
-    private NuevoViaje nuevoViaje;
+public class NuevoViajeController implements ActionListener {
+    private NuevoViajeView nuevoViaje;
     
-    public ConNViaje (NuevoViaje nuevoViaje){
+    public NuevoViajeController (NuevoViajeView nuevoViaje){
         this.nuevoViaje = nuevoViaje;
         this.nuevoViaje.jButton2.addActionListener(this);
         

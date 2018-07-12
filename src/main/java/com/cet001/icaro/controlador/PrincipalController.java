@@ -6,10 +6,10 @@
 package com.cet001.icaro.controlador;
 
 import java.awt.event.ActionListener;
-import com.cet001.icaro.vista.Principal;
-import com.cet001.icaro.vista.NuevoChofer;
-import com.cet001.icaro.vista.NuevoCliente;
-import com.cet001.icaro.vista.NuevoViaje;
+import com.cet001.icaro.vista.PrincipalView;
+import com.cet001.icaro.vista.NuevoChoferView;
+import com.cet001.icaro.vista.NuevoClienteView;
+import com.cet001.icaro.vista.NuevoViajeView;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
@@ -18,11 +18,11 @@ import javax.swing.JMenuItem;
  *
  * @author ponsa
  */
-public class ConPpal implements ActionListener {//esta es la clase del objeto que "controlará" al objeto de tipo "Principal"
+public class PrincipalController implements ActionListener {//esta es la clase del objeto que "controlará" al objeto de tipo "Principal"
 
-    private Principal wPrincipal;//esta variable alojará un objeto cuya parte visible para el usuario será la ventana principal del programa.
+    private PrincipalView wPrincipal;//esta variable alojará un objeto cuya parte visible para el usuario será la ventana principal del programa.
 
-    public ConPpal(Principal wPrincipal) {//el constructor recibe por parámetro al objeto mencionado
+    public PrincipalController(PrincipalView wPrincipal) {//el constructor recibe por parámetro al objeto mencionado
 
         this.wPrincipal = wPrincipal;//asignación del obj.a la variable declarada inicialmente
         this.wPrincipal.menuAgregarChofer.addActionListener(this);//esto conecta al controlador con el menú del chofer en la opción "nuevo chofer" para detectar el click en dicha opción.
@@ -48,24 +48,24 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
 
         switch (opcion) {//en función del comando devuelto por el método gAC, se entrará en 1 de las sig. alternativas
             case "nChof": {//ver más abajo
-                NuevoChofer nChof = new NuevoChofer();//se crea 1 obj. de tipo NuevoChofer
+                NuevoChoferView nChof = new NuevoChoferView();//se crea 1 obj. de tipo NuevoChofer
                 nChof.setTitle("Nuevo Chofer");
                 nChof.setVisible(true);//hace visible al usuario el formulario para registrar los datos de 1 nuevo chofer (son los datos que luego se asignarán a nChof)
-                ConNChof connchof = new ConNChof(nChof);//se crea 1 obj. controlador que "controlará" a nChof
+                NuevoChoferController connchof = new NuevoChoferController(nChof);//se crea 1 obj. controlador que "controlará" a nChof
                 break;
             }
             case "nviaje": {
                 System.out.println("nuevo viaje");
-                NuevoViaje nVven = new NuevoViaje();
+                NuevoViajeView nVven = new NuevoViajeView();
                 nVven.setTitle("Nuevo Viaje");
                 nVven.setVisible(true);
                 break;
             }
             case "agreCliente": {
-                NuevoCliente nVclien = new NuevoCliente();
+                NuevoClienteView nVclien = new NuevoClienteView();
                 nVclien.setTitle("Nuevo Cliente");
                 nVclien.setVisible(true);
-                ConNCliente conNclien = new ConNCliente(nVclien);
+                NuevoClienteController conNclien = new NuevoClienteController(nVclien);
 
             }
         }

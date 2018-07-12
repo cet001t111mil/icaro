@@ -5,21 +5,21 @@
  */
 package com.cet001.icaro.controlador;
 
-import com.cet001.icaro.dao.ChoferImp;
+import com.cet001.icaro.dao.DaoImpl;
 import com.cet001.icaro.modelo.Chofer;
 import com.cet001.icaro.modelo.Empleado;
-import com.cet001.icaro.vista.NuevoChofer;
+import com.cet001.icaro.vista.NuevoChoferView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /**
  *
  * @author ponsa
  */
-public class ConNChof implements ActionListener {//esta es la clase del objeto que "controlará" a los objetos de tipo NuevoChofer
-    private NuevoChofer nuevoChofer;//declaración de la variable que alojará 1 objeto de tipo NuevoChofer cuya parte visible para el usuario será la ventana "Nuevo Chofer"
+public class NuevoChoferController implements ActionListener {//esta es la clase del objeto que "controlará" a los objetos de tipo NuevoChofer
+    private NuevoChoferView nuevoChofer;//declaración de la variable que alojará 1 objeto de tipo NuevoChofer cuya parte visible para el usuario será la ventana "Nuevo Chofer"
     
     
-    public ConNChof (NuevoChofer nuevoChofer){
+    public NuevoChoferController (NuevoChoferView nuevoChofer){
         this.nuevoChofer=nuevoChofer;
         this.nuevoChofer.jButton1.addActionListener(this);//esto conecta al controlador con el botón "guardar" del formulario "Nuevo Chofer" que pertenece al obj. recibido por parám. para que detecte el click en este botón.
                 
@@ -40,7 +40,7 @@ public class ConNChof implements ActionListener {//esta es la clase del objeto q
         Se crea 1 obj. de tipo ChoferImp para guardar (persistir) en la BD al obj. "chof" y todos sus datos
         (los valores ingresados a través del formulario)
         */
-        ChoferImp chI = new ChoferImp ();
+        DaoImpl chI = new DaoImpl ();
         chI.guardarChofer(chof);//con este mét. se persiste el obj. "chof"
         
         
