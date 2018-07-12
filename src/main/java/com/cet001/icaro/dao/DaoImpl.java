@@ -8,6 +8,7 @@ package com.cet001.icaro.dao;
 import com.cet001.icaro.modelo.Chofer;
 import com.cet001.icaro.modelo.Cliente;
 import com.cet001.icaro.modelo.Empleado;
+import com.cet001.icaro.modelo.Operador;
 import com.cet001.icaro.modelo.Viaje;
 import com.cet001.icaro.modelo.Vehiculo;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -40,6 +42,10 @@ public class DaoImpl {
             ex.printStackTrace();
         }
     }
+    
+    //en los métodos que devuelven listas no hice try/catch todavía xq me da conflicto con "return"
+    // ?????????????????
+  
 
     public List<Cliente> getClientes() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
@@ -214,6 +220,25 @@ public class DaoImpl {
         return results;
     }
 
+        public List<Chofer> getChoferesActivos() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
+        EntityManager manager = emf.createEntityManager();
+        manager.getTransaction().begin();
+        List<Chofer> results = new ArrayList<>();
+        Query query = manager.createQuery("Select e"
+                + "from Empleado e"
+                + "where tipo_empleado = ?1 AND activo = ?2");
+        query.setParameter(1, "CH");
+        query.setParameter(2, true);
+        results = query.getResultList();
+        for (Chofer e : results) {
+            e.toString();
+        }
+        manager.getTransaction().commit();
+        manager.close();
+        emf.close();
+        return results;
+    }
     public void guardarOperador(Empleado operador) {
         try {
             System.out.println("persistido operador");
@@ -229,5 +254,58 @@ public class DaoImpl {
             ex.printStackTrace();
         }
     }
+        public List<Operador> getOperadores() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
+        EntityManager manager = emf.createEntityManager();
+        manager.getTransaction().begin();
+        List<Operador> results = new ArrayList<>();
+        results = manager.createQuery("Select e"
+                + "from Empleado e"
+                + "where tipo_empleado = ?1").setParameter(1, "OP").getResultList();
+        for (Operador e : results) {
+            e.toString();
+        }
+        manager.getTransaction().commit();
+        manager.close();
+        emf.close();
+        return results;
+    }
+//éste me parece que no tiene mucho sentido no????
+        public List<Operador> getOperadoresActivos() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
+        EntityManager manager = emf.createEntityManager();
+        manager.getTransaction().begin();
+        List<Operador> results = new ArrayList<>();
+        Query query = manager.createQuery("Select e"
+                + "from Empleado e"
+                + "where tipo_empleado = ?1 AND activo = ?2");
+        query.setParameter(1, "OP");
+        query.setParameter(2, true);
+        results = query.getResultList();
+     
+        for (Operador e : results) {
+            e.toString();
+        }
+        manager.getTransaction().commit();
+        manager.close();
+        emf.close();
+        return results;
+    }
+        
+            public List<Empleado> getEmpleados() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
+        EntityManager manager = emf.createEntityManager();
+        manager.getTransaction().begin();
+        List<Empleado> results = new ArrayList<>();
+        results = manager.createQuery("Select e"
+                + "from Empleado e").getResultList();
+        for (Empleado e : results) {
+            e.toString();
+        }
+        manager.getTransaction().commit();
+        manager.close();
+        emf.close();
+        return results;
+    }    
 
 }
