@@ -7,11 +7,10 @@ CREATE TABLE IF NOT EXISTS remiseria.Cliente (
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `direccion` VARCHAR(45) NULL,
+  `activo` BIT(2) NOT NULL, 
   `saldo` DOUBLE NULL,
   `limite_de_credito` DOUBLE NULL,
-  `activo` bit(2) not null,
   PRIMARY KEY (`id_cliente`));
-  
 
 
 CREATE TABLE IF NOT EXISTS remiseria.TelefonoCliente (
@@ -33,7 +32,7 @@ CREATE TABLE IF NOT EXISTS remiseria.Vehiculo (
   `anio` INT NULL,
   `en_viaje` BIT(2) NULL,
   `disponible` BIT(2) NOT NULL,
-  `activo` bit(2) not null,
+  `activo`BIT(2) NOT NULL,
   PRIMARY KEY (`patente`));
 
 CREATE TABLE IF NOT EXISTS remiseria.Empleado(
@@ -44,7 +43,7 @@ CREATE TABLE IF NOT EXISTS remiseria.Empleado(
   `sueldo` DOUBLE NULL,
   `comision` DOUBLE NULL,
   `tipo_empleado` VARCHAR(45) NULL,
-  `activo` bit(2) not null,
+  `activo` BIT(2) NOT NULL,
   PRIMARY KEY (`nro_legajo`));
 
 
@@ -64,13 +63,13 @@ CREATE TABLE IF NOT EXISTS remiseria.Viaje (
   `id_viaje` INT NOT NULL,
   `origen` VARCHAR(45) NOT NULL,
   `destino` VARCHAR(45) NULL,
-  `fecha` DATE NOT NULL,
+  `fecha` DATETIME NOT NULL,
   `importe` DOUBLE NULL,
   `forma_de_pago` INT NULL,
   `patente` VARCHAR(10) NULL,
   `id_cliente` INT(4) NULL,
   `nro_legajo` INT (4) NULL,
-   `activo` bit(2) not null,
+  `activo`BIT(2) NOT NULL,
   PRIMARY KEY (`id_viaje`),
   CONSTRAINT `fk_Viaje_Cliente1`
     FOREIGN KEY (`id_cliente`)
