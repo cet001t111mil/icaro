@@ -312,13 +312,13 @@ public class DaoImpl {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*Hice estos 3 métodos para manejarnos con invocaciones en lugar de estar creando los objetos EntityManager 
-    y EntitiManagerFacotry y estar abriendo y cerrando recursos manualmente en cada método.
+    y EntityManagerFacotry y estar abriendo y cerrando recursos manualmente en cada método.
     Si están de acuerdo, los paso para arriba, en esta misma clase y acomodo los métodos que ya tenemos hechos
     
     */
     
     private EntityManagerFactory crearEMF() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("MyPersistenceUnit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
         return emf;
     }
 
@@ -337,7 +337,7 @@ public class DaoImpl {
         emf.close();
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void modificarNombre(String nombre, int nroLegajo) {
+    public void modificarNroLegajo(int nroLegajo) {
         EntityManagerFactory emf=crearEMF();
         EntityManager em = iniciarTransaccion(emf);
 
