@@ -24,8 +24,8 @@ public class Test {
         // TODO code application logic here
         String perUnit ="remiseria?zeroDateTimeBehavior=convertToNullPU";
         PrincipalView pri = new PrincipalView();
-        DaoImpl dao =new DaoImpl (perUnit);
-        PrincipalController con = new PrincipalController (pri,dao);
+       // DaoImpl dao =new DaoImpl (perUnit);
+        PrincipalController con = new PrincipalController (pri);
         con.iniciar();
         pri.setVisible(true);
         

@@ -24,7 +24,7 @@ public class PrincipalController implements ActionListener {//esta es la clase d
 
     private PrincipalView wPrincipal;//esta variable alojará un objeto cuya parte visible para el usuario será la ventana principal del programa.
 
-    public PrincipalController(PrincipalView wPrincipal,DaoImpl dao) {//el constructor recibe por parámetro al objeto mencionado
+    public PrincipalController(PrincipalView wPrincipal) {//el constructor recibe por parámetro al objeto mencionado
         
         this.wPrincipal = wPrincipal;//asignación del obj.a la variable declarada inicialmente
         this.wPrincipal.menuAgregarChofer.addActionListener(this);//esto conecta al controlador con el menú del chofer en la opción "nuevo chofer" para detectar el click en dicha opción.
