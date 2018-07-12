@@ -7,7 +7,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/viaje.png"/>
+              <Image iconType="3" name="/imagenes/viaje.png"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -38,7 +38,7 @@
         <Menu class="javax.swing.JMenu" name="menuChofer">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/chofer.png"/>
+              <Image iconType="3" name="/imagenes/chofer.png"/>
             </Property>
           </Properties>
           <Events>
@@ -73,7 +73,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/operador.png"/>
+              <Image iconType="3" name="/imagenes/operador.png"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -87,7 +87,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/pasajero2.png"/>
+              <Image iconType="3" name="/imagenes/pasajero2.png"/>
             </Property>
           </Properties>
           <SubComponents>

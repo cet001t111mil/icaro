@@ -70,7 +70,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jLabel2.setText("Viajes En Curso:");
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viaje.png"))); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/viaje.png"))); // NOI18N
 
         jMenuItem1.setText("Nuevo Viaje...");
         jMenuItem1.setActionCommand("nviaje");
@@ -89,7 +89,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        menuChofer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chofer.png"))); // NOI18N
+        menuChofer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chofer.png"))); // NOI18N
         menuChofer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuChoferActionPerformed(evt);
@@ -115,14 +115,14 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuBar1.add(menuChofer);
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/operador.png"))); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/operador.png"))); // NOI18N
 
         jMenuItem5.setText("Agregar Operador...");
         jMenu1.add(jMenuItem5);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pasajero2.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pasajero2.png"))); // NOI18N
 
         agreCliente.setText("Agregar Cliente...");
         agreCliente.setActionCommand("agreCliente");
