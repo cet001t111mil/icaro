@@ -285,7 +285,7 @@ public class DaoImpl {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void modificarNroLegajo(int nroLegajo,String dni,String nombre,String apellido,String tipoEmpleado,double sueldo,double comision,boolean borradoLogico) {
+    public void modificarChofer(int nroLegajo,String dni,String nombre,String apellido,String tipoEmpleado,double sueldo,double comision,boolean borradoLogico) {
 
         manager.getTransaction().begin();
         Empleado chof = manager.find(Chofer.class, nroLegajo);
