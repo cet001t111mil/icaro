@@ -24,20 +24,31 @@ import javax.persistence.Query;
  */
 public class DaoImpl {
 
-    public DaoImpl() { //dejamos el constructor vacio por si necesitamos usar spring
+    EntityManagerFactory emf;
+    EntityManager manager;
+
+    //nombre de la unid. de persist: "remiseria?zeroDateTimeBehavior=convertToNullPU"
+    //Santi: dejé acá el nombre de la unid de persist. xq no sé si lo necesitás tener a mano. 
+    public DaoImpl(String nomUnidPersistencia) {
+        this.emf = Persistence.createEntityManagerFactory(nomUnidPersistencia);
+        this.manager = emf.createEntityManager();
+    }
+
+    @Override
+    protected void finalize() throws Throwable {//chicos: a este mét. lo dejé "protected" porque sobreescribe el mét. finalize de Object.
+        manager.close();
+        emf.close();
 
     }
 
     public void GuardarCliente(Cliente clien) {
         try {
+
             System.out.println("persistido cliente");
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-            EntityManager manager = emf.createEntityManager();
             manager.getTransaction().begin();
             manager.persist(clien);
             manager.getTransaction().commit();
-            manager.close();
-            emf.close();
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -46,8 +57,7 @@ public class DaoImpl {
     //en los métodos que devuelven listas no hice try/catch todavía xq me da conflicto con "return"
     // ?????????????????
     public List<Cliente> getClientes() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-        EntityManager manager = emf.createEntityManager();
+
         manager.getTransaction().begin();
 
         List<Cliente> results = new ArrayList<>();
@@ -58,14 +68,12 @@ public class DaoImpl {
         }
 
         manager.getTransaction().commit();
-        manager.close();
-        emf.close();
+
         return results;
     }
 
     public List<Cliente> getClientesActivos() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-        EntityManager manager = emf.createEntityManager();
+
         manager.getTransaction().begin();
         List<Cliente> results = new ArrayList<>();
         results = manager.createQuery("Select c"
@@ -75,21 +83,17 @@ public class DaoImpl {
             e.toString();
         }
         manager.getTransaction().commit();
-        manager.close();
-        emf.close();
+
         return results;
     }
 
     public void guardarViaje(Viaje viaje) {
         try {
             System.out.println("persistido viaje");
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-            EntityManager manager = emf.createEntityManager();
+
             manager.getTransaction().begin();
             manager.persist(viaje);
             manager.getTransaction().commit();
-            manager.close();
-            emf.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -97,8 +101,7 @@ public class DaoImpl {
     }
 
     public List<Viaje> getViajes() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-        EntityManager manager = emf.createEntityManager();
+
         manager.getTransaction().begin();
         List<Viaje> results = new ArrayList<>();
         results = manager.createQuery("Select v"
@@ -107,16 +110,13 @@ public class DaoImpl {
             e.toString();
         }
         manager.getTransaction().commit();
-        manager.close();
-        emf.close();
 
         return results;
 
     }
 
     public List<Viaje> getViajesActivos() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-        EntityManager manager = emf.createEntityManager();
+
         manager.getTransaction().begin();
         List<Viaje> results = new ArrayList<>();
         results = manager.createQuery("Select v"
@@ -126,8 +126,6 @@ public class DaoImpl {
             e.toString();
         }
         manager.getTransaction().commit();
-        manager.close();
-        emf.close();
 
         return results;
 
@@ -136,13 +134,10 @@ public class DaoImpl {
     public void guardarVehiculo(Vehiculo vehiculo) {
         try {
             System.out.println("persistido vehículo");
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-            EntityManager manager = emf.createEntityManager();
+
             manager.getTransaction().begin();
             manager.persist(vehiculo);
             manager.getTransaction().commit();
-            manager.close();
-            emf.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -150,8 +145,7 @@ public class DaoImpl {
     }
 
     public List<Vehiculo> getVehiculos() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-        EntityManager manager = emf.createEntityManager();
+
         manager.getTransaction().begin();
         List<Vehiculo> results = new ArrayList<>();
         results = manager.createQuery("Select ve"
@@ -160,16 +154,13 @@ public class DaoImpl {
             e.toString();
         }
         manager.getTransaction().commit();
-        manager.close();
-        emf.close();
 
         return results;
 
     }
 
     public List<Vehiculo> getVehiculosActivos() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-        EntityManager manager = emf.createEntityManager();
+
         manager.getTransaction().begin();
         List<Vehiculo> results = new ArrayList<>();
         results = manager.createQuery("Select ve"
@@ -179,8 +170,6 @@ public class DaoImpl {
             e.toString();
         }
         manager.getTransaction().commit();
-        manager.close();
-        emf.close();
 
         return results;
 
@@ -189,13 +178,10 @@ public class DaoImpl {
     public void guardarChofer(Empleado chof) {
         try {
             System.out.println("persistido chofer");
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-            EntityManager manager = emf.createEntityManager();
+          
             manager.getTransaction().begin();
             manager.persist(chof);
             manager.getTransaction().commit();
-            manager.close();
-            emf.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -203,8 +189,7 @@ public class DaoImpl {
     }
 
     public List<Chofer> getChoferes() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-        EntityManager manager = emf.createEntityManager();
+
         manager.getTransaction().begin();
         List<Chofer> results = new ArrayList<>();
         results = manager.createQuery("Select e"
@@ -214,14 +199,12 @@ public class DaoImpl {
             e.toString();
         }
         manager.getTransaction().commit();
-        manager.close();
-        emf.close();
+
         return results;
     }
 
     public List<Chofer> getChoferesActivos() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-        EntityManager manager = emf.createEntityManager();
+
         manager.getTransaction().begin();
         List<Chofer> results = new ArrayList<>();
         Query query = manager.createQuery("Select e"
@@ -234,21 +217,17 @@ public class DaoImpl {
             e.toString();
         }
         manager.getTransaction().commit();
-        manager.close();
-        emf.close();
+
         return results;
     }
 
     public void guardarOperador(Empleado operador) {
         try {
             System.out.println("persistido operador");
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-            EntityManager manager = emf.createEntityManager();
+
             manager.getTransaction().begin();
             manager.persist(operador);
             manager.getTransaction().commit();
-            manager.close();
-            emf.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -256,8 +235,7 @@ public class DaoImpl {
     }
 
     public List<Operador> getOperadores() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-        EntityManager manager = emf.createEntityManager();
+
         manager.getTransaction().begin();
         List<Operador> results = new ArrayList<>();
         results = manager.createQuery("Select e"
@@ -267,15 +245,13 @@ public class DaoImpl {
             e.toString();
         }
         manager.getTransaction().commit();
-        manager.close();
-        emf.close();
+
         return results;
     }
 //éste me parece que no tiene mucho sentido no????
 
     public List<Operador> getOperadoresActivos() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-        EntityManager manager = emf.createEntityManager();
+
         manager.getTransaction().begin();
         List<Operador> results = new ArrayList<>();
         Query query = manager.createQuery("Select e"
@@ -289,14 +265,12 @@ public class DaoImpl {
             e.toString();
         }
         manager.getTransaction().commit();
-        manager.close();
-        emf.close();
+
         return results;
     }
 
     public List<Empleado> getEmpleados() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-        EntityManager manager = emf.createEntityManager();
+
         manager.getTransaction().begin();
         List<Empleado> results = new ArrayList<>();
         results = manager.createQuery("Select e"
@@ -305,47 +279,26 @@ public class DaoImpl {
             e.toString();
         }
         manager.getTransaction().commit();
-        manager.close();
-        emf.close();
+
         return results;
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /*Hice estos 3 métodos para manejarnos con invocaciones en lugar de estar creando los objetos EntityManager 
-    y EntityManagerFacotry y estar abriendo y cerrando recursos manualmente en cada método.
-    Si están de acuerdo, los paso para arriba, en esta misma clase y acomodo los métodos que ya tenemos hechos
-    
-    */
-    
-    private EntityManagerFactory crearEMF() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("remiseria?zeroDateTimeBehavior=convertToNullPU");
-        return emf;
-    }
-
-    public EntityManager iniciarTransaccion(EntityManagerFactory emf) {
-        emf = crearEMF();
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        return em;
-    }
-
-    private void finalizarTransaccion(EntityManagerFactory emf,EntityManager em) {
-         em.getTransaction().commit();
-        em.close();
-        emf.close(); em.getTransaction().commit();
-        em.close();
-        emf.close();
-    }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void modificarNroLegajo(int nroLegajo) {
-        EntityManagerFactory emf=crearEMF();
-        EntityManager em = iniciarTransaccion(emf);
 
-        Empleado chof = em.find(Chofer.class, nroLegajo);
+    public void modificarNroLegajo(int nroLegajo,String dni,String nombre,String apellido,String tipoEmpleado,double sueldo,double comision,boolean borradoLogico) {
+
+        manager.getTransaction().begin();
+        Empleado chof = manager.find(Chofer.class, nroLegajo);
         chof.setNroLegajo(nroLegajo);
-        em.persist(chof);
-        
-        finalizarTransaccion(emf,em);
+        chof.setDni(dni);
+        chof.setNombre(nombre);
+        chof.setApellido(apellido);
+        chof.setTipoEmpleado(tipoEmpleado);
+        chof.setSueldo(sueldo);
+       ((Chofer)chof).setComision(comision);
+       chof.setActivo(borradoLogico);
+        manager.persist(chof);
+        manager.getTransaction().commit();
 
     }
 
