@@ -24,7 +24,8 @@ public abstract class Empleado implements Serializable {
     @Column(name = "tipo_empleado")
     protected String tipoEmpleado;
     protected double sueldo;
-    protected boolean activo;
+    @Column(name = "borrado_logico")
+    protected boolean borradoLogico;
 
     public Empleado() {
     }
@@ -36,14 +37,14 @@ public abstract class Empleado implements Serializable {
         this.nroLegajo = nroLegajo;
         this.tipoEmpleado = tipoEmpleado;
         this.sueldo = sueldo;
-        this.activo = true;
+        this.borradoLogico = false;
     }
 
     public abstract double calcularSueldo(double importe);
 
     @Override
     public String toString() {
-        return "Empleado{" + "nroLegajo=" + nroLegajo + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", tipoEmpleado=" + tipoEmpleado + ", sueldo=" + sueldo + ", activo=" + activo + '}';
+        return "Empleado{" + "nroLegajo=" + nroLegajo + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", tipoEmpleado=" + tipoEmpleado + ", sueldo=" + sueldo + ", borrado lógico=" + borradoLogico + '}';
     }
 
     
@@ -97,13 +98,15 @@ public abstract class Empleado implements Serializable {
         this.sueldo = sueldo;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public boolean isBorradoLogico() {
+        return borradoLogico;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setBorradoLogico(boolean borraloLogico) {
+        this.borradoLogico = borraloLogico;
     }
+
+    
 
    
 

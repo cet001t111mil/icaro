@@ -20,7 +20,8 @@ public class Cliente implements Serializable {
     private String nombre;
     private String apellido;
     private String direccion;
-    private boolean activo;
+    @Column(name = "borrado_logico")
+    private boolean borradoLogico;
     private double saldo;
     @Column(name = "limite_de_credito")
     private double limiteDeCredito;
@@ -41,7 +42,7 @@ public class Cliente implements Serializable {
         this.apellido = apellido;
         this.saldo = saldo;
         this.direccion = direccion;
-        this.activo = true;
+        this.borradoLogico = false;
         this.limiteDeCredito = 0;
         
         
@@ -57,7 +58,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", activo=" + activo + ", saldo=" + saldo + ", limiteDeCredito=" + limiteDeCredito + ", telefonos=" + telefonos + '}';
+        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", borrado lógico=" + borradoLogico + ", saldo=" + saldo + ", limiteDeCredito=" + limiteDeCredito + ", telefonos=" + telefonos + '}';
     }
 
     
@@ -103,13 +104,15 @@ public class Cliente implements Serializable {
         this.direccion = direccion;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public boolean isBorradoLogico() {
+        return borradoLogico;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setBorradoLogico(boolean borradoLogico) {
+        this.borradoLogico = borradoLogico;
     }
+
+
     
 
     public double getLimiteDeCredito() {

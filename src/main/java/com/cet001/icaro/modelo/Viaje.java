@@ -26,7 +26,11 @@ public class Viaje implements Serializable {
     private double importe;
     @Column(name = "forma_de_pago")
     private int formaDePago;
-    private boolean activo;
+    @Column(name = "borrado_logico")
+    private boolean borradoLogico;
+    @Column (name = "en_viaje")
+    private boolean enCurso;
+    
     
 
     @ManyToOne
@@ -53,13 +57,16 @@ public class Viaje implements Serializable {
         this.movil = movil;
         this.cliente = cliente;
         this.chofer = chofer;
-        this.activo = true;
+        this.borradoLogico = false;
+        this.enCurso = true;
     }
 
     @Override
     public String toString() {
-        return "Viaje{" + "idViaje=" + idViaje + ", origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", importe=" + importe + ", formaDePago=" + formaDePago + ", activo=" + activo + ", movil=" + movil + ", cliente=" + cliente + ", chofer=" + chofer + '}';
+        return "Viaje{" + "idViaje=" + idViaje + ", origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", importe=" + importe + ", formaDePago=" + formaDePago + ", borradoLogico=" + borradoLogico + ", enCurso=" + enCurso + ", movil=" + movil + ", cliente=" + cliente + ", chofer=" + chofer + '}';
     }
+
+
 
     
     //Métodos settters & getters:
@@ -137,13 +144,22 @@ public class Viaje implements Serializable {
         this.chofer = chofer;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public boolean isBorradoLogico() {
+        return borradoLogico;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setBorradoLogico(boolean borradoLogico) {
+        this.borradoLogico = borradoLogico;
     }
+
+    public boolean isEnCurso() {
+        return enCurso;
+    }
+
+    public void setEnCurso(boolean enCurso) {
+        this.enCurso = enCurso;
+    }
+
     
 
 }

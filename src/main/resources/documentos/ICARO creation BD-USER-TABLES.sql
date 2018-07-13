@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS remiseria.Cliente (
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `direccion` VARCHAR(45) NULL,
-  `activo` BIT(2) NOT NULL, 
+  `borrado_logico` BOOLEAN NOT NULL, 
   `saldo` DOUBLE NULL,
   `limite_de_credito` DOUBLE NULL,
   PRIMARY KEY (`id_cliente`));
@@ -30,9 +30,8 @@ CREATE TABLE IF NOT EXISTS remiseria.Vehiculo (
   `marca` VARCHAR(45) NULL,
   `modelo` VARCHAR(45) NULL,
   `anio` INT NULL,
-  `en_viaje` BIT(2) NULL,
-  `disponible` BIT(2) NOT NULL,
-  `activo`BIT(2) NOT NULL,
+  `en_viaje` BOOLEAN NULL,
+  `borrado_logico`BOOLEAN NOT NULL,
   PRIMARY KEY (`patente`));
 
 CREATE TABLE IF NOT EXISTS remiseria.Empleado(
@@ -43,7 +42,7 @@ CREATE TABLE IF NOT EXISTS remiseria.Empleado(
   `sueldo` DOUBLE NULL,
   `comision` DOUBLE NULL,
   `tipo_empleado` VARCHAR(45) NULL,
-  `activo` BIT(2) NOT NULL,
+  `borrado_logico` BOOLEAN NOT NULL,
   PRIMARY KEY (`nro_legajo`));
 
 
@@ -66,10 +65,12 @@ CREATE TABLE IF NOT EXISTS remiseria.Viaje (
   `fecha` DATETIME NOT NULL,
   `importe` DOUBLE NULL,
   `forma_de_pago` INT NULL,
+  `borrado_logico` BOOLEAN NOT NULL,
+  `en_curso` BOOLEAN NOT NULL,
   `patente` VARCHAR(10) NULL,
   `id_cliente` INT(4) NULL,
-  `nro_legajo` INT (4) NULL,
-  `activo`BIT(2) NOT NULL,
+  `nro_legajo_chofer` INT(4) NULL,
+
   PRIMARY KEY (`id_viaje`),
   CONSTRAINT `fk_Viaje_Cliente1`
     FOREIGN KEY (`id_cliente`)
@@ -82,7 +83,7 @@ CREATE TABLE IF NOT EXISTS remiseria.Viaje (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Viaje_empleado`
-    FOREIGN KEY (`nro_legajo`)
+    FOREIGN KEY (`nro_legajo_chofer`)
     REFERENCES `remiseria`.`Empleado` (`nro_legajo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
