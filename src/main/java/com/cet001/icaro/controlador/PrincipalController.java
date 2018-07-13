@@ -6,14 +6,21 @@
 package com.cet001.icaro.controlador;
 
 import com.cet001.icaro.dao.DaoImpl;
+import com.cet001.icaro.modelo.Empleado;
+import com.cet001.icaro.modelo.Vehiculo;
+import com.cet001.icaro.modelo.Viaje;
 import java.awt.event.ActionListener;
 import com.cet001.icaro.vista.PrincipalView;
 import com.cet001.icaro.vista.NuevoChoferView;
 import com.cet001.icaro.vista.NuevoClienteView;
 import com.cet001.icaro.vista.NuevoOperadorView;
 import com.cet001.icaro.vista.NuevoViajeView;
+import java.awt.Component;
+import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
+import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JList;
 import javax.swing.JMenuItem;
 
 /**
@@ -23,7 +30,7 @@ import javax.swing.JMenuItem;
 public class PrincipalController implements ActionListener {//esta es la clase del objeto que "controlará" al objeto de tipo "Principal"
 
     private PrincipalView wPrincipal;//esta variable alojará un objeto cuya parte visible para el usuario será la ventana principal del programa.
-
+    DaoImpl dao = new DaoImpl ();
     public PrincipalController(PrincipalView wPrincipal) {//el constructor recibe por parámetro al objeto mencionado
         
         this.wPrincipal = wPrincipal;//asignación del obj.a la variable declarada inicialmente
@@ -36,10 +43,27 @@ public class PrincipalController implements ActionListener {//esta es la clase d
 
     public void iniciar() {
         this.wPrincipal.setTitle("Icaro Gestion Remis");//asignación de título a la variable wPrincipal.
-        
+        llenarListaVehiculos();
 
     }
-
+    
+    public void llenarListaVehiculos (){
+        String listaV ="";
+        List<Vehiculo> vehiculos = dao.getVehiculos();
+        for (Vehiculo v : vehiculos){
+            listaV = listaV + v.getMarca()+" "+v.getModelo()+" "+v.getPatente()+"\n ";
+        }
+        wPrincipal.vehiculosDisponiblesPanel.setText(listaV);//      
+    }
+//    
+//    public void llenarListaViajesCurso (){
+//        String listaVia ="";
+//        List<Viaje> viajes = dao.getViajesActivos();
+//        for (Viaje vI : viajes){
+//            listaVia = listaVia + vI.getIdViaje()+" "+vI.getMovil()+" "+vI.getChofer()+"\n ";
+//        }
+//        wPrincipal.viajesEnCursoPanel.setText(listaVia);//         
+//    }
     /*Al dar click sobre un botón o sobre una alternativa de un menú de la ventana se creará 1 evento, es
     decir, un objeto de tipo ActionEvent que representa a la acción realizada.
     */
