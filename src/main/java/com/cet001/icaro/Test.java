@@ -18,16 +18,17 @@ import java.awt.Window;
  * @author ponsa
  */
 public class Test {
-
+public static String perUnit ="remiseria?zeroDateTimeBehavior=convertToNullPU";
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String perUnit ="remiseria?zeroDateTimeBehavior=convertToNullPU";
+        
+       
+        DaoImpl dao =new DaoImpl (perUnit);
         PrincipalView pri = new PrincipalView();
-       // DaoImpl dao =new DaoImpl (perUnit);
-        PrincipalController con = new PrincipalController (pri);
+        PrincipalController con = new PrincipalController (pri, dao);
         con.iniciar();
         pri.setVisible(true);
         

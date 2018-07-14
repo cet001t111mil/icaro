@@ -41,7 +41,7 @@ public class NuevoChoferController implements ActionListener {//esta es la clase
         (los valores ingresados a través del formulario)
         */
         DaoImpl chI = new DaoImpl ();
-        chI.guardarChofer(chof);//con este mét. se persiste el obj. "chof"
+        chI.guardarChofer(chof);
         
         
     }

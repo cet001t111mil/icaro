@@ -5,6 +5,7 @@
  */
 package com.cet001.icaro.controlador;
 
+import static com.cet001.icaro.Test.perUnit;
 import com.cet001.icaro.dao.DaoImpl;
 import com.cet001.icaro.modelo.Empleado;
 import com.cet001.icaro.modelo.Vehiculo;
@@ -27,12 +28,12 @@ import javax.swing.JMenuItem;
  *
  * @author ponsa
  */
-public class PrincipalController implements ActionListener {//esta es la clase del objeto que "controlará" al objeto de tipo "Principal"
-
+public class PrincipalController  implements ActionListener {//esta es la clase del objeto que "controlará" al objeto de tipo "Principal"
+DaoImpl dao;
     private PrincipalView wPrincipal;//esta variable alojará un objeto cuya parte visible para el usuario será la ventana principal del programa.
-    DaoImpl dao = new DaoImpl ();
-    public PrincipalController(PrincipalView wPrincipal) {//el constructor recibe por parámetro al objeto mencionado
-        
+    
+    public PrincipalController(PrincipalView wPrincipal, DaoImpl dao) {//el constructor recibe por parámetro al objeto mencionado
+        this.dao = dao;
         this.wPrincipal = wPrincipal;//asignación del obj.a la variable declarada inicialmente
         this.wPrincipal.menuAgregarChofer.addActionListener(this);//esto conecta al controlador con el menú del chofer en la opción "nuevo chofer" para detectar el click en dicha opción.
         this.wPrincipal.jMenuItem1.addActionListener(this);//esto conecta al controlador con el menu del viaje en la opción "nuevo viaje" para detectar el click en dicha opción.
@@ -50,23 +51,22 @@ public class PrincipalController implements ActionListener {//esta es la clase d
     public void llenarListaVehiculos (){
         String listaV ="";
         List<Vehiculo> vehiculos = dao.getVehiculos();
+        System.out.println(vehiculos.toString());
         for (Vehiculo v : vehiculos){
             listaV = listaV + v.getMarca()+" "+v.getModelo()+" "+v.getPatente()+"\n ";
         }
         wPrincipal.vehiculosDisponiblesPanel.setText(listaV);//      
     }
-//    
-//    public void llenarListaViajesCurso (){
-//        String listaVia ="";
-//        List<Viaje> viajes = dao.getViajesActivos();
-//        for (Viaje vI : viajes){
-//            listaVia = listaVia + vI.getIdViaje()+" "+vI.getMovil()+" "+vI.getChofer()+"\n ";
-//        }
-//        wPrincipal.viajesEnCursoPanel.setText(listaVia);//         
-//    }
-    /*Al dar click sobre un botón o sobre una alternativa de un menú de la ventana se creará 1 evento, es
-    decir, un objeto de tipo ActionEvent que representa a la acción realizada.
-    */
+    
+    public void llenarListaViajesCurso (){
+        String listaVia ="";
+        List<Viaje> viajes = dao.getViajes();
+        for (Viaje vI : viajes){
+            listaVia = listaVia + vI.getIdViaje()+" "+vI.getMovil()+" "+vI.getChofer()+"\n ";
+        }
+        wPrincipal.viajesEnCursoPanel.setText(listaVia);//         
+    }
+    
 @Override
     public void actionPerformed(ActionEvent e) {//se recibe por parám. un evento
 /*
