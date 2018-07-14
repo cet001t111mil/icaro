@@ -1,13 +1,7 @@
-
 package com.cet001.icaro.dao;
 
 import com.cet001.icaro.modelo.Chofer;
-import com.cet001.icaro.modelo.Cliente;
-import static com.cet001.icaro.modelo.Cliente_.idCliente;
-import com.cet001.icaro.modelo.Empleado;
-import com.cet001.icaro.modelo.Operador;
-import com.cet001.icaro.modelo.Viaje;
-import com.cet001.icaro.modelo.Vehiculo;
+import com.cet001.icaro.modelo.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -17,10 +11,10 @@ import javax.persistence.Query;
 
 /**
  *
- * //Santi:le puse los 2 cierres de conex. al "finalize" xq quise respetar lo que
- * habíamos acordado ayer, pero me parece bien así como indicaste vos. 
- * Pregunta: en el "finalize" le dejamos ambos cierres así como están o quitamos el
- * manager.close() que ya lo tenemos en el "finally" todos los métodos??? .
+ * //Santi:le puse los 2 cierres de conex. al "finalize" xq quise respetar lo
+ * que habíamos acordado ayer, pero me parece bien así como indicaste vos.
+ * Pregunta: en el "finalize" le dejamos ambos cierres así como están o quitamos
+ * el manager.close() que ya lo tenemos en el "finally" todos los métodos??? .
  *
  *///######### manager close despues de c/consulta // emf en constructor del dao
 public class DaoImpl {
@@ -42,24 +36,20 @@ public class DaoImpl {
 
     }
 
-    public void GuardarCliente(Cliente clien) {
+    public void GuardarCliente(Cliente clien) throws Exception {
         try {
             System.out.println("persistido cliente");
             manager.getTransaction().begin();
             manager.persist(clien);
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            //agregar
-            new Exception("Error grabando cliente");
-            //agregar        
+
         } finally {
             manager.close();
         }
 
     }
 
-    public List<Cliente> getClientes() {
+    public List<Cliente> getClientes() throws Exception {
         manager.getTransaction().begin();
         List<Cliente> results = null;
         try {
@@ -67,16 +57,14 @@ public class DaoImpl {
             results = manager.createQuery("Select c"
                     + "from Cliente c").getResultList();
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error trayendo lista de clientes");
+
         } finally {
             manager.close();
             return results;
         }
     }
 
-    public List<Cliente> getClientesActivos() {
+    public List<Cliente> getClientesActivos() throws Exception {
         manager.getTransaction().begin();
         List<Cliente> results = null;
         try {
@@ -88,30 +76,26 @@ public class DaoImpl {
                 e.toString();
             }
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error trayendo lista de clientes activos");
+
         } finally {
             manager.close();
             return results;
         }
     }
 
-    public void guardarViaje(Viaje viaje) {
+    public void guardarViaje(Viaje viaje) throws Exception {
         try {
             System.out.println("persistido viaje");
             manager.getTransaction().begin();
             manager.persist(viaje);
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error guardando viaje");
+
         } finally {
             manager.close();
         }
     }
 
-    public List<Viaje> getViajes() {
+    public List<Viaje> getViajes() throws Exception {
         manager.getTransaction().begin();
         List<Viaje> results = null;
         try {
@@ -122,9 +106,7 @@ public class DaoImpl {
                 e.toString();
             }
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error trayendo lista de viajes");
+
         } finally {
             manager.close();
             return results;
@@ -132,7 +114,7 @@ public class DaoImpl {
         }
     }
 
-    public List<Viaje> getViajesRealizados() {
+    public List<Viaje> getViajesRealizados() throws Exception {
         manager.getTransaction().begin();
         List<Viaje> results = null;
         try {
@@ -144,30 +126,26 @@ public class DaoImpl {
                 e.toString();
             }
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error trayendo lista de viajes realizados");
+
         } finally {
             manager.close();
             return results;
         }
     }
 
-    public void guardarVehiculo(Vehiculo vehiculo) {
+    public void guardarVehiculo(Vehiculo vehiculo) throws Exception {
         try {
             System.out.println("persistido vehículo");
             manager.getTransaction().begin();
             manager.persist(vehiculo);
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error guardando vehículo");
+
         } finally {
             manager.close();
         }
     }
 
-    public List<Vehiculo> getVehiculos() {
+    public List<Vehiculo> getVehiculos() throws Exception {
         manager.getTransaction().begin();
         List<Vehiculo> results = null;
         try {
@@ -178,16 +156,14 @@ public class DaoImpl {
                 e.toString();
             }
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error trayendo lista de vehículos");
+
         } finally {
             manager.close();
             return results;
         }
     }
 
-    public List<Vehiculo> getVehiculosActivos() {
+    public List<Vehiculo> getVehiculosActivos() throws Exception {
         manager.getTransaction().begin();
         List<Vehiculo> results = null;
         try {
@@ -199,8 +175,7 @@ public class DaoImpl {
                 e.toString();
             }
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            new Exception("Error trayendo lista de clientes activos");
+
         } finally {
             manager.close();
             return results;
@@ -208,21 +183,19 @@ public class DaoImpl {
 
     }
 
-    public void guardarChofer(Empleado chof) {
+    public void guardarChofer(Empleado chof) throws Exception {
         try {
             System.out.println("persistido chofer");
             manager.getTransaction().begin();
             manager.persist(chof);
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error persistiendo chofer");
+
         } finally {
             manager.close();
         }
     }
 
-    public List<Chofer> getChoferes() {
+    public List<Chofer> getChoferes() throws Exception {
         manager.getTransaction().begin();
         List<Chofer> results = null;
         try {
@@ -234,15 +207,14 @@ public class DaoImpl {
                 e.toString();
             }
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            new Exception("Error trayendo lista de choferes");
+
         } finally {
             manager.close();
             return results;
         }
     }
 
-    public List<Chofer> getChoferesActivos() {
+    public List<Chofer> getChoferesActivos() throws Exception {
 
         manager.getTransaction().begin();
         List<Chofer> results = null;
@@ -258,9 +230,7 @@ public class DaoImpl {
                 e.toString();
             }
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error trayendo lista de choferes activos");
+
         } finally {
             manager.close();
             return results;
@@ -268,22 +238,19 @@ public class DaoImpl {
 
     }
 
-    public void guardarOperador(Empleado operador) {
+    public void guardarOperador(Empleado operador) throws Exception {
         try {
             System.out.println("persistido operador");
             manager.getTransaction().begin();
             manager.persist(operador);
             manager.getTransaction().commit();
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error guardando operador");
         } finally {
             manager.close();
         }
     }
 
-    public List<Operador> getOperadores() {
+    public List<Operador> getOperadores() throws Exception {
         manager.getTransaction().begin();
         List<Operador> results = null;
         try {
@@ -295,9 +262,7 @@ public class DaoImpl {
                 e.toString();
             }
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error trayendo lista de operadores");
+
         } finally {
             manager.close();
             return results;
@@ -305,7 +270,7 @@ public class DaoImpl {
     }
 // #################  Chicos, a ver qué opinan: éste me parece que no tiene mucho sentido no????
 
-    public List<Operador> getOperadoresActivos() {
+    public List<Operador> getOperadoresActivos() throws Exception {
         manager.getTransaction().begin();
         List<Operador> results = null;
         try {
@@ -322,16 +287,14 @@ public class DaoImpl {
                 e.toString();
             }
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error trayendo lista de operadores activos");
+
         } finally {
             manager.close();
             return results;
         }
     }
 
-    public List<Empleado> getEmpleados() {
+    public List<Empleado> getEmpleados() throws Exception {
         manager.getTransaction().begin();
         List<Empleado> results = null;
         try {
@@ -343,9 +306,7 @@ public class DaoImpl {
                 e.toString();
             }
             manager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            new Exception("Error trayendo lista de empleados");
+
         } finally {
             manager.close();
             return results;
@@ -357,22 +318,23 @@ public class DaoImpl {
     de empleado por si un chofer cambia de rol y pasa a ser operador o viceversa y un sector para el borrado lógico que,
     para mí, allá en la ventana sería mejor ponerle otro nombre en lug de borrado logico.
      */
-    public void modificarChofer(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) {
-
-        manager.getTransaction().begin();
-        Empleado chof = manager.find(Chofer.class, nroLegajo);
-        chof.setNroLegajo(nroLegajo);
-        chof.setDni(dni);
-        chof.setNombre(nombre);
-        chof.setApellido(apellido);
-        chof.setTipoEmpleado(tipoEmpleado);
-        chof.setSueldo(sueldo);
-        ((Chofer) chof).setComision(comision);
-        chof.setBorradoLogico(borradoLogico);
-        manager.persist(chof);
-        manager.getTransaction().commit();
-        manager.close();
-
+    public void modificarChofer(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) throws Exception {
+        Try
+        {
+            manager.getTransaction().begin();
+            Empleado chof = manager.find(Chofer.class, nroLegajo);
+            chof.setDni(dni);
+            chof.setNombre(nombre);
+            chof.setApellido(apellido);
+            chof.setTipoEmpleado(tipoEmpleado);
+            chof.setSueldo(sueldo);
+            ((Chofer) chof).setComision(comision);
+            chof.setBorradoLogico(borradoLogico);
+            manager.persist(chof);
+            manager.getTransaction().commit();
+        }finally{
+            manager.close();
+                }
     }
 
     /*
@@ -382,57 +344,65 @@ public class DaoImpl {
     esa opción para que el operador no pueda setearse una comisión, ya que es él mismo el que va a modif. los datos ahí.
     Si prefieren así, avisen que los unifico.
      */
-    public void modificarOperador(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, boolean borradoLogico) {
-
-        manager.getTransaction().begin();
-        Empleado operador = manager.find(Operador.class, nroLegajo);
-        operador.setDni(dni);
-        operador.setNombre(nombre);
-        operador.setApellido(apellido);
-        operador.setTipoEmpleado(tipoEmpleado);
-        operador.setSueldo(sueldo);
-        operador.setBorradoLogico(borradoLogico);
-        manager.persist(operador);
-        manager.getTransaction().commit();
+    public void modificarOperador(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, boolean borradoLogico) throws Exception {
+        Try
+        {
+            manager.getTransaction().begin();
+            Empleado operador = manager.find(Operador.class, nroLegajo);
+            operador.setDni(dni);
+            operador.setNombre(nombre);
+            operador.setApellido(apellido);
+            operador.setTipoEmpleado(tipoEmpleado);
+            operador.setSueldo(sueldo);
+            operador.setBorradoLogico(borradoLogico);
+            manager.persist(operador);
+            manager.getTransaction().commit();
+        }finally{
         manager.close();
+            }
     }
 
     //no le vamos a permitir modif. la lista de viajes en esta vista.
     // (los viajes acá solo se verán. Para eliminar o modific. viaje habrá que ir a las correspondientes ventanas)
-    public void modificarVehiculo(String patente, String marca, String modelo, int anio, boolean enViaje, boolean borradoLogico) {
-        manager.getTransaction().begin();
-        Vehiculo vehic = manager.find(Vehiculo.class, patente);//patente es pk en la BD. No se permitirá modificar, pero se neces. recibir x parám. p/esta búsqueda
-        vehic.setMarca(marca);
-        vehic.setModelo(modelo);
-        vehic.setAnio(anio);
-        vehic.setEnViaje(enViaje);
-        vehic.setBorradoLogico(borradoLogico);
-        manager.persist(vehic);
-        manager.getTransaction().commit();
-        manager.close();
+    public void modificarVehiculo(String patente, String marca, String modelo, int anio, boolean enViaje, boolean borradoLogico) throws Exception {
+        try {
+            manager.getTransaction().begin();
+            Vehiculo vehic = manager.find(Vehiculo.class, patente);//patente es pk en la BD. No se permitirá modificar, pero se neces. recibir x parám. p/esta búsqueda
+            vehic.setMarca(marca);
+            vehic.setModelo(modelo);
+            vehic.setAnio(anio);
+            vehic.setEnViaje(enViaje);
+            vehic.setBorradoLogico(borradoLogico);
+            manager.persist(vehic);
+            manager.getTransaction().commit();
+        } finally {
+            manager.close();
+        }
 
     }
     //idem que p/caso anterior: se permitirá ver pero no modificar las listas: "telefonos","movSal","viajes"(p/estas mod. ir a las ventanas corresp.)
-    
+
     //Supongo que permitimos ver acá las listas porque no haremos ventanas específicas para ver datos de cliente, de vehiculo,etc)
     //Si hicieramos esas vent. podriamos sacar las listas de las ventanas como ésta. Pero no creo que hagamos tantas ventanas,no?
-   
     //lo que sí podemos hacer para eliminar las listas de estas ventanas es: titular las ventanas de modificaciones como "ver/modificar Cliente","ver/modificarViaje",etc.,
     //entonces ahí ya quedaría mejor sacar las listas de las ventanas en las que habían quedado sólo para vista.
-    public void modificarCliente(int idCliente,String nombre,String apellido,String direccion,boolean borradoLogico,double saldo,double limiteDeCredito){
-        manager.getTransaction().begin();
-        Cliente cli =manager.find(Cliente.class,idCliente);
-        cli.setNombre(nombre);
-        cli.setApellido(apellido);
-        cli.setDireccion(direccion);
-        cli.setBorradoLogico(borradoLogico);
-        cli.setSaldo(saldo);
-        cli.setLimiteDeCredito(limiteDeCredito);
-        manager.persist(cli);
-        manager.getTransaction().commit();
+    public void modificarCliente(int idCliente, String nombre, String apellido, String direccion, boolean borradoLogico, double saldo, double limiteDeCredito) throws Exception {
+        Try
+        {
+            manager.getTransaction().begin();
+            Cliente cli = manager.find(Cliente.class, idCliente);
+            cli.setNombre(nombre);
+            cli.setApellido(apellido);
+            cli.setDireccion(direccion);
+            cli.setBorradoLogico(borradoLogico);
+            cli.setSaldo(saldo);
+            cli.setLimiteDeCredito(limiteDeCredito);
+            manager.persist(cli);
+            manager.getTransaction().commit();
+        }finally{
         manager.close();
-                
+            }
+
     }
-    
-    
+
 }
