@@ -3,6 +3,7 @@ package com.cet001.icaro.dao;
 import com.cet001.icaro.modelo.Chofer;
 import com.cet001.icaro.modelo.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -294,55 +295,34 @@ public class DaoImpl {
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /* En la ventana para modif chofer los agregados con respecto a la de agregar chofer serían: un sector para elegir tipo
+    /* En la ventana para modif op. los agregados con respecto a la de agregar chofer serían: un sector para elegir tipo
     de empleado por si un chofer cambia de rol y pasa a ser operador o viceversa y un sector para el borrado lógico que,
     para mí, allá en la ventana sería mejor ponerle otro nombre en lug de borrado logico.
      */
-    public void modificarChofer(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) throws Exception {
+
+    
+      public void modificarEmpleado(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) throws Exception {
         try
         {
             manager.getTransaction().begin();
-            Empleado chof = manager.find(Chofer.class, nroLegajo);
-            chof.setDni(dni);
-            chof.setNombre(nombre);
-            chof.setApellido(apellido);
-            chof.setTipoEmpleado(tipoEmpleado);
-            chof.setSueldo(sueldo);
-            ((Chofer) chof).setComision(comision);
-            chof.setBorradoLogico(borradoLogico);
-            manager.persist(chof);
+            Empleado empl = manager.find(Empleado.class, nroLegajo);
+            empl.setDni(dni);
+            empl.setNombre(nombre);
+            empl.setApellido(apellido);
+            empl.setTipoEmpleado(tipoEmpleado);
+            empl.setSueldo(sueldo);
+            ((Chofer) empl).setComision(comision);
+            empl.setBorradoLogico(borradoLogico);
+            manager.persist(empl);
             manager.getTransaction().commit();
         }finally{
             manager.close();
             emf.close();
                 }
     }
-
-    /*
-    Me parece que no tiene sentido hacer un metodo "modificarEmpleado" a parte de modChofer y modOperador, pero tal vez sería mejor 
-    unificarlos en un "modificarEmpleado y que se vincule ese mismo método tanto a la ventana de "modificarEmpleado" como a la de
-    "modificarOperador(). La unica dif. es que chof tiene comisión. En la ventana de modif. operador, tal vez se podría omitir 
-    esa opción para que el operador no pueda setearse una comisión, ya que es él mismo el que va a modif. los datos ahí.
-    Si prefieren así, avisen que los unifico.
-     */
-    public void modificarOperador(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, boolean borradoLogico) throws Exception {
-        try
-        {
-            manager.getTransaction().begin();
-            Empleado operador = manager.find(Operador.class, nroLegajo);
-            operador.setDni(dni);
-            operador.setNombre(nombre);
-            operador.setApellido(apellido);
-            operador.setTipoEmpleado(tipoEmpleado);
-            operador.setSueldo(sueldo);
-            operador.setBorradoLogico(borradoLogico);
-            manager.persist(operador);
-            manager.getTransaction().commit();
-        }finally{
-        manager.close();
-        emf.close();
-            }
-    }
+    
+    
+    
 
     //no le vamos a permitir modif. la lista de viajes en esta vista.
     // (los viajes acá solo se verán. Para eliminar o modific. viaje habrá que ir a las correspondientes ventanas)
@@ -388,5 +368,26 @@ public class DaoImpl {
             }
 
     }
+    
+ public void modificarViaje(int idViaje, String origen, String destino,Calendar fecha,double importe,int formaDePago,boolean borradoLogico,boolean enCurso,Vehiculo movil, Cliente cliente, Chofer chofer) throws Exception {
+//        try
+//        {
+//            manager.getTransaction().begin();
+//            Viaje vi = manager.find(Viaje.class,idViaje );
+//            cli.setNombre(nombre);
+//            cli.setApellido(apellido);
+//            cli.setDireccion(direccion);
+//            cli.setBorradoLogico(borradoLogico);
+//            cli.setSaldo(saldo);
+//            cli.setLimiteDeCredito(limiteDeCredito);
+//            manager.persist(cli);
+//            manager.getTransaction().commit();
+//        }finally{
+//        manager.close();
+//        emf.close();
+//            }
 
+    }
+    
+    
 }
