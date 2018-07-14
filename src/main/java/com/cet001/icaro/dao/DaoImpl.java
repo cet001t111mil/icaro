@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.cet001.icaro.dao;
 
 import com.cet001.icaro.modelo.Chofer;
 import com.cet001.icaro.modelo.Cliente;
+import static com.cet001.icaro.modelo.Cliente_.idCliente;
 import com.cet001.icaro.modelo.Empleado;
 import com.cet001.icaro.modelo.Operador;
 import com.cet001.icaro.modelo.Viaje;
@@ -20,7 +17,11 @@ import javax.persistence.Query;
 
 /**
  *
- * @author ponsa
+ * //Santi:le puse los 2 cierres de conex. al "finalize" xq quise respetar lo que
+ * habíamos acordado ayer, pero me parece bien así como indicaste vos. 
+ * Pregunta: en el "finalize" le dejamos ambos cierres así como están o quitamos el
+ * manager.close() que ya lo tenemos en el "finally" todos los métodos??? .
+ *
  *///######### manager close despues de c/consulta // emf en constructor del dao
 public class DaoImpl {
 
@@ -58,7 +59,6 @@ public class DaoImpl {
 
     }
 
- 
     public List<Cliente> getClientes() {
         manager.getTransaction().begin();
         List<Cliente> results = null;
@@ -76,7 +76,6 @@ public class DaoImpl {
         }
     }
 
-  
     public List<Cliente> getClientesActivos() {
         manager.getTransaction().begin();
         List<Cliente> results = null;
@@ -305,6 +304,7 @@ public class DaoImpl {
         }
     }
 // #################  Chicos, a ver qué opinan: éste me parece que no tiene mucho sentido no????
+
     public List<Operador> getOperadoresActivos() {
         manager.getTransaction().begin();
         List<Operador> results = null;
@@ -353,7 +353,11 @@ public class DaoImpl {
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void modificarChofer(int nroLegajo,String dni,String nombre,String apellido,String tipoEmpleado,double sueldo,double comision,boolean borradoLogico) {
+    /* En la ventana para modif chofer los agregados con respecto a la de agregar chofer serían: un sector para elegir tipo
+    de empleado por si un chofer cambia de rol y pasa a ser operador o viceversa y un sector para el borrado lógico que,
+    para mí, allá en la ventana sería mejor ponerle otro nombre en lug de borrado logico.
+     */
+    public void modificarChofer(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) {
 
         manager.getTransaction().begin();
         Empleado chof = manager.find(Chofer.class, nroLegajo);
@@ -363,11 +367,72 @@ public class DaoImpl {
         chof.setApellido(apellido);
         chof.setTipoEmpleado(tipoEmpleado);
         chof.setSueldo(sueldo);
-       ((Chofer)chof).setComision(comision);
-       chof.setActivo(borradoLogico);
+        ((Chofer) chof).setComision(comision);
+        chof.setBorradoLogico(borradoLogico);
         manager.persist(chof);
         manager.getTransaction().commit();
+        manager.close();
 
     }
 
+    /*
+    Me parece que no tiene sentido hacer un metodo "modificarEmpleado" a parte de modChofer y modOperador, pero tal vez sería mejor 
+    unificarlos en un "modificarEmpleado y que se vincule ese mismo método tanto a la ventana de "modificarEmpleado" como a la de
+    "modificarOperador(). La unica dif. es que chof tiene comisión. En la ventana de modif. operador, tal vez se podría omitir 
+    esa opción para que el operador no pueda setearse una comisión, ya que es él mismo el que va a modif. los datos ahí.
+    Si prefieren así, avisen que los unifico.
+     */
+    public void modificarOperador(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, boolean borradoLogico) {
+
+        manager.getTransaction().begin();
+        Empleado operador = manager.find(Operador.class, nroLegajo);
+        operador.setDni(dni);
+        operador.setNombre(nombre);
+        operador.setApellido(apellido);
+        operador.setTipoEmpleado(tipoEmpleado);
+        operador.setSueldo(sueldo);
+        operador.setBorradoLogico(borradoLogico);
+        manager.persist(operador);
+        manager.getTransaction().commit();
+        manager.close();
+    }
+
+    //no le vamos a permitir modif. la lista de viajes en esta vista.
+    // (los viajes acá solo se verán. Para eliminar o modific. viaje habrá que ir a las correspondientes ventanas)
+    public void modificarVehiculo(String patente, String marca, String modelo, int anio, boolean enViaje, boolean borradoLogico) {
+        manager.getTransaction().begin();
+        Vehiculo vehic = manager.find(Vehiculo.class, patente);//patente es pk en la BD. No se permitirá modificar, pero se neces. recibir x parám. p/esta búsqueda
+        vehic.setMarca(marca);
+        vehic.setModelo(modelo);
+        vehic.setAnio(anio);
+        vehic.setEnViaje(enViaje);
+        vehic.setBorradoLogico(borradoLogico);
+        manager.persist(vehic);
+        manager.getTransaction().commit();
+        manager.close();
+
+    }
+    //idem que p/caso anterior: se permitirá ver pero no modificar las listas: "telefonos","movSal","viajes"(p/estas mod. ir a las ventanas corresp.)
+    
+    //Supongo que permitimos ver acá las listas porque no haremos ventanas específicas para ver datos de cliente, de vehiculo,etc)
+    //Si hicieramos esas vent. podriamos sacar las listas de las ventanas como ésta. Pero no creo que hagamos tantas ventanas,no?
+   
+    //lo que sí podemos hacer para eliminar las listas de estas ventanas es: titular las ventanas de modificaciones como "ver/modificar Cliente","ver/modificarViaje",etc.,
+    //entonces ahí ya quedaría mejor sacar las listas de las ventanas en las que habían quedado sólo para vista.
+    public void modificarCliente(int idCliente,String nombre,String apellido,String direccion,boolean borradoLogico,double saldo,double limiteDeCredito){
+        manager.getTransaction().begin();
+        Cliente cli =manager.find(Cliente.class,idCliente);
+        cli.setNombre(nombre);
+        cli.setApellido(apellido);
+        cli.setDireccion(direccion);
+        cli.setBorradoLogico(borradoLogico);
+        cli.setSaldo(saldo);
+        cli.setLimiteDeCredito(limiteDeCredito);
+        manager.persist(cli);
+        manager.getTransaction().commit();
+        manager.close();
+                
+    }
+    
+    
 }
