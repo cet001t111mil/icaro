@@ -37,14 +37,14 @@ public class DaoImpl {
     }
 
     public void GuardarCliente(Cliente clien) throws Exception {
-        try {
-            System.out.println("persistido cliente");
+        try {       
             manager.getTransaction().begin();
             manager.persist(clien);
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
         }
 
     }
@@ -54,12 +54,13 @@ public class DaoImpl {
         List<Cliente> results = null;
         try {
             results = new ArrayList<>();
-            results = manager.createQuery("Select c"
+            results = manager.createQuery("Select c "
                     + "from Cliente c").getResultList();
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
             return results;
         }
     }
@@ -69,29 +70,27 @@ public class DaoImpl {
         List<Cliente> results = null;
         try {
             results = new ArrayList<>();
-            results = manager.createQuery("Select c"
-                    + "from Cliente c"
-                    + "where borrado_logico = ?1").setParameter(1, false).getResultList();
-            for (Cliente e : results) {
-                e.toString();
-            }
+            results = manager.createQuery("Select c "
+                    + "from Cliente c "
+                    + "where borrado_logico = ?1").setParameter(1, false).getResultList();       
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
             return results;
         }
     }
 
     public void guardarViaje(Viaje viaje) throws Exception {
-        try {
-            System.out.println("persistido viaje");
+        try {          
             manager.getTransaction().begin();
             manager.persist(viaje);
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
         }
     }
 
@@ -100,15 +99,13 @@ public class DaoImpl {
         List<Viaje> results = null;
         try {
             results = new ArrayList<>();
-            results = manager.createQuery("Select v"
-                    + "from Viaje v").getResultList();
-            for (Viaje e : results) {
-                e.toString();
-            }
+            results = manager.createQuery("Select v "
+                    + "from Viaje v").getResultList();         
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
             return results;
 
         }
@@ -119,29 +116,27 @@ public class DaoImpl {
         List<Viaje> results = null;
         try {
             results = new ArrayList<>();
-            results = manager.createQuery("Select v"
-                    + "from Viaje v"
-                    + "where borrado_logico = ?1").setParameter(1, false).getResultList();
-            for (Viaje e : results) {
-                e.toString();
-            }
+            results = manager.createQuery("Select v "
+                    + "from Viaje v "
+                    + "where borrado_logico = ?1").setParameter(1, false).getResultList();         
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
             return results;
         }
     }
 
     public void guardarVehiculo(Vehiculo vehiculo) throws Exception {
         try {
-            System.out.println("persistido vehículo");
             manager.getTransaction().begin();
             manager.persist(vehiculo);
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
         }
     }
 
@@ -150,15 +145,13 @@ public class DaoImpl {
         List<Vehiculo> results = null;
         try {
             results = new ArrayList<>();
-            results = manager.createQuery("Select ve"
+            results = manager.createQuery("Select ve "
                     + "from Vehiculo ve").getResultList();
-            for (Vehiculo e : results) {
-                e.toString();
-            }
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
             return results;
         }
     }
@@ -168,16 +161,14 @@ public class DaoImpl {
         List<Vehiculo> results = null;
         try {
             results = new ArrayList<>();
-            results = manager.createQuery("Select ve"
-                    + "from Vehiculo ve"
+            results = manager.createQuery("Select ve "
+                    + "from Vehiculo ve "
                     + "where borrado_logico = ?1").setParameter(1, false).getResultList();
-            for (Vehiculo e : results) {
-                e.toString();
-            }
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
             return results;
         }
 
@@ -185,13 +176,13 @@ public class DaoImpl {
 
     public void guardarChofer(Empleado chof) throws Exception {
         try {
-            System.out.println("persistido chofer");
             manager.getTransaction().begin();
             manager.persist(chof);
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
         }
     }
 
@@ -200,16 +191,14 @@ public class DaoImpl {
         List<Chofer> results = null;
         try {
             results = new ArrayList<>();
-            results = manager.createQuery("Select e"
-                    + "from Empleado e"
+            results = manager.createQuery("Select e "
+                    + "from Empleado e "
                     + "where tipo_empleado = ?1").setParameter(1, "CH").getResultList();
-            for (Chofer e : results) {
-                e.toString();
-            }
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
             return results;
         }
     }
@@ -220,19 +209,17 @@ public class DaoImpl {
         List<Chofer> results = null;
         try {
             results = new ArrayList<>();
-            Query query = manager.createQuery("Select e"
-                    + "from Empleado e"
+            Query query = manager.createQuery("Select e "
+                    + "from Empleado e "
                     + "where tipo_empleado = ?1 AND borrado_logico = ?2");
             query.setParameter(1, "CH");
             query.setParameter(2, false);
             results = query.getResultList();
-            for (Chofer e : results) {
-                e.toString();
-            }
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
             return results;
         }
 
@@ -240,13 +227,13 @@ public class DaoImpl {
 
     public void guardarOperador(Empleado operador) throws Exception {
         try {
-            System.out.println("persistido operador");
             manager.getTransaction().begin();
             manager.persist(operador);
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
         }
     }
 
@@ -255,16 +242,14 @@ public class DaoImpl {
         List<Operador> results = null;
         try {
             results = new ArrayList<>();
-            results = manager.createQuery("Select e"
-                    + "from Empleado e"
+            results = manager.createQuery("Select e "
+                    + "from Empleado e "
                     + "where tipo_empleado = ?1").setParameter(1, "OP").getResultList();
-            for (Operador e : results) {
-                e.toString();
-            }
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
             return results;
         }
     }
@@ -276,20 +261,17 @@ public class DaoImpl {
         try {
             results = new ArrayList<>();
 
-            Query query = manager.createQuery("Select e"
-                    + "from Empleado e"
+            Query query = manager.createQuery("Select e "
+                    + "from Empleado e "
                     + "where tipo_empleado = ?1 AND borrado_logico = ?2");
             query.setParameter(1, "OP");
             query.setParameter(2, false);
             results = query.getResultList();
-
-            for (Operador e : results) {
-                e.toString();
-            }
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
             return results;
         }
     }
@@ -300,15 +282,13 @@ public class DaoImpl {
         try {
             results = new ArrayList<>();
 
-            results = manager.createQuery("Select e"
+            results = manager.createQuery("Select e "
                     + "from Empleado e").getResultList();
-            for (Empleado e : results) {
-                e.toString();
-            }
             manager.getTransaction().commit();
 
         } finally {
             manager.close();
+            emf.close();
             return results;
         }
     }
@@ -319,7 +299,7 @@ public class DaoImpl {
     para mí, allá en la ventana sería mejor ponerle otro nombre en lug de borrado logico.
      */
     public void modificarChofer(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) throws Exception {
-        Try
+        try
         {
             manager.getTransaction().begin();
             Empleado chof = manager.find(Chofer.class, nroLegajo);
@@ -334,6 +314,7 @@ public class DaoImpl {
             manager.getTransaction().commit();
         }finally{
             manager.close();
+            emf.close();
                 }
     }
 
@@ -345,7 +326,7 @@ public class DaoImpl {
     Si prefieren así, avisen que los unifico.
      */
     public void modificarOperador(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, boolean borradoLogico) throws Exception {
-        Try
+        try
         {
             manager.getTransaction().begin();
             Empleado operador = manager.find(Operador.class, nroLegajo);
@@ -359,6 +340,7 @@ public class DaoImpl {
             manager.getTransaction().commit();
         }finally{
         manager.close();
+        emf.close();
             }
     }
 
@@ -377,6 +359,7 @@ public class DaoImpl {
             manager.getTransaction().commit();
         } finally {
             manager.close();
+            emf.close();
         }
 
     }
@@ -387,7 +370,7 @@ public class DaoImpl {
     //lo que sí podemos hacer para eliminar las listas de estas ventanas es: titular las ventanas de modificaciones como "ver/modificar Cliente","ver/modificarViaje",etc.,
     //entonces ahí ya quedaría mejor sacar las listas de las ventanas en las que habían quedado sólo para vista.
     public void modificarCliente(int idCliente, String nombre, String apellido, String direccion, boolean borradoLogico, double saldo, double limiteDeCredito) throws Exception {
-        Try
+        try
         {
             manager.getTransaction().begin();
             Cliente cli = manager.find(Cliente.class, idCliente);
@@ -401,6 +384,7 @@ public class DaoImpl {
             manager.getTransaction().commit();
         }finally{
         manager.close();
+        emf.close();
             }
 
     }
