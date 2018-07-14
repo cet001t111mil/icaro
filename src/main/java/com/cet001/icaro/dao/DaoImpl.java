@@ -1,12 +1,7 @@
 package com.cet001.icaro.dao;
 
 import com.cet001.icaro.modelo.Chofer;
-import com.cet001.icaro.modelo.Cliente;
-import static com.cet001.icaro.modelo.Cliente_.idCliente;
-import com.cet001.icaro.modelo.Empleado;
-import com.cet001.icaro.modelo.Operador;
-import com.cet001.icaro.modelo.Viaje;
-import com.cet001.icaro.modelo.Vehiculo;
+import com.cet001.icaro.modelo.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -323,22 +318,23 @@ public class DaoImpl {
     de empleado por si un chofer cambia de rol y pasa a ser operador o viceversa y un sector para el borrado lógico que,
     para mí, allá en la ventana sería mejor ponerle otro nombre en lug de borrado logico.
      */
-    public void modificarChofer(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) {
-
-        manager.getTransaction().begin();
-        Empleado chof = manager.find(Chofer.class, nroLegajo);
-        chof.setNroLegajo(nroLegajo);
-        chof.setDni(dni);
-        chof.setNombre(nombre);
-        chof.setApellido(apellido);
-        chof.setTipoEmpleado(tipoEmpleado);
-        chof.setSueldo(sueldo);
-        ((Chofer) chof).setComision(comision);
-        chof.setBorradoLogico(borradoLogico);
-        manager.persist(chof);
-        manager.getTransaction().commit();
-        manager.close();
-
+    public void modificarChofer(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) throws Exception {
+        Try
+        {
+            manager.getTransaction().begin();
+            Empleado chof = manager.find(Chofer.class, nroLegajo);
+            chof.setDni(dni);
+            chof.setNombre(nombre);
+            chof.setApellido(apellido);
+            chof.setTipoEmpleado(tipoEmpleado);
+            chof.setSueldo(sueldo);
+            ((Chofer) chof).setComision(comision);
+            chof.setBorradoLogico(borradoLogico);
+            manager.persist(chof);
+            manager.getTransaction().commit();
+        }finally{
+            manager.close();
+                }
     }
 
     /*
@@ -348,34 +344,40 @@ public class DaoImpl {
     esa opción para que el operador no pueda setearse una comisión, ya que es él mismo el que va a modif. los datos ahí.
     Si prefieren así, avisen que los unifico.
      */
-    public void modificarOperador(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, boolean borradoLogico) {
-
-        manager.getTransaction().begin();
-        Empleado operador = manager.find(Operador.class, nroLegajo);
-        operador.setDni(dni);
-        operador.setNombre(nombre);
-        operador.setApellido(apellido);
-        operador.setTipoEmpleado(tipoEmpleado);
-        operador.setSueldo(sueldo);
-        operador.setBorradoLogico(borradoLogico);
-        manager.persist(operador);
-        manager.getTransaction().commit();
+    public void modificarOperador(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, boolean borradoLogico) throws Exception {
+        Try
+        {
+            manager.getTransaction().begin();
+            Empleado operador = manager.find(Operador.class, nroLegajo);
+            operador.setDni(dni);
+            operador.setNombre(nombre);
+            operador.setApellido(apellido);
+            operador.setTipoEmpleado(tipoEmpleado);
+            operador.setSueldo(sueldo);
+            operador.setBorradoLogico(borradoLogico);
+            manager.persist(operador);
+            manager.getTransaction().commit();
+        }finally{
         manager.close();
+            }
     }
 
     //no le vamos a permitir modif. la lista de viajes en esta vista.
     // (los viajes acá solo se verán. Para eliminar o modific. viaje habrá que ir a las correspondientes ventanas)
-    public void modificarVehiculo(String patente, String marca, String modelo, int anio, boolean enViaje, boolean borradoLogico) {
-        manager.getTransaction().begin();
-        Vehiculo vehic = manager.find(Vehiculo.class, patente);//patente es pk en la BD. No se permitirá modificar, pero se neces. recibir x parám. p/esta búsqueda
-        vehic.setMarca(marca);
-        vehic.setModelo(modelo);
-        vehic.setAnio(anio);
-        vehic.setEnViaje(enViaje);
-        vehic.setBorradoLogico(borradoLogico);
-        manager.persist(vehic);
-        manager.getTransaction().commit();
-        manager.close();
+    public void modificarVehiculo(String patente, String marca, String modelo, int anio, boolean enViaje, boolean borradoLogico) throws Exception {
+        try {
+            manager.getTransaction().begin();
+            Vehiculo vehic = manager.find(Vehiculo.class, patente);//patente es pk en la BD. No se permitirá modificar, pero se neces. recibir x parám. p/esta búsqueda
+            vehic.setMarca(marca);
+            vehic.setModelo(modelo);
+            vehic.setAnio(anio);
+            vehic.setEnViaje(enViaje);
+            vehic.setBorradoLogico(borradoLogico);
+            manager.persist(vehic);
+            manager.getTransaction().commit();
+        } finally {
+            manager.close();
+        }
 
     }
     //idem que p/caso anterior: se permitirá ver pero no modificar las listas: "telefonos","movSal","viajes"(p/estas mod. ir a las ventanas corresp.)
@@ -384,18 +386,22 @@ public class DaoImpl {
     //Si hicieramos esas vent. podriamos sacar las listas de las ventanas como ésta. Pero no creo que hagamos tantas ventanas,no?
     //lo que sí podemos hacer para eliminar las listas de estas ventanas es: titular las ventanas de modificaciones como "ver/modificar Cliente","ver/modificarViaje",etc.,
     //entonces ahí ya quedaría mejor sacar las listas de las ventanas en las que habían quedado sólo para vista.
-    public void modificarCliente(int idCliente, String nombre, String apellido, String direccion, boolean borradoLogico, double saldo, double limiteDeCredito) {
-        manager.getTransaction().begin();
-        Cliente cli = manager.find(Cliente.class, idCliente);
-        cli.setNombre(nombre);
-        cli.setApellido(apellido);
-        cli.setDireccion(direccion);
-        cli.setBorradoLogico(borradoLogico);
-        cli.setSaldo(saldo);
-        cli.setLimiteDeCredito(limiteDeCredito);
-        manager.persist(cli);
-        manager.getTransaction().commit();
+    public void modificarCliente(int idCliente, String nombre, String apellido, String direccion, boolean borradoLogico, double saldo, double limiteDeCredito) throws Exception {
+        Try
+        {
+            manager.getTransaction().begin();
+            Cliente cli = manager.find(Cliente.class, idCliente);
+            cli.setNombre(nombre);
+            cli.setApellido(apellido);
+            cli.setDireccion(direccion);
+            cli.setBorradoLogico(borradoLogico);
+            cli.setSaldo(saldo);
+            cli.setLimiteDeCredito(limiteDeCredito);
+            manager.persist(cli);
+            manager.getTransaction().commit();
+        }finally{
         manager.close();
+            }
 
     }
 
