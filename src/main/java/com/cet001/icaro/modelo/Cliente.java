@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 
-@Entity(name = "cliente")
+@Entity
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1044152195801582698L;

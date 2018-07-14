@@ -28,7 +28,7 @@ public class Viaje implements Serializable {
     private int formaDePago;
     @Column(name = "borrado_logico")
     private boolean borradoLogico;
-    @Column (name = "en_viaje")
+    @Column (name = "en_curso")
     private boolean enCurso;
     
     
