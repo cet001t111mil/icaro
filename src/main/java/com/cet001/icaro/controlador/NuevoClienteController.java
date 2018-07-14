@@ -16,10 +16,11 @@ import java.awt.event.ActionListener;
  * @author ponsa
  */
 public class NuevoClienteController implements ActionListener {
-
+private DaoImpl dao;
     private NuevoClienteView nuevoCliente;
 
-    public NuevoClienteController(NuevoClienteView nuevoCliente) {
+    public NuevoClienteController(NuevoClienteView nuevoCliente, DaoImpl dao) {
+        this.dao = dao;
         this.nuevoCliente = nuevoCliente;
         this.nuevoCliente.jButton2.addActionListener(this);
     }
@@ -32,13 +33,17 @@ public class NuevoClienteController implements ActionListener {
         String apellido = nuevoCliente.apellido.getText();
         String saldo = nuevoCliente.saldo.getText();
         String direccion = nuevoCliente.direccion.getText();
-        String comision = nuevoCliente.telefono.getText();
+        
 
         Cliente clien = new Cliente(nombre, apellido, Double.parseDouble(saldo), direccion);
         
-        DaoImpl dao = new DaoImpl();
+        try{
         dao.GuardarCliente(clien);
-       
+
+        }catch(Exception ex) {
+                ex.printStackTrace();
+               
+               }
   
         
 }

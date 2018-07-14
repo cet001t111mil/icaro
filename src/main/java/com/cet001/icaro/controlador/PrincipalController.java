@@ -48,8 +48,8 @@ public class PrincipalController implements ActionListener {//esta es la clase d
         this.wPrincipal.jMenuItem1.addActionListener(this);
         this.wPrincipal.agreCliente.addActionListener(this);
         this.wPrincipal.menuAgregarOperador.addActionListener(this);
-        llenarListaViajesCurso();
-        llenarListaVehiculos();
+        //llenarListaViajesCurso();
+        //llenarListaVehiculos();
 //        llenarListaClientes();
 
     }
@@ -129,7 +129,7 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 NuevoClienteView nVclien = new NuevoClienteView();
                 nVclien.setTitle("Nuevo Cliente");
                 nVclien.setVisible(true);
-                NuevoClienteController conNclien = new NuevoClienteController(nVclien);
+                NuevoClienteController conNclien = new NuevoClienteController(nVclien,dao);
 
             }
         }

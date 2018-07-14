@@ -38,8 +38,9 @@ public class DaoImpl {
     }
 
     public void GuardarCliente(Cliente clien) throws Exception {
-        try {       
-            manager.getTransaction().begin();
+        manager.getTransaction().begin();
+        try {
+            
             manager.persist(clien);
             manager.getTransaction().commit();
 
@@ -73,7 +74,7 @@ public class DaoImpl {
             results = new ArrayList<>();
             results = manager.createQuery("Select c "
                     + "from Cliente c "
-                    + "where borrado_logico = ?1").setParameter(1, false).getResultList();       
+                    + "where borrado_logico = ?1").setParameter(1, false).getResultList();
             manager.getTransaction().commit();
 
         } finally {
@@ -84,8 +85,9 @@ public class DaoImpl {
     }
 
     public void guardarViaje(Viaje viaje) throws Exception {
-        try {          
-            manager.getTransaction().begin();
+         manager.getTransaction().begin();
+        try {
+           
             manager.persist(viaje);
             manager.getTransaction().commit();
 
@@ -101,7 +103,7 @@ public class DaoImpl {
         try {
             results = new ArrayList<>();
             results = manager.createQuery("Select v "
-                    + "from Viaje v").getResultList();         
+                    + "from Viaje v").getResultList();
             manager.getTransaction().commit();
 
         } finally {
@@ -119,7 +121,7 @@ public class DaoImpl {
             results = new ArrayList<>();
             results = manager.createQuery("Select v "
                     + "from Viaje v "
-                    + "where borrado_logico = ?1").setParameter(1, false).getResultList();         
+                    + "where borrado_logico = ?1").setParameter(1, false).getResultList();
             manager.getTransaction().commit();
 
         } finally {
@@ -130,8 +132,9 @@ public class DaoImpl {
     }
 
     public void guardarVehiculo(Vehiculo vehiculo) throws Exception {
+        manager.getTransaction().begin();
         try {
-            manager.getTransaction().begin();
+            
             manager.persist(vehiculo);
             manager.getTransaction().commit();
 
@@ -144,6 +147,7 @@ public class DaoImpl {
     public List<Vehiculo> getVehiculos() throws Exception {
         manager.getTransaction().begin();
         List<Vehiculo> results = null;
+        System.out.println("lskj");
         try {
             results = new ArrayList<>();
             results = manager.createQuery("Select ve "
@@ -152,8 +156,10 @@ public class DaoImpl {
 
         } finally {
             manager.close();
-            emf.close();
+//            emf.close();
+            
             return results;
+
         }
     }
 
@@ -176,8 +182,9 @@ public class DaoImpl {
     }
 
     public void guardarChofer(Empleado chof) throws Exception {
-        try {
             manager.getTransaction().begin();
+        try {
+
             manager.persist(chof);
             manager.getTransaction().commit();
 
@@ -227,8 +234,9 @@ public class DaoImpl {
     }
 
     public void guardarOperador(Empleado operador) throws Exception {
+        manager.getTransaction().begin();
         try {
-            manager.getTransaction().begin();
+            
             manager.persist(operador);
             manager.getTransaction().commit();
 
@@ -299,12 +307,10 @@ public class DaoImpl {
     de empleado por si un chofer cambia de rol y pasa a ser operador o viceversa y un sector para el borrado lógico que,
     para mí, allá en la ventana sería mejor ponerle otro nombre en lug de borrado logico.
      */
-
-    
-      public void modificarEmpleado(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) throws Exception {
-        try
-        {
-            manager.getTransaction().begin();
+    public void modificarEmpleado(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) throws Exception {
+        manager.getTransaction().begin();
+        try {
+            
             Empleado empl = manager.find(Empleado.class, nroLegajo);
             empl.setDni(dni);
             empl.setNombre(nombre);
@@ -315,20 +321,18 @@ public class DaoImpl {
             empl.setBorradoLogico(borradoLogico);
             manager.persist(empl);
             manager.getTransaction().commit();
-        }finally{
+        } finally {
             manager.close();
             emf.close();
-                }
+        }
     }
-    
-    
-    
 
     //no le vamos a permitir modif. la lista de viajes en esta vista.
     // (los viajes acá solo se verán. Para eliminar o modific. viaje habrá que ir a las correspondientes ventanas)
     public void modificarVehiculo(String patente, String marca, String modelo, int anio, boolean enViaje, boolean borradoLogico) throws Exception {
+        manager.getTransaction().begin();
         try {
-            manager.getTransaction().begin();
+            
             Vehiculo vehic = manager.find(Vehiculo.class, patente);//patente es pk en la BD. No se permitirá modificar, pero se neces. recibir x parám. p/esta búsqueda
             vehic.setMarca(marca);
             vehic.setModelo(modelo);
@@ -350,9 +354,9 @@ public class DaoImpl {
     //lo que sí podemos hacer para eliminar las listas de estas ventanas es: titular las ventanas de modificaciones como "ver/modificar Cliente","ver/modificarViaje",etc.,
     //entonces ahí ya quedaría mejor sacar las listas de las ventanas en las que habían quedado sólo para vista.
     public void modificarCliente(int idCliente, String nombre, String apellido, String direccion, boolean borradoLogico, double saldo, double limiteDeCredito) throws Exception {
-        try
-        {
-            manager.getTransaction().begin();
+        manager.getTransaction().begin();
+        try {
+            
             Cliente cli = manager.find(Cliente.class, idCliente);
             cli.setNombre(nombre);
             cli.setApellido(apellido);
@@ -362,17 +366,18 @@ public class DaoImpl {
             cli.setLimiteDeCredito(limiteDeCredito);
             manager.persist(cli);
             manager.getTransaction().commit();
-        }finally{
-        manager.close();
-        emf.close();
-            }
+        } finally {
+            manager.close();
+            emf.close();
+        }
 
     }
-    
- public void modificarViaje(int idViaje, String origen, String destino,Calendar fecha,double importe,int formaDePago,boolean borradoLogico,boolean enCurso,Vehiculo movil, Cliente cliente, Chofer chofer) throws Exception {
-//        try
+
+    public void modificarViaje(int idViaje, String origen, String destino, Calendar fecha, double importe, int formaDePago, boolean borradoLogico, boolean enCurso, Vehiculo movil, Cliente cliente, Chofer chofer) throws Exception {
+//          manager.getTransaction().begin();//        
+//          try
 //        {
-//            manager.getTransaction().begin();
+//           
 //            Viaje vi = manager.find(Viaje.class,idViaje );
 //            cli.setNombre(nombre);
 //            cli.setApellido(apellido);
@@ -388,6 +393,5 @@ public class DaoImpl {
 //            }
 
     }
-    
-    
+
 }

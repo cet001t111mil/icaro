@@ -12,6 +12,7 @@ import com.cet001.icaro.vista.NuevoChoferView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,15 +38,17 @@ public class NuevoChoferController implements ActionListener {//esta es la clase
         String dni = nuevoChofer.dni.getText();
         String comision = nuevoChofer.comision.getText();
         String sueldo = nuevoChofer.sueldo.getText();
-        Empleado chof = new Chofer(Double.parseDouble(sueldo), Double.parseDouble(comision), dni, nombre, apellido, Integer.parseInt(legajo), "CH");
+        Empleado chofi = new Chofer(Double.parseDouble(sueldo), Double.parseDouble(comision), dni, nombre, apellido, Integer.parseInt(legajo), "CH");
         try {
             
         
-        dao.guardarChofer(chof);
+        dao.guardarChofer(chofi);
         }catch(SQLException ex){
-            this.nuevoChofer.
+          //  JOptionPane.showMessageDialog(nuevoChofer, ex.getMessage());
+           ex.printStackTrace();
         }catch(Exception ex){
-            
+             ex.printStackTrace();
+             //JOptionPane.showMessageDialog(nuevoChofer, ex.getMessage());
         }
     }
 

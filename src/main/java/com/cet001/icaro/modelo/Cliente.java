@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -16,6 +17,7 @@ public class Cliente implements Serializable {
     private static final long serialVersionUID = 1044152195801582698L;
     @Id
     @Column(name = "id_cliente")
+    @GeneratedValue
     private int idCliente;
     private String nombre;
     private String apellido;
