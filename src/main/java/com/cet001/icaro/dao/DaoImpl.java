@@ -369,23 +369,26 @@ public class DaoImpl {
 
     }
     
- public void modificarViaje(int idViaje, String origen, String destino,Calendar fecha,double importe,int formaDePago,boolean borradoLogico,boolean enCurso,Vehiculo movil, Cliente cliente, Chofer chofer) throws Exception {
-//        try
-//        {
-//            manager.getTransaction().begin();
-//            Viaje vi = manager.find(Viaje.class,idViaje );
-//            cli.setNombre(nombre);
-//            cli.setApellido(apellido);
-//            cli.setDireccion(direccion);
-//            cli.setBorradoLogico(borradoLogico);
-//            cli.setSaldo(saldo);
-//            cli.setLimiteDeCredito(limiteDeCredito);
-//            manager.persist(cli);
-//            manager.getTransaction().commit();
-//        }finally{
-//        manager.close();
-//        emf.close();
-//            }
+ public void modificarViaje(int idViaje, String origen, String destino,double importe,int formaDePago,boolean borradoLogico,boolean enCurso,Vehiculo movil, Cliente cliente, Chofer chofer) throws Exception {
+        try
+        {
+            manager.getTransaction().begin();
+            Viaje vi = manager.find(Viaje.class,idViaje );
+            vi.setOrigen(origen);
+            vi.setDestino(destino);
+            vi.setImporte(importe);
+            vi.setFormaDePago(formaDePago);
+            vi.setBorradoLogico(borradoLogico);
+            vi.setEnCurso(enCurso);
+            vi.setMovil(movil);
+            vi.setCliente(cliente);
+            vi.setChofer(chofer);
+            manager.persist(vi);
+            manager.getTransaction().commit();
+        }finally{
+        manager.close();
+        emf.close();
+            }
 
     }
     
