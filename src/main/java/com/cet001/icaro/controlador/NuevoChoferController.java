@@ -11,6 +11,7 @@ import com.cet001.icaro.modelo.Empleado;
 import com.cet001.icaro.vista.NuevoChoferView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 /**
  *
@@ -37,7 +38,15 @@ public class NuevoChoferController implements ActionListener {//esta es la clase
         String comision = nuevoChofer.comision.getText();
         String sueldo = nuevoChofer.sueldo.getText();
         Empleado chof = new Chofer(Double.parseDouble(sueldo), Double.parseDouble(comision), dni, nombre, apellido, Integer.parseInt(legajo), "CH");
+        try {
+            
+        
         dao.guardarChofer(chof);
+        }catch(SQLException ex){
+            this.nuevoChofer.
+        }catch(Exception ex){
+            
+        }
     }
 
 }

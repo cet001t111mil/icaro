@@ -20,6 +20,7 @@ import com.cet001.icaro.vista.NuevoViajeView;
 import java.awt.Component;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -48,27 +49,39 @@ public class PrincipalController implements ActionListener {//esta es la clase d
         this.wPrincipal.agreCliente.addActionListener(this);
         this.wPrincipal.menuAgregarOperador.addActionListener(this);
         llenarListaViajesCurso();
-        //llenarListaVehiculos();
+        llenarListaVehiculos();
 //        llenarListaClientes();
 
     }
 
     public void llenarListaVehiculos() {
-        String listaV = "";
+        try {
+            String listaV = "";
         List<Vehiculo> vehiculos = dao.getVehiculos();
         for (Vehiculo v : vehiculos) {
             listaV = listaV + v.getMarca() + " " + v.getModelo() + " " + v.getPatente() + "\n ";
         }
         wPrincipal.vehiculosDisponiblesPanel.setText(listaV);
+        }catch (SQLException ex){
+            wPrincipal.pNotificaciones.setText(ex.toString());
+        }catch (Exception ex){
+            wPrincipal.pNotificaciones.setText(ex.toString());
+        }   
     }
 
     public void llenarListaViajesCurso() {
-        String listaVia = "";
+        try{
+            String listaVia = "";
         List<Viaje> viajes = dao.getViajes();
         for (Viaje vI : viajes) {
             listaVia = listaVia + vI.getIdViaje() + " " + vI.getMovil() + " " + vI.getChofer() + "\n ";
         }
-        wPrincipal.viajesEnCursoPanel.setText(listaVia);//         
+        wPrincipal.viajesEnCursoPanel.setText(listaVia);
+                }catch (SQLException ex){
+            wPrincipal.pNotificaciones.setText(ex.toString());
+        }catch (Exception ex){
+            wPrincipal.pNotificaciones.setText(ex.toString());
+        }   
     }
     
 //        public void llenarListaClientes() {

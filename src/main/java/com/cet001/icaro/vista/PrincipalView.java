@@ -37,6 +37,8 @@ public class PrincipalView extends javax.swing.JFrame {
         vehiculosDisponiblesPanel = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         viajesEnCursoPanel = new javax.swing.JTextPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pNotificaciones = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -71,6 +73,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
         viajesEnCursoPanel.setEditable(false);
         jScrollPane2.setViewportView(viajesEnCursoPanel);
+
+        jScrollPane1.setViewportView(pNotificaciones);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/viaje.png"))); // NOI18N
 
@@ -172,7 +176,8 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 567, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1))
                     .addComponent(jSeparator1)
                     .addComponent(jScrollPane3)
@@ -180,7 +185,7 @@ public class PrincipalView extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 516, Short.MAX_VALUE))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
@@ -198,7 +203,9 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -296,12 +303,14 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JMenuItem menuAgregarChofer;
     public javax.swing.JMenuItem menuAgregarOperador;
     public javax.swing.JMenu menuChofer;
+    public javax.swing.JTextPane pNotificaciones;
     public javax.swing.JTextPane vehiculosDisponiblesPanel;
     public javax.swing.JTextPane viajesEnCursoPanel;
     // End of variables declaration//GEN-END:variables

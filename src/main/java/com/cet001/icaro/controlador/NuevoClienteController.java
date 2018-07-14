@@ -37,7 +37,7 @@ public class NuevoClienteController implements ActionListener {
         Cliente clien = new Cliente(nombre, apellido, Double.parseDouble(saldo), direccion);
         
         DaoImpl dao = new DaoImpl();
-       dao.GuardarCliente(clien);
+        dao.GuardarCliente(clien);
        
   
         
