@@ -38,291 +38,217 @@ public class DaoImpl {
 
     public void GuardarMovimientoDeSaldo(MovimientoDeSaldo mov) throws Exception {
         manager.getTransaction().begin();
-        try {
-            manager.persist(mov);
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-        }
+
+        manager.persist(mov);
+        manager.getTransaction().commit();
+
     }
 
     public List<MovimientoDeSaldo> getMovimientoDeSaldo() throws Exception {
         manager.getTransaction().begin();
         List<MovimientoDeSaldo> results = null;
-        try {
-            results = new ArrayList<>();
-            results = manager.createQuery("Select m "
-                    + "from MovimientoDeSaldo m").getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
+
+        results = new ArrayList<>();
+        results = manager.createQuery("Select m "
+                + "from MovimientoDeSaldo m").getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 
     public void GuardarTelfonoCliente(TelefonoCliente tel) throws Exception {
         manager.getTransaction().begin();
-        try {
-            manager.persist(tel);
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-        }
+
+        manager.persist(tel);
+        manager.getTransaction().commit();
+
     }
 
     public List<TelefonoCliente> getTelefonoCliente() throws Exception {
         manager.getTransaction().begin();
         List<TelefonoCliente> results = null;
-        try {
-            results = new ArrayList<>();
-            results = manager.createQuery("Select t "
-                    + "from TelefonoCliente t").getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
+
+        results = new ArrayList<>();
+        results = manager.createQuery("Select t "
+                + "from TelefonoCliente t").getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 
     public void GuardarCliente(Cliente clien) throws Exception {
         manager.getTransaction().begin();
-        try {
-            manager.persist(clien);
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-        }
+
+        manager.persist(clien);
+        manager.getTransaction().commit();
+
     }
 
     public List<Cliente> getClientes() throws Exception {
         manager.getTransaction().begin();
         List<Cliente> results = null;
-        try {
-            results = new ArrayList<>();
-            results = manager.createQuery("Select c "
-                    + "from Cliente c").getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
+
+        results = new ArrayList<>();
+        results = manager.createQuery("Select c "
+                + "from Cliente c").getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 
     public List<Cliente> getClientesActivos() throws Exception {
         manager.getTransaction().begin();
         List<Cliente> results = null;
-        try {
-            results = new ArrayList<>();
-            results = manager.createQuery("Select c "
-                    + "from Cliente c "
-                    + "where borrado_logico = ?1").setParameter(1, false).getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
+
+        results = new ArrayList<>();
+        results = manager.createQuery("Select c "
+                + "from Cliente c "
+                + "where borrado_logico = ?1").setParameter(1, false).getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 
     public void guardarViaje(Viaje viaje) throws Exception {
         manager.getTransaction().begin();
-        try {
-            manager.persist(viaje);
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-        }
+
+        manager.persist(viaje);
+        manager.getTransaction().commit();
+
     }
 
     public List<Viaje> getViajes() throws Exception {
         manager.getTransaction().begin();
         List<Viaje> results = null;
-        try {
-            results = new ArrayList<>();
-            results = manager.createQuery("Select v "
-                    + "from Viaje v").getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
+
+        results = new ArrayList<>();
+        results = manager.createQuery("Select v "
+                + "from Viaje v").getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 
     public List<Viaje> getViajesRealizados() throws Exception {
         manager.getTransaction().begin();
         List<Viaje> results = null;
-        try {
-            results = new ArrayList<>();
-            results = manager.createQuery("Select v "
-                    + "from Viaje v "
-                    + "where borrado_logico = ?1").setParameter(1, false).getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
+
+        results = new ArrayList<>();
+        results = manager.createQuery("Select v "
+                + "from Viaje v "
+                + "where borrado_logico = ?1").setParameter(1, false).getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 
     public void guardarVehiculo(Vehiculo vehiculo) throws Exception {
         manager.getTransaction().begin();
-        try {
-            manager.persist(vehiculo);
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-        }
+
+        manager.persist(vehiculo);
+        manager.getTransaction().commit();
+
     }
 
     public List<Vehiculo> getVehiculos() throws Exception {
         manager.getTransaction().begin();
         List<Vehiculo> results = null;
-        try {
-            results = new ArrayList<>();
-            results = manager.createQuery("Select ve "
-                    + "from Vehiculo ve").getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
+
+        results = new ArrayList<>();
+        results = manager.createQuery("Select ve "
+                + "from Vehiculo ve").getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 
     public List<Vehiculo> getVehiculosActivos() throws Exception {
         manager.getTransaction().begin();
         List<Vehiculo> results = null;
-        try {
-            results = new ArrayList<>();
-            results = manager.createQuery("Select ve "
-                    + "from Vehiculo ve "
-                    + "where borrado_logico = ?1").setParameter(1, false).getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
 
+        results = new ArrayList<>();
+        results = manager.createQuery("Select ve "
+                + "from Vehiculo ve "
+                + "where borrado_logico = ?1").setParameter(1, false).getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 
     public void guardarChofer(Empleado chof) throws Exception {
         manager.getTransaction().begin();
-        try {
-            manager.persist(chof);
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-        }
+
+        manager.persist(chof);
+        manager.getTransaction().commit();
+
     }
 
     public List<Chofer> getChoferes() throws Exception {
         manager.getTransaction().begin();
         List<Chofer> results = null;
-        try {
-            results = new ArrayList<>();
-            results = manager.createQuery("Select e "
-                    + "from Empleado e "
-                    + "where tipo_empleado = ?1").setParameter(1, "CH").getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
+
+        results = new ArrayList<>();
+        results = manager.createQuery("Select e "
+                + "from Empleado e "
+                + "where tipo_empleado = ?1").setParameter(1, "CH").getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 
     public List<Chofer> getChoferesActivos() throws Exception {
 
         manager.getTransaction().begin();
         List<Chofer> results = null;
-        try {
-            results = new ArrayList<>();
-            Query query = manager.createQuery("Select e "
-                    + "from Empleado e "
-                    + "where tipo_empleado = ?1 AND borrado_logico = ?2");
-            query.setParameter(1, "CH");
-            query.setParameter(2, false);
-            results = query.getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
+
+        results = new ArrayList<>();
+        Query query = manager.createQuery("Select e "
+                + "from Empleado e "
+                + "where tipo_empleado = ?1 AND borrado_logico = ?2");
+        query.setParameter(1, "CH");
+        query.setParameter(2, false);
+        results = query.getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 
     public void guardarOperador(Empleado operador) throws Exception {
         manager.getTransaction().begin();
-        try {
-            manager.persist(operador);
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-        }
+
+        manager.persist(operador);
+        manager.getTransaction().commit();
+
     }
 
     public List<Operador> getOperadores() throws Exception {
         manager.getTransaction().begin();
         List<Operador> results = null;
-        try {
-            results = new ArrayList<>();
-            results = manager.createQuery("Select e "
-                    + "from Empleado e "
-                    + "where tipo_empleado = ?1").setParameter(1, "OP").getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
+
+        results = new ArrayList<>();
+        results = manager.createQuery("Select e "
+                + "from Empleado e "
+                + "where tipo_empleado = ?1").setParameter(1, "OP").getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 // #################  Chicos, a ver qué opinan: éste me parece que no tiene mucho sentido no????
 
     public List<Operador> getOperadoresActivos() throws Exception {
         manager.getTransaction().begin();
         List<Operador> results = null;
-        try {
-            results = new ArrayList<>();
 
-            Query query = manager.createQuery("Select e "
-                    + "from Empleado e "
-                    + "where tipo_empleado = ?1 AND borrado_logico = ?2");
-            query.setParameter(1, "OP");
-            query.setParameter(2, false);
-            results = query.getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
+        results = new ArrayList<>();
+
+        Query query = manager.createQuery("Select e "
+                + "from Empleado e "
+                + "where tipo_empleado = ?1 AND borrado_logico = ?2");
+        query.setParameter(1, "OP");
+        query.setParameter(2, false);
+        results = query.getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 
     public List<Empleado> getEmpleados() throws Exception {
         manager.getTransaction().begin();
         List<Empleado> results = null;
-        try {
-            results = new ArrayList<>();
-            results = manager.createQuery("Select e "
-                    + "from Empleado e").getResultList();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return results;
-        }
+
+        results = new ArrayList<>();
+        results = manager.createQuery("Select e "
+                + "from Empleado e").getResultList();
+        manager.getTransaction().commit();
+        return results;
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -332,40 +258,33 @@ public class DaoImpl {
      */
     public void modificarEmpleado(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) throws Exception {
         manager.getTransaction().begin();
-        try {
-            Empleado empl = manager.find(Empleado.class, nroLegajo);
-            empl.setDni(dni);
-            empl.setNombre(nombre);
-            empl.setApellido(apellido);
-            empl.setTipoEmpleado(tipoEmpleado);
-            empl.setSueldo(sueldo);
-            ((Chofer) empl).setComision(comision);
-            empl.setBorradoLogico(borradoLogico);
-            manager.persist(empl);
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-        }
+
+        Empleado empl = manager.find(Empleado.class, nroLegajo);
+        empl.setDni(dni);
+        empl.setNombre(nombre);
+        empl.setApellido(apellido);
+        empl.setTipoEmpleado(tipoEmpleado);
+        empl.setSueldo(sueldo);
+        ((Chofer) empl).setComision(comision);
+        empl.setBorradoLogico(borradoLogico);
+        manager.persist(empl);
+        manager.getTransaction().commit();
+
     }
 
     //no le vamos a permitir modif. la lista de viajes en esta vista.
     // (los viajes acá solo se verán. Para eliminar o modific. viaje habrá que ir a las correspondientes ventanas)
     public void modificarVehiculo(String patente, String marca, String modelo, int anio, boolean enViaje, boolean borradoLogico) throws Exception {
         manager.getTransaction().begin();
-        try {
-            Vehiculo vehic = manager.find(Vehiculo.class, patente);//patente es pk en la BD. No se permitirá modificar, pero se neces. recibir x parám. p/esta búsqueda
-            vehic.setMarca(marca);
-            vehic.setModelo(modelo);
-            vehic.setAnio(anio);
-            vehic.setEnViaje(enViaje);
-            vehic.setBorradoLogico(borradoLogico);
-            manager.persist(vehic);
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-        }
+
+        Vehiculo vehic = manager.find(Vehiculo.class, patente);//patente es pk en la BD. No se permitirá modificar, pero se neces. recibir x parám. p/esta búsqueda
+        vehic.setMarca(marca);
+        vehic.setModelo(modelo);
+        vehic.setAnio(anio);
+        vehic.setEnViaje(enViaje);
+        vehic.setBorradoLogico(borradoLogico);
+        manager.persist(vehic);
+        manager.getTransaction().commit();
 
     }
     //idem que p/caso anterior: se permitirá ver pero no modificar las listas: "telefonos","movSal","viajes"(p/estas mod. ir a las ventanas corresp.)
@@ -376,81 +295,71 @@ public class DaoImpl {
     //entonces ahí ya quedaría mejor sacar las listas de las ventanas en las que habían quedado sólo para vista.
     public void modificarCliente(int idCliente, String nombre, String apellido, String direccion, boolean borradoLogico, double saldo, double limiteDeCredito) throws Exception {
         manager.getTransaction().begin();
-        try {
-            Cliente cli = manager.find(Cliente.class, idCliente);
-            cli.setNombre(nombre);
-            cli.setApellido(apellido);
-            cli.setDireccion(direccion);
-            cli.setBorradoLogico(borradoLogico);
-            cli.setSaldo(saldo);
-            cli.setLimiteDeCredito(limiteDeCredito);
-            manager.persist(cli);
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-        }
+
+        Cliente cli = manager.find(Cliente.class, idCliente);
+        cli.setNombre(nombre);
+        cli.setApellido(apellido);
+        cli.setDireccion(direccion);
+        cli.setBorradoLogico(borradoLogico);
+        cli.setSaldo(saldo);
+        cli.setLimiteDeCredito(limiteDeCredito);
+        manager.persist(cli);
+        manager.getTransaction().commit();
+
     }
 
     public void modificarViaje(int idViaje, String origen, String destino, double importe, int formaDePago, boolean borradoLogico, boolean enCurso, Vehiculo movil, Cliente cliente, Chofer chofer) throws Exception {
         manager.getTransaction().begin();
-        try {
-            Viaje vi = manager.find(Viaje.class, idViaje);
-            vi.setOrigen(origen);
-            vi.setDestino(destino);
-            vi.setImporte(importe);
-            vi.setFormaDePago(formaDePago);
-            vi.setBorradoLogico(borradoLogico);
-            vi.setEnCurso(enCurso);
-            vi.setMovil(movil);
-            vi.setCliente(cliente);
-            vi.setChofer(chofer);
-            manager.persist(vi);
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-        }
+
+        Viaje vi = manager.find(Viaje.class, idViaje);
+        vi.setOrigen(origen);
+        vi.setDestino(destino);
+        vi.setImporte(importe);
+        vi.setFormaDePago(formaDePago);
+        vi.setBorradoLogico(borradoLogico);
+        vi.setEnCurso(enCurso);
+        vi.setMovil(movil);
+        vi.setCliente(cliente);
+        vi.setChofer(chofer);
+        manager.persist(vi);
+        manager.getTransaction().commit();
 
     }
 
     public double obtenerFacturacionChofer(int nroLegajo, Calendar i, Calendar f) {
         manager.getTransaction().begin();
         double result = 0;
-        try {
-            Query query = manager.createQuery("Select sum(importe) "
-                    + "from Viaje "
-                    + "where nro_legajo_chofer= ?1 and fecha between ?2 and ?3 ");
-            query.setParameter(1, nroLegajo);
-            query.setParameter(2, i);
-            query.setParameter(3, f);
-            result = (double) query.getSingleResult();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return result;
-        }
+
+        Query query = manager.createQuery("Select sum(importe) "
+                + "from Viaje "
+                + "where nro_legajo_chofer= ?1 and fecha between ?2 and ?3 ");
+        query.setParameter(1, nroLegajo);
+        query.setParameter(2, i);
+        query.setParameter(3, f);
+        result = (double) query.getSingleResult();
+        manager.getTransaction().commit();
+
+        return result;
+
     }
+
     //CHICOS: èste es el mètodo que trae el saldo actualizado del cliente para luego aplicar el mètodo
     //que vamos a crear en package servicios para sumarle o descontarle un importe
     //creo que va bien pero revisar
-        public double obtenerSaldoCliente(int idCliente) {
+    public double obtenerSaldoCliente(int idCliente) {
         manager.getTransaction().begin();
         Cliente c = null;
         double saldo = 0;
-        try {
-            Query query = manager.createQuery("Select c "
-                    + "from Clliente c "
-                    + "where id_cliente = ?1 ");
-            query.setParameter(1, idCliente);
-            c = (Cliente)query.getSingleResult();
-            saldo = c.getSaldo();
-            manager.getTransaction().commit();
-        } finally {
-            manager.close();
-            emf.close();
-            return saldo;
-        }
+
+        Query query = manager.createQuery("Select c "
+                + "from Clliente c "
+                + "where id_cliente = ?1 ");
+        query.setParameter(1, idCliente);
+        c = (Cliente) query.getSingleResult();
+        saldo = c.getSaldo();
+        manager.getTransaction().commit();
+
+        return saldo;
+
     }
 }
