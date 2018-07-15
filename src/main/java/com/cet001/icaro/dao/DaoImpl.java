@@ -432,4 +432,25 @@ public class DaoImpl {
             return result;
         }
     }
+    //CHICOS: èste es el mètodo que trae el saldo actualizado del cliente para luego aplicar el mètodo
+    //que vamos a crear en package servicios para sumarle o descontarle un importe
+    //creo que va bien pero revisar
+        public double obtenerSaldoCliente(int idCliente) {
+        manager.getTransaction().begin();
+        Cliente c = null;
+        double saldo = 0;
+        try {
+            Query query = manager.createQuery("Select c "
+                    + "from Clliente c "
+                    + "where id_cliente = ?1 ");
+            query.setParameter(1, idCliente);
+            c = (Cliente)query.getSingleResult();
+            saldo = c.getSaldo();
+            manager.getTransaction().commit();
+        } finally {
+            manager.close();
+            emf.close();
+            return saldo;
+        }
+    }
 }
