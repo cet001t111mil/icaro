@@ -8,6 +8,7 @@ package com.cet001.icaro.controlador;
 
 import com.cet001.icaro.dao.DaoImpl;
 import com.cet001.icaro.modelo.Cliente;
+import com.cet001.icaro.vista.ConsultarChoferesView;
 import com.cet001.icaro.vista.NuevoClienteView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +24,10 @@ private DaoImpl dao;
         this.dao = dao;
         this.nuevoCliente = nuevoCliente;
         this.nuevoCliente.jButton2.addActionListener(this);
+    }
+
+    NuevoClienteController(ConsultarChoferesView conChofV, DaoImpl dao) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

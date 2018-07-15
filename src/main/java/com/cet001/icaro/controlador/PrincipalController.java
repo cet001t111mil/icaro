@@ -11,6 +11,7 @@ import com.cet001.icaro.modelo.Cliente;
 import com.cet001.icaro.modelo.Empleado;
 import com.cet001.icaro.modelo.Vehiculo;
 import com.cet001.icaro.modelo.Viaje;
+import com.cet001.icaro.vista.ConsultarChoferesView;
 import java.awt.event.ActionListener;
 import com.cet001.icaro.vista.PrincipalView;
 import com.cet001.icaro.vista.NuevoChoferView;
@@ -22,6 +23,7 @@ import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
@@ -38,7 +40,6 @@ public class PrincipalController implements ActionListener {//esta es la clase d
     public PrincipalController(PrincipalView wPrincipal, DaoImpl dao) {
         this.dao = dao;
         this.wPrincipal = wPrincipal;
-       
 
     }
 
@@ -48,42 +49,54 @@ public class PrincipalController implements ActionListener {//esta es la clase d
         this.wPrincipal.jMenuItem1.addActionListener(this);
         this.wPrincipal.agreCliente.addActionListener(this);
         this.wPrincipal.menuAgregarOperador.addActionListener(this);
-        //llenarListaViajesCurso();
-        //llenarListaVehiculos();
+        this.wPrincipal.consultarChoferes.addActionListener(this);
+        llenarListaViajesCurso();
+
+        llenarListaVehiculos();
 //        llenarListaClientes();
 
     }
 
     public void llenarListaVehiculos() {
+
+        DefaultListModel Dlm = new DefaultListModel();
+
         try {
             String listaV = "";
-        List<Vehiculo> vehiculos = dao.getVehiculos();
-        for (Vehiculo v : vehiculos) {
-            listaV = listaV + v.getMarca() + " " + v.getModelo() + " " + v.getPatente() + "\n ";
+            List<Vehiculo> vehiculos = dao.getVehiculos();
+
+            for (Vehiculo v : vehiculos) {
+                Dlm.addElement("Patente: " + v.getPatente() + " - " + v.getMarca() + " " + v.getModelo() + " - En Viaje: " + v.isEnViaje());
+            }
+            wPrincipal.jList1.setModel(Dlm);
+
+        } catch (SQLException ex) {
+            wPrincipal.pNotificaciones.setText(ex.toString());
+        } catch (Exception ex) {
+            wPrincipal.pNotificaciones.setText(ex.toString());
         }
-        wPrincipal.vehiculosDisponiblesPanel.setText(listaV);
-        }catch (SQLException ex){
-            wPrincipal.pNotificaciones.setText(ex.toString());
-        }catch (Exception ex){
-            wPrincipal.pNotificaciones.setText(ex.toString());
-        }   
     }
 
     public void llenarListaViajesCurso() {
-        try{
+
+        DefaultListModel Dlm = new DefaultListModel();
+        try {
             String listaVia = "";
-        List<Viaje> viajes = dao.getViajes();
-        for (Viaje vI : viajes) {
-            listaVia = listaVia + vI.getIdViaje() + " " + vI.getMovil() + " " + vI.getChofer() + "\n ";
+            List<Viaje> viajes = dao.getViajes();
+
+            for (Viaje vI : viajes) {
+                Dlm.addElement("Origen: " + vI.getOrigen() + " - Destino " + vI.getDestino());
+
+            }
+            wPrincipal.jList2.setModel(Dlm);
+
+        } catch (SQLException ex) {
+            wPrincipal.pNotificaciones.setText(ex.toString());
+        } catch (Exception ex) {
+            wPrincipal.pNotificaciones.setText(ex.toString());
         }
-        wPrincipal.viajesEnCursoPanel.setText(listaVia);
-                }catch (SQLException ex){
-            wPrincipal.pNotificaciones.setText(ex.toString());
-        }catch (Exception ex){
-            wPrincipal.pNotificaciones.setText(ex.toString());
-        }   
     }
-    
+
 //        public void llenarListaClientes() {
 //        String listaVia = "";
 //        List<Cliente> viajes = dao.getClientes();
@@ -92,8 +105,6 @@ public class PrincipalController implements ActionListener {//esta es la clase d
 //        }
 //        wPrincipal.viajesEnCursoPanel.setText(listaVia);//         
 //    }
-    
-
     @Override
     public void actionPerformed(ActionEvent e) {//se recibe por parám. un evento
 /*
@@ -115,7 +126,7 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 NuevoChoferView nChof = new NuevoChoferView();//se crea 1 obj. de tipo NuevoChofer
                 nChof.setTitle("Nuevo Chofer");
                 nChof.setVisible(true);//hace visible al usuario el formulario para registrar los datos de 1 nuevo chofer (son los datos que luego se asignarán a nChof)
-                NuevoChoferController connchof = new NuevoChoferController(nChof, this.dao);//se crea 1 obj. controlador que "controlará" a nChof
+                ChoferController connchof = new ChoferController(nChof, this.dao);//se crea 1 obj. controlador que "controlará" a nChof
                 break;
             }
             case "nviaje": {
@@ -129,10 +140,17 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 NuevoClienteView nVclien = new NuevoClienteView();
                 nVclien.setTitle("Nuevo Cliente");
                 nVclien.setVisible(true);
-                NuevoClienteController conNclien = new NuevoClienteController(nVclien,dao);
-
+                NuevoClienteController conNclien = new NuevoClienteController(nVclien, dao);
+                break;
             }
-            
+            case "conChof": {
+                ConsultarChoferesView conChofV = new ConsultarChoferesView();
+                conChofV.setTitle("Consultar Choferes");
+                conChofV.setVisible(true);
+                ChoferController modChof = new ChoferController(conChofV, dao);
+                break;
+            }
+
         }
 
     }

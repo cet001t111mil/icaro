@@ -73,6 +73,7 @@ public class NuevoChoferView extends javax.swing.JFrame {
         jLabel5.setText("Comision");
 
         jButton1.setText("Guardar");
+        jButton1.setActionCommand("nChof");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
