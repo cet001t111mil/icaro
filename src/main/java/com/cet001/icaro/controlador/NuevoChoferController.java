@@ -44,6 +44,7 @@ public class NuevoChoferController implements ActionListener {//esta es la clase
         
         dao.guardarChofer(chofi);
         }catch(SQLException ex){
+            
           //  JOptionPane.showMessageDialog(nuevoChofer, ex.getMessage());
            ex.printStackTrace();
         }catch(Exception ex){

@@ -25,6 +25,7 @@ public class NuevoViajeController implements ActionListener {
     }
     
     
+    
     @Override
     public void actionPerformed (ActionEvent e){
         String origen = nuevoViaje.origen.getText();
