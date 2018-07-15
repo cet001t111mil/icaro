@@ -11,10 +11,10 @@ import com.cet001.icaro.vista.NuevoOperadorView;
  *
  * @author ponsa
  */
-class NuevoOperadorController {
+class OperadorController {
     private NuevoOperadorView nuevoOperador;
     
-    public NuevoOperadorController (NuevoOperadorView nuevoOperador){
+    public OperadorController (NuevoOperadorView nuevoOperador){
         this.nuevoOperador=nuevoOperador;
         
     };

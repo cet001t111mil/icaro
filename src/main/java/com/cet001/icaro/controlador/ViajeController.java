@@ -14,10 +14,10 @@ import java.awt.event.ActionListener;
  *
  * @author ponsa
  */
-public class NuevoViajeController implements ActionListener {
+public class ViajeController implements ActionListener {
     private NuevoViajeView nuevoViaje;
     
-    public NuevoViajeController (NuevoViajeView nuevoViaje){
+    public ViajeController (NuevoViajeView nuevoViaje){
         this.nuevoViaje = nuevoViaje;
         this.nuevoViaje.jButton2.addActionListener(this);
         

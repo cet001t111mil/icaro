@@ -118,7 +118,7 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 NuevoOperadorView nOpe = new NuevoOperadorView();//se crea 1 obj. de tipo NuevoChofer
                 nOpe.setTitle("Nuevo Operador");
                 nOpe.setVisible(true);//hace visible al usuario el formulario para registrar los datos de 1 nuevo chofer (son los datos que luego se asignarán a nChof)
-                NuevoOperadorController conNOpe = new NuevoOperadorController(nOpe);//se crea 1 obj. controlador que "controlará" a nChof
+                OperadorController conNOpe = new OperadorController(nOpe);//se crea 1 obj. controlador que "controlará" a nChof
                 break;
             }
 
@@ -140,7 +140,7 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 NuevoClienteView nVclien = new NuevoClienteView();
                 nVclien.setTitle("Nuevo Cliente");
                 nVclien.setVisible(true);
-                NuevoClienteController conNclien = new NuevoClienteController(nVclien, dao);
+                ClienteController conNclien = new ClienteController(nVclien, dao);
                 break;
             }
             case "conChof": {

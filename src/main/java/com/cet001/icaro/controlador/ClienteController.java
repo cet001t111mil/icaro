@@ -16,17 +16,17 @@ import java.awt.event.ActionListener;
  *
  * @author ponsa
  */
-public class NuevoClienteController implements ActionListener {
+public class ClienteController implements ActionListener {
 private DaoImpl dao;
     private NuevoClienteView nuevoCliente;
 
-    public NuevoClienteController(NuevoClienteView nuevoCliente, DaoImpl dao) {
+    public ClienteController(NuevoClienteView nuevoCliente, DaoImpl dao) {
         this.dao = dao;
         this.nuevoCliente = nuevoCliente;
         this.nuevoCliente.jButton2.addActionListener(this);
     }
 
-    NuevoClienteController(ConsultarChoferesView conChofV, DaoImpl dao) {
+    ClienteController(ConsultarChoferesView conChofV, DaoImpl dao) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,8 +24,8 @@ import javax.swing.JOptionPane;
  */
 public class ChoferController implements ActionListener {//esta es la clase del objeto que "controlará" a los objetos de tipo NuevoChofer
 
-    private NuevoChoferView nuevoChofer;
     DaoImpl dao;
+    private NuevoChoferView nuevoChofer;
     private ConsultarChoferesView consulChof;
 
     public ChoferController(NuevoChoferView nuevoChofer, DaoImpl dao) {
@@ -32,7 +33,8 @@ public class ChoferController implements ActionListener {//esta es la clase del 
         this.nuevoChofer = nuevoChofer;
         this.nuevoChofer.jButton1.addActionListener(this);
     }
-
+    //Constructor consulta choferes
+    
     
     public ChoferController(ConsultarChoferesView consultaChofer, DaoImpl dao) {
         this.dao = dao;
@@ -54,43 +56,31 @@ public class ChoferController implements ActionListener {//esta es la clase del 
 
                 break;
             }
-        
+
         }
 
     }
 
     protected void llenaListaChof() {
+        DefaultListModel Dlm = new DefaultListModel();
         try {
-            String listaV = "";
-        List<Vehiculo> vehiculos = dao.getVehiculos();
-        for (Vehiculo v : vehiculos) {
-            listaV = listaV + v.getMarca() + " " + v.getModelo() + " " + v.getPatente() + "\n ";
+            String listaChof = "";
+            List<Chofer> choferes = dao.getChoferes();
+
+            for (Chofer c : choferes) {
+                Dlm.addElement("Legajo: " + c.getNroLegajo() + " Nombre: " + c.getNombre() + " Apellido: " + c.getApellido());
+            }
+            consulChof.jListChof.setModel(Dlm);
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex.getMessage().toString());
+
+        } catch (Exception ex) {
+
+            JOptionPane.showMessageDialog(null, ex.getMessage().toString());
         }
-        consulChof.listaChoferes.setText(listaV);
-        }catch (SQLException ex){
-           
-        }catch (Exception ex){
-            
-        }   
-    }  
-        
-        
-        
-        
-//        
-//        try {
-//            String listaChof = "";
-//            List<Chofer> choferes = dao.getChoferes();
-//            System.out.println(choferes);
-//            for (Chofer c : choferes) {
-//                listaChof = listaChof + c.getNroLegajo() + " " + c.getNombre() + " " + c.getApellido() + "\n ";
-//            }
-//            consulChof.jTextArea1.setText(listaChof);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
+
+    }
 
     protected void guardarChofer() {
 
@@ -107,10 +97,10 @@ public class ChoferController implements ActionListener {//esta es la clase del 
             JOptionPane.showMessageDialog(null, "Chofer Guardado");
         } catch (SQLException ex) {
 
-              JOptionPane.showMessageDialog(null, ex.getMessage().toString());
-          
+            JOptionPane.showMessageDialog(null, ex.getMessage().toString());
+
         } catch (Exception ex) {
-            
+
             JOptionPane.showMessageDialog(null, ex.getMessage().toString());
         }
     }
