@@ -400,6 +400,24 @@ public class DaoImpl {
             }
 
     }
-    
+       public double obtenerFacturacionChofer(int nroLegajo, Calendar i, Calendar f) {
+        manager.getTransaction().begin();
+            double result = 0;
+        try {
+            Query query = manager.createQuery("Select sum(importe) "
+                    + "from Viaje "
+                    + "where nro_legajo_chofer= ?1 and fecha between ?2 and ?3 ");
+            query.setParameter(1, nroLegajo);
+            query.setParameter(2, i);
+            query.setParameter(3, f);
+            result = (double) query.getSingleResult();
+            manager.getTransaction().commit();
+        } finally {
+            manager.close();
+            emf.close();
+            return result;
+        }
+
+    }
     
 }
