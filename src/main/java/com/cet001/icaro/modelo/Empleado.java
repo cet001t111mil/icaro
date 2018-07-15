@@ -31,6 +31,7 @@ public abstract class Empleado implements Serializable {
     }
 
     public Empleado(String dni, String nombre, String apellido, int nroLegajo,String tipoEmpleado,double sueldo) {
+        
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -38,6 +39,7 @@ public abstract class Empleado implements Serializable {
         this.tipoEmpleado = tipoEmpleado;
         this.sueldo = sueldo;
         this.borradoLogico = false;
+        System.out.println(this.tipoEmpleado+"desde el super");
     }
 
     public abstract double calcularSueldo(double importe);

@@ -169,7 +169,7 @@ public class DaoImpl {
 
     public void guardarChofer(Empleado chof) throws Exception {
         manager.getTransaction().begin();
-
+        System.out.println(chof.getTipoEmpleado()+"antes de persist");
         manager.persist(chof);
         manager.getTransaction().commit();
 

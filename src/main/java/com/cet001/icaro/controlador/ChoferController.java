@@ -90,7 +90,7 @@ public class ChoferController implements ActionListener {//esta es la clase del 
         String dni = nuevoChofer.dni.getText();
         String comision = nuevoChofer.comision.getText();
         String sueldo = nuevoChofer.sueldo.getText();
-        Empleado chofi = new Chofer(Double.parseDouble(sueldo), Double.parseDouble(comision), dni, nombre, apellido, Integer.parseInt(legajo), "CH");
+        Chofer chofi = new Chofer(Double.parseDouble(sueldo), Double.parseDouble(comision), dni, nombre, apellido, Integer.parseInt(legajo),"CH");
         try {
 
             dao.guardarChofer(chofi);
