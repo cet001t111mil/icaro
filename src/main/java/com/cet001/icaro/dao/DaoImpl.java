@@ -334,7 +334,7 @@ public class DaoImpl {
     
     
     
-    public void modificarTelefonoCliente(TelefonoCliente telActual, TelefonoCliente telNuevo) {
+    public void modificarTelefonoCliente(TelefonoCliente telActual, TelefonoCliente telNuevo) throws Exception {
         manager.getTransaction();
 
         TelefonoCliente.Numero numeroActual = telActual.getNumero();
@@ -349,7 +349,7 @@ public class DaoImpl {
     }
 
 //chicos: le cambié el parám int nroLegajo por Chofer chof xq lo necesito así para algo que estoy armando en el paq. "servicios"
-    public double obtenerFacturacionChofer(Chofer chof, Calendar i, Calendar f) {
+    public double obtenerFacturacionChofer(Chofer chof, Calendar i, Calendar f) throws Exception {
         manager.getTransaction().begin();
         double result = 0;
         int nroLegajo = chof.getNroLegajo();
@@ -369,7 +369,7 @@ public class DaoImpl {
     //CHICOS: èste es el mètodo que trae el saldo actualizado del cliente para luego aplicar el mètodo
     //que vamos a crear en package servicios para sumarle o descontarle un importe
     //creo que va bien pero revisar
-    public double getSaldoCliente(Cliente c) {
+    public double getSaldoCliente(Cliente c) throws Exception {
         manager.getTransaction().begin();
         double saldo = 0;
         int idCliente = c.getIdCliente();
