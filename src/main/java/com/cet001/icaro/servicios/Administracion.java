@@ -20,8 +20,8 @@ import java.util.Calendar;
 public class Administracion {
 
     private double comisionCalculadaFinal;
-
-    //falta lo de abrir y cerrar transaccion en todos. No olvidarme de hacerlo!!!!!
+    
+//ponemos throws Exception en todos estos? Al getSaldoActualizadoCliente me obligó a agregarla
     private double calcularComisionChofer(Chofer chof, Calendar i, Calendar f) {
         DaoImpl dao = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");
         double comisionCalculada = 0;
