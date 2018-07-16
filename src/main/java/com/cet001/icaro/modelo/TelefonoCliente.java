@@ -14,8 +14,9 @@ public class TelefonoCliente implements Serializable {
 
     private static final long serialVersionUID = 6217477364203581943L;
 
+    
     @Embeddable
-    static class Numero implements Serializable {
+    public static class Numero implements Serializable {
 
         private static final long serialVersionUID = -5309486314614506660L;
         @Column(name = "cod_area")
