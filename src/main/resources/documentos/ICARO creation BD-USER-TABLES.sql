@@ -3,7 +3,7 @@ create user 'userRemiseria'@'localhost' identified by '1234';
 grant all on remiseria.* to userRemiseria@localhost;
 
 CREATE TABLE IF NOT EXISTS remiseria.Cliente (
-  `id_cliente` INT(4) NOT NULL,
+  `id_cliente` INT(6) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `direccion` VARCHAR(45) NULL,
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS remiseria.Cliente (
 CREATE TABLE IF NOT EXISTS remiseria.TelefonoCliente (
   `cod_area` INT NOT NULL,
   `nro_telefono` INT NOT NULL,
-  `id_cliente` INT(4) NOT NULL,
+  `id_cliente` INT(6) NOT NULL,
   PRIMARY KEY (`cod_area`, `nro_telefono`),
   CONSTRAINT `fk_TelefonoCliente_Cliente`
     FOREIGN KEY (`id_cliente`)
@@ -47,10 +47,10 @@ CREATE TABLE IF NOT EXISTS remiseria.Empleado(
 
 
 CREATE TABLE IF NOT EXISTS remiseria.MovimientoDeSaldo (
-  `id_movimiento` INT(4) NOT NULL,
-  `importe` DOUBLE NULL,
-  `tipo_comprobante` VARCHAR(2) NULL,
-  `id_cliente` INT(4) NOT NULL,
+  `id_movimiento` INT(10) NOT NULL,
+  `importe` DOUBLE NOT NULL,
+  `tipo_comprobante` VARCHAR(2) NOT NULL,
+  `id_cliente` INT(6) NOT NULL,
   PRIMARY KEY (`id_movimiento`),
   CONSTRAINT `fk_MovimientoDeSaldo_Cliente1`
     FOREIGN KEY (`id_cliente`)
@@ -67,9 +67,9 @@ CREATE TABLE IF NOT EXISTS remiseria.Viaje (
   `forma_de_pago` INT NULL,
   `borrado_logico` BOOLEAN NOT NULL,
   `en_curso` BOOLEAN NOT NULL,
-  `patente` VARCHAR(10) NULL,
-  `id_cliente` INT(4) NULL,
-  `nro_legajo_chofer` INT(4) NULL,
+  `patente` VARCHAR(10) NOT NULL,
+  `id_cliente` INT(6) NOT NULL,
+  `nro_legajo_chofer` INT(4) NOT NULL,
 
   PRIMARY KEY (`id_viaje`),
   CONSTRAINT `fk_Viaje_Cliente1`
