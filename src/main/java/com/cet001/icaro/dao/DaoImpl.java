@@ -1,7 +1,6 @@
 package com.cet001.icaro.dao;
 
 import com.cet001.icaro.modelo.Chofer;
-import com.cet001.icaro.modelo.TelefonoCliente.Numero;
 import com.cet001.icaro.modelo.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -334,7 +333,7 @@ public class DaoImpl {
     
     
     
-    public void modificarTelefonoCliente(TelefonoCliente telActual, TelefonoCliente telNuevo) throws Exception {
+    public void modificarTelefonoCliente(Cliente c,TelefonoCliente telActual, TelefonoCliente telNuevo) throws Exception {
         manager.getTransaction();
 
         TelefonoCliente.Numero numeroActual = telActual.getNumero();
@@ -343,6 +342,7 @@ public class DaoImpl {
 
         TelefonoCliente t = manager.find(TelefonoCliente.class, numeroActual);
         t.setNumero(numeroNuevo);
+        t.setCliente(c);
         manager.persist(t);
         manager.getTransaction().begin();
 
