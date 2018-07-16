@@ -11,6 +11,7 @@ import com.cet001.icaro.modelo.Empleado;
 import com.cet001.icaro.modelo.Vehiculo;
 import com.cet001.icaro.vista.NuevoChoferView;
 import com.cet001.icaro.vista.ConsultarChoferesView;
+import com.cet001.icaro.vista.ModificarChoferView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -27,6 +28,7 @@ public class ChoferController implements ActionListener {//esta es la clase del 
     DaoImpl dao;
     private NuevoChoferView nuevoChofer;
     private ConsultarChoferesView consulChof;
+    private ModificarChoferView modChof;
 
     public ChoferController(NuevoChoferView nuevoChofer, DaoImpl dao) {
         this.dao = dao;
@@ -39,9 +41,19 @@ public class ChoferController implements ActionListener {//esta es la clase del 
     public ChoferController(ConsultarChoferesView consultaChofer, DaoImpl dao) {
         this.dao = dao;
         this.consulChof = consultaChofer;
-        llenaListaChof();
+        this.consulChof.botonAgregar.addActionListener(this);
+        this.consulChof.modificar.addActionListener(this);
+       // llenaListaChof();
     }
 
+    public ChoferController (ModificarChoferView modChof , DaoImpl dao){
+        this.dao = dao;
+        this.modChof = modChof;
+        this.modChof.actualizarChofButton.addActionListener(this);
+       
+    }
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         String opcion = e.getActionCommand();
@@ -56,7 +68,22 @@ public class ChoferController implements ActionListener {//esta es la clase del 
 
                 break;
             }
-
+            
+            case "AgregarChof" : {
+                 NuevoChoferView nChof = new NuevoChoferView();//se crea 1 obj. de tipo NuevoChofer
+                nChof.setTitle("Nuevo Chofer");
+                nChof.setVisible(true);//hace visible al usuario el formulario para registrar los datos de 1 nuevo chofer (son los datos que luego se asignarán a nChof)
+                ChoferController connchof = new ChoferController(nChof, this.dao);//se crea 1 obj. controlador que "controlará" a nChof
+                break;
+            }
+            case "modificarChofer" : {
+                ModificarChoferView modChof = new ModificarChoferView();
+                modChof.setTitle("Modificar Chofer");
+                modChof.setVisible(true);
+                ChoferController connchof = new ChoferController(modChof, this.dao);
+              guardarChofer();
+                break;
+            }
         }
 
     }
@@ -65,7 +92,7 @@ public class ChoferController implements ActionListener {//esta es la clase del 
         DefaultListModel Dlm = new DefaultListModel();
         try {
             String listaChof = "";
-            List<Chofer> choferes = dao.getChoferes();
+            List<Chofer> choferes = this.dao.getChoferes();
 
             for (Chofer c : choferes) {
                 Dlm.addElement("Legajo: " + c.getNroLegajo() + " Nombre: " + c.getNombre() + " Apellido: " + c.getApellido());
@@ -84,15 +111,14 @@ public class ChoferController implements ActionListener {//esta es la clase del 
 
     protected void guardarChofer() {
 
-        String legajo = nuevoChofer.legajo.getText();
-        String nombre = nuevoChofer.nombre.getText();
-        String apellido = nuevoChofer.apellido.getText();
-        String dni = nuevoChofer.dni.getText();
-        String comision = nuevoChofer.comision.getText();
-        String sueldo = nuevoChofer.sueldo.getText();
+        String legajo = this.nuevoChofer.legajo.getText();
+        String nombre = this.nuevoChofer.nombre.getText();
+        String apellido = this.nuevoChofer.apellido.getText();
+        String dni = this.nuevoChofer.dni.getText();
+        String comision = this.nuevoChofer.comision.getText();
+        String sueldo = this.nuevoChofer.sueldo.getText();
         Chofer chofi = new Chofer(Double.parseDouble(sueldo), Double.parseDouble(comision), dni, nombre, apellido, Integer.parseInt(legajo),"CH");
         try {
-
             dao.guardarChofer(chofi);
             JOptionPane.showMessageDialog(null, "Chofer Guardado");
         } catch (SQLException ex) {

@@ -122,7 +122,7 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 break;
             }
 
-            case "nChof": {//ver más abajo
+            case "AgregarChof": {//ver más abajo
                 NuevoChoferView nChof = new NuevoChoferView();//se crea 1 obj. de tipo NuevoChofer
                 nChof.setTitle("Nuevo Chofer");
                 nChof.setVisible(true);//hace visible al usuario el formulario para registrar los datos de 1 nuevo chofer (son los datos que luego se asignarán a nChof)
@@ -147,7 +147,7 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 ConsultarChoferesView conChofV = new ConsultarChoferesView();
                 conChofV.setTitle("Consultar Choferes");
                 conChofV.setVisible(true);
-                ChoferController modChof = new ChoferController(conChofV, dao);
+                ChoferController modChof = new ChoferController(conChofV, this.dao);
                 break;
             }
 

@@ -51,7 +51,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuAgregarChofer">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nuevo Chofer..."/>
-                <Property name="actionCommand" type="java.lang.String" value="nChof"/>
+                <Property name="actionCommand" type="java.lang.String" value="AgregarChof"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAgregarChoferActionPerformed"/>

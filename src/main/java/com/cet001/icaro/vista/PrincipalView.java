@@ -104,7 +104,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
 
         menuAgregarChofer.setText("Nuevo Chofer...");
-        menuAgregarChofer.setActionCommand("nChof");
+        menuAgregarChofer.setActionCommand("AgregarChof");
         menuAgregarChofer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuAgregarChoferActionPerformed(evt);
