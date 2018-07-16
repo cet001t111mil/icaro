@@ -14,6 +14,8 @@ public class TelefonoCliente implements Serializable {
 
     private static final long serialVersionUID = 6217477364203581943L;
 
+
+    
     
     @Embeddable
     public static class Numero implements Serializable {
