@@ -1,4 +1,5 @@
 package com.cet001.icaro.modelo;
+    
 
 import java.io.Serializable;
 import javax.persistence.Column;
