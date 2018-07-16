@@ -105,7 +105,7 @@ public class DaoImpl {
         results = new ArrayList<>();
         results = manager.createQuery("Select c "
                 + "from Cliente c "
-                + "where borrado_logico = ?1").setParameter(1, false).getResultList();
+                + "where c.borrado_logico = ?1").setParameter(1, false).getResultList();
         manager.getTransaction().commit();
         return results;
     }
@@ -136,7 +136,7 @@ public class DaoImpl {
         results = new ArrayList<>();
         results = manager.createQuery("Select v "
                 + "from Viaje v "
-                + "where borrado_logico = ?1").setParameter(1, false).getResultList();
+                + "where v.borrado_logico = ?1").setParameter(1, false).getResultList();
         manager.getTransaction().commit();
         return results;
     }
@@ -167,7 +167,7 @@ public class DaoImpl {
         results = new ArrayList<>();
         results = manager.createQuery("Select ve "
                 + "from Vehiculo ve "
-                + "where borrado_logico = ?1").setParameter(1, false).getResultList();
+                + "where ve.borrado_logico = ?1").setParameter(1, false).getResultList();
         manager.getTransaction().commit();
         return results;
     }
@@ -187,7 +187,7 @@ public class DaoImpl {
         results = new ArrayList<>();
         results = manager.createQuery("Select e "
                 + "from Empleado e "
-                + "where tipo_empleado = ?1").setParameter(1, "CH").getResultList();
+                + "where e.tipo_empleado = ?1").setParameter(1, "CH").getResultList();
         manager.getTransaction().commit();
         return results;
     }
@@ -200,7 +200,7 @@ public class DaoImpl {
         results = new ArrayList<>();
         Query query = manager.createQuery("Select e "
                 + "from Empleado e "
-                + "where tipo_empleado = ?1 AND borrado_logico = ?2");
+                + "where e.tipo_empleado = ?1 AND e.borrado_logico = ?2");
         query.setParameter(1, "CH");
         query.setParameter(2, false);
         results = query.getResultList();
@@ -223,7 +223,7 @@ public class DaoImpl {
         results = new ArrayList<>();
         results = manager.createQuery("Select e "
                 + "from Empleado e "
-                + "where tipo_empleado = ?1").setParameter(1, "OP").getResultList();
+                + "where e.tipo_empleado = ?1").setParameter(1, "OP").getResultList();
         manager.getTransaction().commit();
         return results;
     }
@@ -237,7 +237,7 @@ public class DaoImpl {
 
         Query query = manager.createQuery("Select e "
                 + "from Empleado e "
-                + "where tipo_empleado = ?1 AND borrado_logico = ?2");
+                + "where e.tipo_empleado = ?1 AND e.borrado_logico = ?2");
         query.setParameter(1, "OP");
         query.setParameter(2, false);
         results = query.getResultList();
@@ -354,8 +354,8 @@ public class DaoImpl {
         double result = 0;
         int nroLegajo = chof.getNroLegajo();
         Query query = manager.createQuery("Select sum(importe) "
-                + "from Viaje "
-                + "where nro_legajo_chofer= ?1 and fecha between ?2 and ?3 ");
+                + "from Viaje v "
+                + "where v.nro_legajo_chofer= ?1 and v.fecha between ?2 and ?3 ");
         query.setParameter(1, nroLegajo);
         query.setParameter(2, i);
         query.setParameter(3, f);
@@ -376,7 +376,7 @@ public class DaoImpl {
 
         Query query = manager.createQuery("Select c "
                 + "from Clliente c "
-                + "where id_cliente = ?1 ");
+                + "where c.id_cliente = ?1 ");
         query.setParameter(1, idCliente);
         c = (Cliente) query.getSingleResult();
         saldo = c.getSaldo();
