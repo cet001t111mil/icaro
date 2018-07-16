@@ -35,12 +35,16 @@ public class DaoImpl {
         manager.close();
         emf.close();
     }
-
-    public void GuardarMovimientoDeSaldo(MovimientoDeSaldo mov) throws Exception {
+    /*dentro de este método se valida tipoComprobante ya que este atributo define en método calcularNuevoSaldo en Clase servicios.Administracion
+    si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita en cta cte del Cliente y FA(factura)debita en cta cte*/
+    public void guardarMovimientoDeSaldo(MovimientoDeSaldo mov) throws Exception {
         manager.getTransaction().begin();
-
-        manager.persist(mov);
-        manager.getTransaction().commit();
+        if (mov.getTipoComprobante().equals("RE") || mov.getTipoComprobante().equals("FA") || mov.getTipoComprobante().equals("NC") || mov.getTipoComprobante().equals("ND")) {
+            manager.persist(mov);
+            manager.getTransaction().commit();
+        } else {
+            throw new Exception("Comprobante no existente");
+        }
 
     }
 
@@ -55,7 +59,7 @@ public class DaoImpl {
         return results;
     }
 
-    public void GuardarTelfonoCliente(TelefonoCliente tel) throws Exception {
+    public void guardarTelfonoCliente(TelefonoCliente tel) throws Exception {
         manager.getTransaction().begin();
 
         manager.persist(tel);
@@ -74,7 +78,7 @@ public class DaoImpl {
         return results;
     }
 
-    public void GuardarCliente(Cliente clien) throws Exception {
+    public void guardarCliente(Cliente clien) throws Exception {
         manager.getTransaction().begin();
 
         manager.persist(clien);
@@ -169,7 +173,7 @@ public class DaoImpl {
 
     public void guardarChofer(Empleado chof) throws Exception {
         manager.getTransaction().begin();
-        System.out.println(chof.getTipoEmpleado()+"antes de persist");
+        System.out.println(chof.getTipoEmpleado() + "antes de persist");
         manager.persist(chof);
         manager.getTransaction().commit();
 
@@ -330,7 +334,7 @@ public class DaoImpl {
     public double obtenerFacturacionChofer(Chofer chof, Calendar i, Calendar f) {
         manager.getTransaction().begin();
         double result = 0;
-        int nroLegajo=chof.getNroLegajo();
+        int nroLegajo = chof.getNroLegajo();
         Query query = manager.createQuery("Select sum(importe) "
                 + "from Viaje "
                 + "where nro_legajo_chofer= ?1 and fecha between ?2 and ?3 ");
@@ -347,11 +351,11 @@ public class DaoImpl {
     //CHICOS: èste es el mètodo que trae el saldo actualizado del cliente para luego aplicar el mètodo
     //que vamos a crear en package servicios para sumarle o descontarle un importe
     //creo que va bien pero revisar
-    public double obtenerSaldoCliente(int idCliente) {
+    public double getSaldoCliente(Cliente c) {
         manager.getTransaction().begin();
-        Cliente c = null;
         double saldo = 0;
-
+        int idCliente = c.getIdCliente();
+        
         Query query = manager.createQuery("Select c "
                 + "from Clliente c "
                 + "where id_cliente = ?1 ");

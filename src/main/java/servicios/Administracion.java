@@ -7,13 +7,15 @@ package servicios;
 
 import com.cet001.icaro.dao.DaoImpl;
 import com.cet001.icaro.modelo.Chofer;
+import com.cet001.icaro.modelo.Cliente;
 import com.cet001.icaro.modelo.Empleado;
+import com.cet001.icaro.modelo.MovimientoDeSaldo;
 import com.cet001.icaro.modelo.Operador;
 import java.util.Calendar;
 
 /**
  *
- falta probar el método calc. sueldo con un chofer y también con un operador
+ * falta probar el método calc. sueldo con un chofer y también con un operador
  */
 public class Administracion {
 
@@ -24,8 +26,8 @@ public class Administracion {
         DaoImpl dao = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");
         double comisionCalculada = 0;
         try {
-                comisionCalculada = dao.obtenerFacturacionChofer(chof, i, f) * chof.getComision();
-         
+            comisionCalculada = dao.obtenerFacturacionChofer(chof, i, f) * chof.getComision();
+
         } catch (NullPointerException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -45,7 +47,7 @@ public class Administracion {
     public double calcularSueldo(Empleado emp) {
         double sueldoCalculado = 0;
         try {
-        
+
             if (emp instanceof Operador) {
                 Operador op = (Operador) emp;
                 sueldoCalculado = op.getSueldo();//El operador no tiene permitido recibir ninguna comisión.(nota para dejar)
@@ -60,6 +62,19 @@ public class Administracion {
             e.printStackTrace();
         }
         return sueldoCalculado;
+    }
+//ya está validado en Clase DaoImpl q no se recibirán tipos de comprobantes que no sean RE,NC,FA o ND
+    public double getSaldoActualizadoCliente(Cliente c, double importe, MovimientoDeSaldo mov) {
+        DaoImpl dao = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");
+        double saldoActualizado = 0;
+        double saldoInicial = dao.getSaldoCliente(c);
+        if (mov.getTipoComprobante().equals("RE") || mov.getTipoComprobante().equals("NC")) {
+            saldoActualizado = saldoInicial - importe;
+        }
+        if (mov.getTipoComprobante().equals("FA") || mov.getTipoComprobante().equals("ND")) {
+            saldoActualizado = saldoInicial + importe;
+        }
+        return saldoActualizado;
     }
 
 }
