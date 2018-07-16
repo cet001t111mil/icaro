@@ -326,10 +326,11 @@ public class DaoImpl {
 
     }
 
-    public double obtenerFacturacionChofer(int nroLegajo, Calendar i, Calendar f) {
+//chicos: le cambié el parám int nroLegajo por Chofer chof xq lo necesito así para algo que estoy armando en el paq. "servicios"
+    public double obtenerFacturacionChofer(Chofer chof, Calendar i, Calendar f) {
         manager.getTransaction().begin();
         double result = 0;
-
+        int nroLegajo=chof.getNroLegajo();
         Query query = manager.createQuery("Select sum(importe) "
                 + "from Viaje "
                 + "where nro_legajo_chofer= ?1 and fecha between ?2 and ?3 ");
