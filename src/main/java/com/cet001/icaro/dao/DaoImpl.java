@@ -267,7 +267,6 @@ public class DaoImpl {
         empl.setDni(dni);
         empl.setNombre(nombre);
         empl.setApellido(apellido);
-        empl.setTipoEmpleado(tipoEmpleado);
         empl.setSueldo(sueldo);
         ((Chofer) empl).setComision(comision);
         empl.setBorradoLogico(borradoLogico);

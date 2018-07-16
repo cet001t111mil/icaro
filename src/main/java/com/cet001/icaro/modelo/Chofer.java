@@ -10,8 +10,12 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
-//@DiscriminatorColumn(name = "CH") anteriormente así x error
-//verificar. SANTI, ésto era lo que provocaba que chofer persistiera como Chofer y no como CH en tipo_empleado
+
+/*YA PROBADO !!! FUNCIONA OK
+ Columna tipo_empleado (columna discriminatoria, persiste en forma automàtica
+ x eso comento el mètodo setTipoEmpleado en Clase Empleado porque no es necesario y ademàs evitamos asì tener 
+que validar la entrada de usuario que no sea "CH" de Chofer u "OP" de Empleado*/
+
 @DiscriminatorValue(value = "CH")
 public class Chofer extends Empleado implements Serializable{
 
@@ -34,28 +38,7 @@ public class Chofer extends Empleado implements Serializable{
         this.comision = comision;
     }
     
-    public double obtenerFacturacionTotal (List<Viaje> viajes, Calendar i,Calendar f){
-//////        sum
-//////        recorrer lista 
-//////                si esta etre las fechas entra
-//////                        sum importe+importe
-//////        
-        return 33;
-    }
-    
-    @Override
-    public double calcularSueldo(double totalDeViajes)  { //viene como parametro el resultado de obtener facturaciontotal
-       
-        return totalDeViajes * comision;
-    }
-
-///////TERMINAR 
-    @Override
-    public double getSueldo(){
-    return super.getSueldo()+this.calcularSueldo(sueldo);
-}
-    
-    
+ 
     @Override
     public String toString(){
      return super.toString()+", comision="+this.comision;

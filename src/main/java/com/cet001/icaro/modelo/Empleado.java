@@ -12,7 +12,10 @@ import javax.persistence.Inheritance;
 @Inheritance
 @DiscriminatorColumn(name = "tipo_empleado")
 
-public abstract class Empleado implements Serializable {
+
+// ### Clase Empleado ya no puede ser abstracta porque sacamos mètodo calcularSueldo que ahora està en Clase Administraciòn del package servicios
+
+public class Empleado implements Serializable {
 
     private static final long serialVersionUID = -933026923467806480L;
     @Id
@@ -42,14 +45,11 @@ public abstract class Empleado implements Serializable {
         System.out.println(this.tipoEmpleado+"desde el super");
     }
 
-    public abstract double calcularSueldo(double importe);
-
+  
     @Override
     public String toString() {
         return "Empleado{" + "nroLegajo=" + nroLegajo + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", tipoEmpleado=" + tipoEmpleado + ", sueldo=" + sueldo + ", borrado lógico=" + borradoLogico + '}';
     }
-
-    
 
     //métodos setters & getters
     public String getDni() {
@@ -88,9 +88,11 @@ public abstract class Empleado implements Serializable {
         return tipoEmpleado;
     }
 
-    public void setTipoEmpleado(String tipoEmpleado) {
-        this.tipoEmpleado = tipoEmpleado;
-    }
+    /*atributo tipoEmpleado persiste automáticamente por ser columna discriminatorio en la herencia
+    no es necesario setearlo y además así evitamos tener q validar entrada de usuario*/ 
+//    public void setTipoEmpleado(String tipoEmpleado) {
+//        this.tipoEmpleado = tipoEmpleado;
+//    }
 
     public double getSueldo() {
         return sueldo;
