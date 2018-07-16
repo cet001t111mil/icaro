@@ -1,6 +1,7 @@
 package com.cet001.icaro.dao;
 
 import com.cet001.icaro.modelo.Chofer;
+import com.cet001.icaro.modelo.TelefonoCliente.Numero;
 import com.cet001.icaro.modelo.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,6 +36,7 @@ public class DaoImpl {
         manager.close();
         emf.close();
     }
+
     /*dentro de este método se valida tipoComprobante ya que este atributo define en método calcularNuevoSaldo en Clase servicios.Administracion
     si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita en cta cte del Cliente y FA(factura)debita en cta cte*/
     public void guardarMovimientoDeSaldo(MovimientoDeSaldo mov) throws Exception {
@@ -329,6 +331,23 @@ public class DaoImpl {
 
     }
 
+    
+    
+    
+    public void modificarTelefonoCliente(TelefonoCliente telActual, TelefonoCliente telNuevo) {
+        manager.getTransaction();
+
+        TelefonoCliente.Numero numeroActual = telActual.getNumero();
+
+        TelefonoCliente.Numero numeroNuevo = telNuevo.getNumero();
+
+        TelefonoCliente t = manager.find(TelefonoCliente.class, numeroActual);
+        t.setNumero(numeroNuevo);
+        manager.persist(t);
+        manager.getTransaction().begin();
+
+    }
+
 //chicos: le cambié el parám int nroLegajo por Chofer chof xq lo necesito así para algo que estoy armando en el paq. "servicios"
     public double obtenerFacturacionChofer(Chofer chof, Calendar i, Calendar f) {
         manager.getTransaction().begin();
@@ -354,7 +373,7 @@ public class DaoImpl {
         manager.getTransaction().begin();
         double saldo = 0;
         int idCliente = c.getIdCliente();
-        
+
         Query query = manager.createQuery("Select c "
                 + "from Clliente c "
                 + "where id_cliente = ?1 ");
