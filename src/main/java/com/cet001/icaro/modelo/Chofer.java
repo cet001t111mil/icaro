@@ -14,7 +14,8 @@ import javax.persistence.OneToMany;
 /*YA PROBADO !!! FUNCIONA OK
  Columna tipo_empleado (columna discriminatoria, persiste en forma automàtica
  x eso comento el mètodo setTipoEmpleado en Clase Empleado porque no es necesario y ademàs evitamos asì tener 
-que validar la entrada de usuario que no sea "CH" de Chofer u "OP" de Empleado*/
+que validar la entrada del usuario que no sea "CH" de Chofer u "OP" de Empleado*/
+
 
 @DiscriminatorValue(value = "CH")
 public class Chofer extends Empleado implements Serializable{
