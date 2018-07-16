@@ -2,10 +2,13 @@ package com.cet001.icaro.modelo;
 
 import java.io.Serializable;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorColumn(name = "OP")
+//@DiscriminatorColumn(name = "OP")anteriormente así x error
+//verificar. SANTI, ésto era lo que provocaba el error al persistir como Operador y no como OP en tipo_empleado
+@DiscriminatorValue(value = "OP")
 public class Operador extends Empleado implements Serializable {
 
     private static final long serialVersionUID = -2539942624498235346L;

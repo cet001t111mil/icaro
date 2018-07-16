@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
-@DiscriminatorColumn(name = "CH") 
+//@DiscriminatorColumn(name = "CH") anteriormente así x error
+//verificar. SANTI, ésto era lo que provocaba que chofer persistiera como Chofer y no como CH en tipo_empleado
+@DiscriminatorValue(value = "CH")
 public class Chofer extends Empleado implements Serializable{
 
     private static final long serialVersionUID = -6744894858606796067L;
