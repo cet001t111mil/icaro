@@ -43,7 +43,7 @@ private DaoImpl dao;
         Cliente clien = new Cliente(nombre, apellido, Double.parseDouble(saldo), direccion);
         
         try{
-        dao.GuardarCliente(clien);
+        dao.guardarCliente(clien);
 
         }catch(Exception ex) {
                 ex.printStackTrace();

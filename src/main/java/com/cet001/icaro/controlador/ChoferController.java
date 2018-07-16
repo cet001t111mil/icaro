@@ -23,14 +23,13 @@ import javax.swing.JOptionPane;
  *
  * @author ponsa
  */
-public class ChoferController implements ActionListener {//esta es la clase del objeto que "controlará" a los objetos de tipo NuevoChofer
-
+public class ChoferController implements ActionListener {
     DaoImpl dao;
     private NuevoChoferView nuevoChofer;
     private ConsultarChoferesView consulChof;
     private ModificarChoferView modChof;
 
-    public ChoferController(NuevoChoferView nuevoChofer, DaoImpl dao) {
+    public ChoferController(NuevoChoferView nuevoChofer, DaoImpl dao) { //controla la ventana nuevo chofer
         this.dao = dao;
         this.nuevoChofer = nuevoChofer;
         this.nuevoChofer.jButton1.addActionListener(this);
@@ -38,7 +37,7 @@ public class ChoferController implements ActionListener {//esta es la clase del 
     //Constructor consulta choferes
     
     
-    public ChoferController(ConsultarChoferesView consultaChofer, DaoImpl dao) {
+    public ChoferController(ConsultarChoferesView consultaChofer, DaoImpl dao) { //controla ventana consultas chofer
         this.dao = dao;
         this.consulChof = consultaChofer;
         this.consulChof.botonAgregar.addActionListener(this);
@@ -46,7 +45,7 @@ public class ChoferController implements ActionListener {//esta es la clase del 
        // llenaListaChof();
     }
 
-    public ChoferController (ModificarChoferView modChof , DaoImpl dao){
+    public ChoferController (ModificarChoferView modChof , DaoImpl dao){ //controla modificar chofer
         this.dao = dao;
         this.modChof = modChof;
         this.modChof.actualizarChofButton.addActionListener(this);
