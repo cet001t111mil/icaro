@@ -20,23 +20,18 @@ import java.util.Calendar;
 public class Administracion {
 
     private double comisionCalculadaFinal;
-    
+
 //ponemos throws Exception en todos estos? Al getSaldoActualizadoCliente me obligó a agregarla
-    private double calcularComisionChofer(Chofer chof, Calendar i, Calendar f) {
+    private double calcularComisionChofer(Chofer chof, Calendar i, Calendar f) throws Exception {
         DaoImpl dao = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");
         double comisionCalculada = 0;
-        try {
-            comisionCalculada = dao.obtenerFacturacionChofer(chof, i, f) * chof.getComision();
 
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        comisionCalculada = dao.obtenerFacturacionChofer(chof, i, f) * chof.getComision();
+
         return comisionCalculada;
     }
 
-    public void setComisionCalculadaFinal(Chofer chof, Calendar i, Calendar f) {
+    public void setComisionCalculadaFinal(Chofer chof, Calendar i, Calendar f) throws Exception  {
         this.comisionCalculadaFinal = this.calcularComisionChofer(chof, i, f);
     }
 
@@ -44,26 +39,21 @@ public class Administracion {
         return comisionCalculadaFinal;
     }
 
-    public double calcularSueldo(Empleado emp) {
+    public double calcularSueldo(Empleado emp) throws Exception {
         double sueldoCalculado = 0;
-        try {
 
-            if (emp instanceof Operador) {
-                Operador op = (Operador) emp;
-                sueldoCalculado = op.getSueldo();//El operador no tiene permitido recibir ninguna comisión.(nota para dejar)
-            } else if (emp instanceof Chofer) {
-                Chofer chof = (Chofer) emp;
-                sueldoCalculado = chof.getSueldo() + this.getComisionCalculadaFinal();
-            }
-
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (emp instanceof Operador) {
+            Operador op = (Operador) emp;
+            sueldoCalculado = op.getSueldo();//El operador no tiene permitido recibir ninguna comisión.(nota para dejar)
+        } else if (emp instanceof Chofer) {
+            Chofer chof = (Chofer) emp;
+            sueldoCalculado = chof.getSueldo() + this.getComisionCalculadaFinal();
         }
+
         return sueldoCalculado;
     }
 //ya está validado en Clase DaoImpl q no se recibirán tipos de comprobantes que no sean RE,NC,FA o ND
+
     public double getSaldoActualizadoCliente(Cliente c, double importe, MovimientoDeSaldo mov) throws Exception {
         DaoImpl dao = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");
         double saldoActualizado = 0;
