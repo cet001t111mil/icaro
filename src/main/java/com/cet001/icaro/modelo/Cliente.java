@@ -1,15 +1,14 @@
 package com.cet001.icaro.modelo;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
 
 @Entity
 public class Cliente implements Serializable {
@@ -17,7 +16,7 @@ public class Cliente implements Serializable {
     private static final long serialVersionUID = 1044152195801582698L;
     @Id
     @Column(name = "id_cliente")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCliente;
     private String nombre;
     private String apellido;
@@ -46,17 +45,13 @@ public class Cliente implements Serializable {
         this.direccion = direccion;
         this.borradoLogico = false;
         this.limiteDeCredito = 0;
-        
-        
-    }
 
+    }
 
     @Override
     public String toString() {
         return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", borrado lógico=" + borradoLogico + ", saldo=" + saldo + ", limiteDeCredito=" + limiteDeCredito + ", telefonos=" + telefonos + '}';
     }
-
-    
 
     //métodos setters & getters
     public int getIdCliente() {
@@ -107,7 +102,7 @@ public class Cliente implements Serializable {
         this.borradoLogico = borradoLogico;
     }
 
-       public double getLimiteDeCredito() {
+    public double getLimiteDeCredito() {
         return limiteDeCredito;
     }
 

@@ -3,7 +3,7 @@ create user 'userRemiseria'@'localhost' identified by '1234';
 grant all on remiseria.* to userRemiseria@localhost;
 
 CREATE TABLE IF NOT EXISTS remiseria.Cliente (
-  `id_cliente` INT(6) NOT NULL,
+  `id_cliente` INT(6) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `direccion` VARCHAR(45) NULL,
