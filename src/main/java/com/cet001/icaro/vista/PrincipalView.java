@@ -55,6 +55,8 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        menuVeh = new javax.swing.JMenu();
+        menuV = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,6 +124,11 @@ public class PrincipalView extends javax.swing.JFrame {
 
         consultarChoferes.setText("Consultar Choferes");
         consultarChoferes.setActionCommand("conChof");
+        consultarChoferes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarChoferesActionPerformed(evt);
+            }
+        });
         menuChofer.add(consultarChoferes);
 
         jMenuBar1.add(menuChofer);
@@ -170,6 +177,20 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu4.add(jMenuItem4);
 
         jMenuBar1.add(jMenu4);
+
+        menuVeh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vehiculo.png"))); // NOI18N
+        menuVeh.setActionCommand("menuVeh");
+
+        menuV.setText("Editar Vehiculos...");
+        menuV.setActionCommand("menuVeh");
+        menuV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuVActionPerformed(evt);
+            }
+        });
+        menuVeh.add(menuV);
+
+        jMenuBar1.add(menuVeh);
 
         setJMenuBar(jMenuBar1);
 
@@ -255,6 +276,14 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuAgregarOperadorActionPerformed
 
+    private void menuVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuVActionPerformed
+
+    private void consultarChoferesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarChoferesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_consultarChoferesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -319,6 +348,8 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
     public javax.swing.JMenuItem menuAgregarChofer;
     public javax.swing.JMenuItem menuAgregarOperador;
     public javax.swing.JMenu menuChofer;
+    public javax.swing.JMenuItem menuV;
+    public javax.swing.JMenu menuVeh;
     public javax.swing.JTextPane pNotificaciones;
     // End of variables declaration//GEN-END:variables
 }

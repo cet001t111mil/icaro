@@ -171,6 +171,18 @@ public class DaoImpl {
         manager.getTransaction().commit();
         return results;
     }
+    
+        public List<Vehiculo> getVehiculosDsiponiblesParaViaje() throws Exception {
+        manager.getTransaction().begin();
+        List<Vehiculo> results = null;
+
+        results = new ArrayList<>();
+        results = manager.createQuery("Select ve "
+                + "from Vehiculo ve "
+                + "where ve.enViaje = ?1").setParameter(1, false).getResultList();
+        manager.getTransaction().commit();
+        return results;
+    }
 
     public void guardarChofer(Empleado chof) throws Exception {
         manager.getTransaction().begin();

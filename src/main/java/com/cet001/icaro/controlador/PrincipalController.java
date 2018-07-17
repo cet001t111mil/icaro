@@ -18,6 +18,7 @@ import com.cet001.icaro.vista.NuevoChoferView;
 import com.cet001.icaro.vista.NuevoClienteView;
 import com.cet001.icaro.vista.NuevoOperadorView;
 import com.cet001.icaro.vista.NuevoViajeView;
+import com.cet001.icaro.vista.VehiculosView;
 import java.awt.Component;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
@@ -49,11 +50,11 @@ public class PrincipalController implements ActionListener {//esta es la clase d
         this.wPrincipal.jMenuItem1.addActionListener(this);
         this.wPrincipal.agreCliente.addActionListener(this);
         this.wPrincipal.menuAgregarOperador.addActionListener(this);
+        this.wPrincipal.menuV.addActionListener(this);
         this.wPrincipal.consultarChoferes.addActionListener(this);
+        
         llenarListaViajesCurso();
-
         llenarListaVehiculos();
-//        llenarListaClientes();
 
     }
 
@@ -63,7 +64,7 @@ public class PrincipalController implements ActionListener {//esta es la clase d
 
         try {
             String listaV = "";
-            List<Vehiculo> vehiculos = dao.getVehiculos();
+            List<Vehiculo> vehiculos = dao.getVehiculosDsiponiblesParaViaje();
 
             for (Vehiculo v : vehiculos) {
                 Dlm.addElement("Patente: " + v.getPatente() + " - " + v.getMarca() + " " + v.getModelo() + " - En Viaje: " + v.isEnViaje());
@@ -148,6 +149,13 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 conChofV.setTitle("Consultar Choferes");
                 conChofV.setVisible(true);
                 ChoferController modChof = new ChoferController(conChofV, this.dao);
+                break;
+            }
+                case "menuVeh": {
+                VehiculosView vehiView = new VehiculosView();
+                vehiView.setTitle("Vehiculos");
+                vehiView.setVisible(true);
+                VehiculosController vehiCon = new VehiculosController(vehiView, this.dao);
                 break;
             }
 
