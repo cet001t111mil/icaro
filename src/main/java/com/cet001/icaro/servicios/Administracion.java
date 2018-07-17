@@ -10,7 +10,7 @@ import java.util.Calendar;
 
 /**
  *
- * falta probar el método calc. sueldo con un chofer y también con un operador
+ *
  */
 public class Administracion {
 
