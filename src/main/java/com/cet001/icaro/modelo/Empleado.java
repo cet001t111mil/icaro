@@ -28,7 +28,7 @@ public class Empleado implements Serializable {
     protected String tipoEmpleado;
     protected double sueldo;
     @Column(name = "borrado_logico")
-    protected boolean borradoLogico;
+    protected String borradoLogico;
 
     public Empleado() {
     }
@@ -41,7 +41,7 @@ public class Empleado implements Serializable {
         this.nroLegajo = nroLegajo;
         this.tipoEmpleado = tipoEmpleado;
         this.sueldo = sueldo;
-        this.borradoLogico = false;
+        this.borradoLogico = "F";
         System.out.println(this.tipoEmpleado+"desde el super");
     }
 
@@ -102,11 +102,11 @@ public class Empleado implements Serializable {
         this.sueldo = sueldo;
     }
 
-    public boolean isBorradoLogico() {
+    public String getBorradoLogico() {
         return borradoLogico;
     }
 
-    public void setBorradoLogico(boolean borraloLogico) {
+    public void setBorradoLogico(String borraloLogico) {
         this.borradoLogico = borraloLogico;
     }
 

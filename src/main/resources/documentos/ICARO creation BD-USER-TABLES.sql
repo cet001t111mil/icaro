@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS remiseria.Cliente (
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `direccion` VARCHAR(45) NULL,
-  `borrado_logico` BOOLEAN NOT NULL, 
+  `borrado_logico` VARCHAR(1) NOT NULL, 
   `saldo` DOUBLE NULL,
   `limite_de_credito` DOUBLE NULL,
   PRIMARY KEY (`id_cliente`));
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS remiseria.Vehiculo (
   `modelo` VARCHAR(45) NULL,
   `anio` INT NULL,
   `en_viaje` BOOLEAN NULL,
-  `borrado_logico`BOOLEAN NOT NULL,
+  `borrado_logico` VARCHAR(1) NOT NULL,
   PRIMARY KEY (`patente`));
 
 CREATE TABLE IF NOT EXISTS remiseria.Empleado(
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS remiseria.Empleado(
   `sueldo` DOUBLE NULL,
   `comision` DOUBLE NULL,
   `tipo_empleado` VARCHAR(45) NULL,
-  `borrado_logico` BOOLEAN NOT NULL,
+  `borrado_logico` VARCHAR(1)NOT NULL,
   PRIMARY KEY (`nro_legajo`));
 
 
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS remiseria.Viaje (
   `fecha` DATETIME NOT NULL,
   `importe` DOUBLE NULL,
   `forma_de_pago` INT NULL,
-  `borrado_logico` BOOLEAN NOT NULL,
+  `borrado_logico` VARCHAR(1) NOT NULL,
   `en_curso` BOOLEAN NOT NULL,
   `patente` VARCHAR(10) NOT NULL,
   `id_cliente` INT(6) NOT NULL,

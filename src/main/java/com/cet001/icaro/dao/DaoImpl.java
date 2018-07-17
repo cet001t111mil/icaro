@@ -105,7 +105,7 @@ public class DaoImpl {
         results = new ArrayList<>();
         results = manager.createQuery("Select c "
                 + "from Cliente c "
-                + "where c.borrado_logico = ?1").setParameter(1, false).getResultList();
+                + "where c.borradoLogico = ?1").setParameter(1, "F").getResultList();
         manager.getTransaction().commit();
         return results;
     }
@@ -136,7 +136,7 @@ public class DaoImpl {
         results = new ArrayList<>();
         results = manager.createQuery("Select v "
                 + "from Viaje v "
-                + "where v.borrado_logico = ?1").setParameter(1, false).getResultList();
+                + "where v.borradoLogico = ?1").setParameter(1, "F").getResultList();
         manager.getTransaction().commit();
         return results;
     }
@@ -167,7 +167,7 @@ public class DaoImpl {
         results = new ArrayList<>();
         results = manager.createQuery("Select ve "
                 + "from Vehiculo ve "
-                + "where ve.borrado_logico = ?1").setParameter(1, false).getResultList();
+                + "where ve.borradoLogico = ?1").setParameter(1, "F").getResultList();
         manager.getTransaction().commit();
         return results;
     }
@@ -187,7 +187,7 @@ public class DaoImpl {
         results = new ArrayList<>();
         results = manager.createQuery("Select e "
                 + "from Empleado e "
-                + "where e.tipo_empleado = ?1").setParameter(1, "CH").getResultList();
+                + "where e.tipoEmpleado = ?1").setParameter(1, "CH").getResultList();
         manager.getTransaction().commit();
         return results;
     }
@@ -200,9 +200,9 @@ public class DaoImpl {
         results = new ArrayList<>();
         Query query = manager.createQuery("Select e "
                 + "from Empleado e "
-                + "where e.tipo_empleado = ?1 AND e.borrado_logico = ?2");
+                + "where e.tipoEmpleado = ?1 AND e.borradoLogico = ?2");
         query.setParameter(1, "CH");
-        query.setParameter(2, false);
+        query.setParameter(2, "F");
         results = query.getResultList();
         manager.getTransaction().commit();
         return results;
@@ -223,7 +223,7 @@ public class DaoImpl {
         results = new ArrayList<>();
         results = manager.createQuery("Select e "
                 + "from Empleado e "
-                + "where e.tipo_empleado = ?1").setParameter(1, "OP").getResultList();
+                + "where e.tipoEmpleado = ?1").setParameter(1, "OP").getResultList();
         manager.getTransaction().commit();
         return results;
     }
@@ -237,9 +237,9 @@ public class DaoImpl {
 
         Query query = manager.createQuery("Select e "
                 + "from Empleado e "
-                + "where e.tipo_empleado = ?1 AND e.borrado_logico = ?2");
+                + "where e.tipoEmpleado = ?1 AND e.borradoLogico = ?2");
         query.setParameter(1, "OP");
-        query.setParameter(2, false);
+        query.setParameter(2, "F");
         results = query.getResultList();
         manager.getTransaction().commit();
         return results;
@@ -261,7 +261,7 @@ public class DaoImpl {
     de empleado por si un chofer cambia de rol y pasa a ser operador o viceversa y un sector para el borrado lógico que,
     para mí, allá en la ventana sería mejor ponerle otro nombre en lug de borrado logico.
      */
-    public void modificarEmpleado(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) throws Exception {
+    public void modificarEmpleado(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, String borradoLogico) throws Exception {
         manager.getTransaction().begin();
 
         Empleado empl = manager.find(Empleado.class, nroLegajo);
@@ -278,7 +278,7 @@ public class DaoImpl {
 
     //no le vamos a permitir modif. la lista de viajes en esta vista.
     // (los viajes acá solo se verán. Para eliminar o modific. viaje habrá que ir a las correspondientes ventanas)
-    public void modificarVehiculo(String patente, String marca, String modelo, int anio, boolean enViaje, boolean borradoLogico) throws Exception {
+    public void modificarVehiculo(String patente, String marca, String modelo, int anio, boolean enViaje, String borradoLogico) throws Exception {
         manager.getTransaction().begin();
 
         Vehiculo vehic = manager.find(Vehiculo.class, patente);//patente es pk en la BD. No se permitirá modificar, pero se neces. recibir x parám. p/esta búsqueda
@@ -297,7 +297,7 @@ public class DaoImpl {
     //Si hicieramos esas vent. podriamos sacar las listas de las ventanas como ésta. Pero no creo que hagamos tantas ventanas,no?
     //lo que sí podemos hacer para eliminar las listas de estas ventanas es: titular las ventanas de modificaciones como "ver/modificar Cliente","ver/modificarViaje",etc.,
     //entonces ahí ya quedaría mejor sacar las listas de las ventanas en las que habían quedado sólo para vista.
-    public void modificarCliente(int idCliente, String nombre, String apellido, String direccion, boolean borradoLogico, double saldo, double limiteDeCredito) throws Exception {
+    public void modificarCliente(int idCliente, String nombre, String apellido, String direccion, String borradoLogico, double saldo, double limiteDeCredito) throws Exception {
         manager.getTransaction().begin();
 
         Cliente cli = manager.find(Cliente.class, idCliente);
@@ -312,7 +312,7 @@ public class DaoImpl {
 
     }
 
-    public void modificarViaje(int idViaje, String origen, String destino, double importe, int formaDePago, boolean borradoLogico, boolean enCurso, Vehiculo movil, Cliente cliente, Chofer chofer) throws Exception {
+    public void modificarViaje(int idViaje, String origen, String destino, double importe, int formaDePago, String borradoLogico, boolean enCurso, Vehiculo movil, Cliente cliente, Chofer chofer) throws Exception {
         manager.getTransaction().begin();
 
         Viaje vi = manager.find(Viaje.class, idViaje);
@@ -330,9 +330,7 @@ public class DaoImpl {
 
     }
 
-    
-    
-    
+     
     public void modificarTelefonoCliente(Cliente c,TelefonoCliente telActual, TelefonoCliente telNuevo) throws Exception {
         manager.getTransaction();
 
@@ -355,7 +353,7 @@ public class DaoImpl {
         int nroLegajo = chof.getNroLegajo();
         Query query = manager.createQuery("Select sum(importe) "
                 + "from Viaje v "
-                + "where v.nro_legajo_chofer= ?1 and v.fecha between ?2 and ?3 ");
+                + "where v.nroLegajo = ?1 and v.fecha between ?2 and ?3 ");
         query.setParameter(1, nroLegajo);
         query.setParameter(2, i);
         query.setParameter(3, f);
@@ -376,7 +374,7 @@ public class DaoImpl {
 
         Query query = manager.createQuery("Select c "
                 + "from Clliente c "
-                + "where c.id_cliente = ?1 ");
+                + "where c.idCliente = ?1 ");
         query.setParameter(1, idCliente);
         c = (Cliente) query.getSingleResult();
         saldo = c.getSaldo();

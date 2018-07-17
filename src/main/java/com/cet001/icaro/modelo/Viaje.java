@@ -27,7 +27,7 @@ public class Viaje implements Serializable {
     @Column(name = "forma_de_pago")
     private int formaDePago;
     @Column(name = "borrado_logico")
-    private boolean borradoLogico;
+    private String borradoLogico;
     @Column (name = "en_curso")
     
     private boolean enCurso ; 
@@ -58,7 +58,7 @@ public class Viaje implements Serializable {
         this.movil = movil;
         this.cliente = cliente;
         this.chofer = chofer;
-        this.borradoLogico = false;
+        this.borradoLogico = "F";
         this.enCurso = true;
     }
 
@@ -145,11 +145,11 @@ public class Viaje implements Serializable {
         this.chofer = chofer;
     }
 
-    public boolean isBorradoLogico() {
+    public String getBorradoLogico() {
         return borradoLogico;
     }
 
-    public void setBorradoLogico(boolean borradoLogico) {
+    public void setBorradoLogico(String borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
 

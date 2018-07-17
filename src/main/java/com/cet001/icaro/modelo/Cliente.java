@@ -23,7 +23,7 @@ public class Cliente implements Serializable {
     private String apellido;
     private String direccion;
     @Column(name = "borrado_logico")
-    private boolean borradoLogico;
+    private String borradoLogico;
     private double saldo;
     @Column(name = "limite_de_credito")
     private double limiteDeCredito;
@@ -44,19 +44,12 @@ public class Cliente implements Serializable {
         this.apellido = apellido;
         this.saldo = saldo;
         this.direccion = direccion;
-        this.borradoLogico = false;
+        this.borradoLogico = "F";
         this.limiteDeCredito = 0;
         
         
     }
-//hacerlo en BD si conviente
-    public void sumSaldo(double importe) {
-        saldo = this.saldo + importe;
-    }
 
-    public void subtractSaldo(double importe) {
-        saldo = this.saldo - importe;
-    }
 
     @Override
     public String toString() {
@@ -106,11 +99,11 @@ public class Cliente implements Serializable {
         this.direccion = direccion;
     }
 
-    public boolean isBorradoLogico() {
+    public String getBorradoLogico() {
         return borradoLogico;
     }
 
-    public void setBorradoLogico(boolean borradoLogico) {
+    public void setBorradoLogico(String borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
 
