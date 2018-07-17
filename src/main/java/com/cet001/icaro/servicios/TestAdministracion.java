@@ -4,6 +4,7 @@ import com.cet001.icaro.dao.DaoImpl;
 import com.cet001.icaro.modelo.Chofer;
 import com.cet001.icaro.modelo.Cliente;
 import com.cet001.icaro.modelo.MovimientoDeSaldo;
+import com.cet001.icaro.modelo.TelefonoCliente;
 import java.util.Calendar;
 
 public class TestAdministracion {
@@ -69,6 +70,8 @@ Administracion admin1 = new Administracion();
 //admin1.calcularNuevoSaldoCliente(51, dao1.manager.find(MovimientoDeSaldo.class, 1002));
 
 //System.out.println(dao1.manager.find(Cliente.class,51).toString());
+
+
 
     }
 

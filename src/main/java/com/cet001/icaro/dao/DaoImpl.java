@@ -22,8 +22,8 @@ import javax.persistence.Query;
  *///######### manager close despues de c/consulta // emf en constructor del dao
 public class DaoImpl {
 
-    EntityManagerFactory emf;
-    EntityManager manager;
+    private EntityManagerFactory emf;
+    private EntityManager manager;
 
     //nombre de la unid. de persist: "remiseria?zeroDateTimeBehavior=convertToNullPU"
     //Santi: dejé acá el nombre de la unid de persist. xq no sé si lo necesitás tener a mano. 
@@ -37,6 +37,24 @@ public class DaoImpl {
         manager.close();
         emf.close();
     }
+
+    public EntityManagerFactory getEmf() {
+        return emf;
+    }
+
+    public void setEmf(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
+
+    public EntityManager getManager() {
+        return manager;
+    }
+
+    public void setManager(EntityManager manager) {
+        this.manager = manager;
+    }
+    
+    
 
 //mètodos para Clase MovimientoDeSaldo
     /*dentro de este método se valida tipoComprobante ya que este atributo define en método calcularNuevoSaldo en Clase servicios.Administracion
@@ -401,22 +419,24 @@ public class DaoImpl {
         manager.getTransaction();
 
         TelefonoCliente t = manager.find(TelefonoCliente.class, numActual);//obtenemos el obj.TelefonoCliente actual de la BD
-        Numero n = numActual;
-        n.setCodArea(codAreaNuevo);//seteamos al obj. tipo Numero actual los atrib. nuevos.
-        n.setNroTel(nroTelNuevo);
+        Numero numeroActual = t.getNumero();
+        numeroActual.setCodArea(codAreaNuevo);
+        numeroActual.setNroTel(nroTelNuevo);
+        t.setNumero(numeroActual);
 
-        t.setNumero(n); //al obj. tipo TelefonoCliente actual que obtuvimos de la BD le seteamos n que es el obj. tipo Numero ya modificado.
-
+//        Numero n = numActual;
+//        n.setCodArea(codAreaNuevo);//seteamos al obj. tipo Numero actual los atrib. nuevos.
+//        n.setNroTel(nroTelNuevo);
+//
+//        t.setNumero(n); //al obj. tipo TelefonoCliente actual que obtuvimos de la BD le seteamos n que es el obj. tipo Numero ya modificado.
         manager.persist(t);
         manager.getTransaction().begin();
     }
 
 //mètodos para funcionalidad de Clase Administracion
-//chicos: le cambié el parám int nroLegajo por Chofer chof xq lo necesito así para algo que estoy armando en el paq. "servicios"
-    public double obtenerFacturacionChofer(Chofer chof, Calendar i, Calendar f) throws Exception {
+    public double obtenerFacturacionChofer(int nroLegajo, Calendar i, Calendar f) throws Exception {
         manager.getTransaction().begin();
         double result = 0;
-        int nroLegajo = chof.getNroLegajo();
         Query query = manager.createQuery("Select sum(importe) "
                 + "from Viaje v "
                 + "where v.nroLegajo = ?1 and v.fecha between ?2 and ?3 ");
@@ -438,7 +458,6 @@ public class DaoImpl {
                 + "from Cliente c "
                 + "where c.idCliente = ?1 ");
         query.setParameter(1, idCliente);
-        //saldo = (double) query.getSingleResult();
         c = (Cliente) query.getSingleResult();
         saldo = c.getSaldo();
         manager.getTransaction().commit();
