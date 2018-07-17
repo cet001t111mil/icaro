@@ -128,7 +128,7 @@ public class VehiculosController implements ActionListener {
 
         try {
 
-            dao.modificarVehiculo(patente, marca, modelo, Integer.parseInt(anio), false, "F");
+            dao.modificarVehiculo(patente, marca, modelo, Integer.parseInt(anio), false, false);
             llenarListaVehiculos();
             JOptionPane.showMessageDialog(null, "Vehiculo Modificado");
         } catch (SQLException ex) {
@@ -195,7 +195,7 @@ public class VehiculosController implements ActionListener {
 
         try {
 
-            dao.modificarVehiculo(patente, marca, modelo, Integer.parseInt(anio), false, "T");
+            dao.modificarVehiculo(patente, marca, modelo, Integer.parseInt(anio), false, true);
             llenarListaVehiculos();
             JOptionPane.showMessageDialog(null, "Vehiculo Borrado");
         } catch (SQLException ex) {
