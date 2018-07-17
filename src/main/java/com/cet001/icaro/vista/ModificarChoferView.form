@@ -169,7 +169,7 @@
     <Component class="javax.swing.JButton" name="actualizarChofButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Actualizar"/>
-        <Property name="actionCommand" type="java.lang.String" value="actualicarChof"/>
+        <Property name="actionCommand" type="java.lang.String" value="actualizarChof"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarChofButtonActionPerformed"/>

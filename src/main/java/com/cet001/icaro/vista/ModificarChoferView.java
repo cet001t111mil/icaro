@@ -66,7 +66,7 @@ public class ModificarChoferView extends javax.swing.JFrame {
         jLabel5.setText("Comision");
 
         actualizarChofButton.setText("Actualizar");
-        actualizarChofButton.setActionCommand("actualicarChof");
+        actualizarChofButton.setActionCommand("actualizarChof");
         actualizarChofButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actualizarChofButtonActionPerformed(evt);

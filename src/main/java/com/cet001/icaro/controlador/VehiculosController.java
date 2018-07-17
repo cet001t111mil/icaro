@@ -42,7 +42,7 @@ public class VehiculosController implements ActionListener {
         DefaultListModel Dlm = new DefaultListModel();
 
         try {
-            String listaV = "";
+            
             List<Vehiculo> vehiculos = dao.getVehiculosActivos();
           
             for (Vehiculo v : vehiculos) {
@@ -175,7 +175,6 @@ public class VehiculosController implements ActionListener {
                 }
 
             }
-            //System.out.println(vehiculos.get(indice));
             ve = vehiculos.get(indice);
             this.vehiView.modifVehiMarca.setText(ve.getMarca());
             this.vehiView.modifVehiMode.setText(ve.getModelo());

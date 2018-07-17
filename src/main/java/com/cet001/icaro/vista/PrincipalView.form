@@ -48,30 +48,10 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuAgregarChofer">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nuevo Chofer..."/>
-                <Property name="actionCommand" type="java.lang.String" value="AgregarChof"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAgregarChoferActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-              </AuxValues>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Calcular Comisiones..."/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="consultarChoferes">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar Choferes"/>
-                <Property name="actionCommand" type="java.lang.String" value="conChof"/>
+                <Property name="text" type="java.lang.String" value="Administracion Choferes"/>
+                <Property name="actionCommand" type="java.lang.String" value="admChoferes"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarChoferesActionPerformed"/>

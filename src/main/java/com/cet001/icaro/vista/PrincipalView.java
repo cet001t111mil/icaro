@@ -45,8 +45,6 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         menuChofer = new javax.swing.JMenu();
-        menuAgregarChofer = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         consultarChoferes = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuAgregarOperador = new javax.swing.JMenuItem();
@@ -105,25 +103,8 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        menuAgregarChofer.setText("Nuevo Chofer...");
-        menuAgregarChofer.setActionCommand("AgregarChof");
-        menuAgregarChofer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuAgregarChoferActionPerformed(evt);
-            }
-        });
-        menuChofer.add(menuAgregarChofer);
-
-        jMenuItem6.setText("Calcular Comisiones...");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        menuChofer.add(jMenuItem6);
-
-        consultarChoferes.setText("Consultar Choferes");
-        consultarChoferes.setActionCommand("conChof");
+        consultarChoferes.setText("Administracion Choferes");
+        consultarChoferes.setActionCommand("admChoferes");
         consultarChoferes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultarChoferesActionPerformed(evt);
@@ -249,10 +230,6 @@ public class PrincipalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuChoferActionPerformed
 
-    private void menuAgregarChoferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgregarChoferActionPerformed
-
-    }//GEN-LAST:event_menuAgregarChoferActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -263,10 +240,6 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void agreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agreClienteActionPerformed
         // TODO add your handling code here:
@@ -338,14 +311,12 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JMenuItem menuAgregarChofer;
     public javax.swing.JMenuItem menuAgregarOperador;
     public javax.swing.JMenu menuChofer;
     public javax.swing.JMenuItem menuV;

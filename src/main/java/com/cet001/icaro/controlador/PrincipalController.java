@@ -46,16 +46,15 @@ public class PrincipalController implements ActionListener {//esta es la clase d
 
     public void iniciar() {
         this.wPrincipal.setTitle("Icaro Gestion Remis");
-        this.wPrincipal.menuAgregarChofer.addActionListener(this);
+        
         this.wPrincipal.jMenuItem1.addActionListener(this);
         this.wPrincipal.agreCliente.addActionListener(this);
         this.wPrincipal.menuAgregarOperador.addActionListener(this);
         this.wPrincipal.menuV.addActionListener(this);
         this.wPrincipal.consultarChoferes.addActionListener(this);
-        
         llenarListaViajesCurso();
         llenarListaVehiculos();
-
+        System.out.println("no llena vehiculos");
     }
 
     public void llenarListaVehiculos() {
@@ -63,7 +62,6 @@ public class PrincipalController implements ActionListener {//esta es la clase d
         DefaultListModel Dlm = new DefaultListModel();
 
         try {
-            String listaV = "";
             List<Vehiculo> vehiculos = dao.getVehiculosDisponiblesParaViaje();
 
             for (Vehiculo v : vehiculos) {
@@ -123,11 +121,11 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 break;
             }
 
-            case "AgregarChof": {//ver más abajo
-                NuevoChoferView nChof = new NuevoChoferView();//se crea 1 obj. de tipo NuevoChofer
-                nChof.setTitle("Nuevo Chofer");
-                nChof.setVisible(true);//hace visible al usuario el formulario para registrar los datos de 1 nuevo chofer (son los datos que luego se asignarán a nChof)
-                ChoferController connchof = new ChoferController(nChof, this.dao);//se crea 1 obj. controlador que "controlará" a nChof
+            case "admChoferes": {//ver más abajo
+                ConsultarChoferesView cChof = new ConsultarChoferesView();
+                cChof.setTitle("Administracion Choferes");
+                cChof.setVisible(true);//hace visible al usuario el formulario para registrar los datos de 1 nuevo chofer (son los datos que luego se asignarán a nChof)
+                ChoferController connchof = new ChoferController(cChof, this.dao);//se crea 1 obj. controlador que "controlará" a nChof
                 break;
             }
             case "nviaje": {
@@ -150,7 +148,7 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 ConsultarChoferesView conChofV = new ConsultarChoferesView();
                 conChofV.setTitle("Consultar Choferes");
                 conChofV.setVisible(true);
-                ChoferController modChof = new ChoferController(conChofV, this.dao);
+                ChoferController modChof = new ChoferController(conChofV,dao);
                 break;
             }
                 case "menuVeh": {
