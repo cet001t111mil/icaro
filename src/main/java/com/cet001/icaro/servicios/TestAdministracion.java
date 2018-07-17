@@ -62,4 +62,17 @@ Este mét iría en TelefonoCliente, si fuera necesario:
 //        TelefonoCliente.Numero numero =new TelefonoCliente.Numero();
 //        return numero;
 //    } 
+
+//////////Dejo esto acá hasta que funcione la versión que dejé en el Dao
+//    public void modificarTelefonoCliente(Cliente c, TelefonoCliente telActual, TelefonoCliente telNuevo) throws Exception {
+//        manager.getTransaction();
+//        TelefonoCliente.Numero numeroActual = telActual.getNumero();
+//        TelefonoCliente.Numero numeroNuevo = telNuevo.getNumero();
+//        TelefonoCliente t = manager.find(TelefonoCliente.class, numeroActual);
+//        t.setNumero(numeroNuevo);
+//        t.setCliente(c);
+//        manager.persist(t);
+//        manager.getTransaction().begin();
+//    }
+
 */

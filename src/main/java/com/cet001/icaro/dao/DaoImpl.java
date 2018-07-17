@@ -2,6 +2,7 @@ package com.cet001.icaro.dao;
 
 import com.cet001.icaro.modelo.Chofer;
 import com.cet001.icaro.modelo.*;
+import com.cet001.icaro.modelo.TelefonoCliente.Numero;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -325,13 +326,17 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
 
     }
 
-    public void modificarTelefonoCliente(Cliente c, TelefonoCliente telActual, TelefonoCliente telNuevo) throws Exception {
+
+    public void modificarTelefonoCliente(Numero numActual, String codAreaNuevo, String nroTelNuevo) throws Exception {
         manager.getTransaction();
-        TelefonoCliente.Numero numeroActual = telActual.getNumero();
-        TelefonoCliente.Numero numeroNuevo = telNuevo.getNumero();
-        TelefonoCliente t = manager.find(TelefonoCliente.class, numeroActual);
-        t.setNumero(numeroNuevo);
-        t.setCliente(c);
+
+        TelefonoCliente t = manager.find(TelefonoCliente.class, numActual);//obtenemos el obj.TelefonoCliente actual de la BD
+        Numero n = numActual;
+        n.setCodArea(codAreaNuevo);//seteamos al obj. tipo Numero actual los atrib. nuevos.
+        n.setNroTel(nroTelNuevo);
+
+        t.setNumero(n); //al obj. tipo TelefonoCliente actual que obtuvimos de la BD le seteamos n que es el obj. tipo Numero ya modificado.
+
         manager.persist(t);
         manager.getTransaction().begin();
     }
@@ -414,7 +419,7 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         result = (Vehiculo) query.getSingleResult();
         return result;
     }
-    
+
     public Viaje getViaje(int idViaje) throws Exception {
         manager.getTransaction().begin();
         Viaje result = null;
@@ -425,10 +430,5 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         result = (Viaje) query.getSingleResult();
         return result;
     }
-    
 
-    
-    
-    
-    
 }
