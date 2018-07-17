@@ -64,7 +64,7 @@ public class PrincipalController implements ActionListener {//esta es la clase d
 
         try {
             String listaV = "";
-            List<Vehiculo> vehiculos = dao.getVehiculosDsiponiblesParaViaje();
+            List<Vehiculo> vehiculos = dao.getVehiculosDisponiblesParaViaje();
 
             for (Vehiculo v : vehiculos) {
                 Dlm.addElement("Patente: " + v.getPatente() + " - " + v.getMarca() + " " + v.getModelo() + " - En Viaje: " + v.isEnViaje());

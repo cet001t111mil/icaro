@@ -172,7 +172,7 @@ public class DaoImpl {
         return results;
     }
     
-        public List<Vehiculo> getVehiculosDsiponiblesParaViaje() throws Exception {
+        public List<Vehiculo> getVehiculosDisponiblesParaViaje() throws Exception {
         manager.getTransaction().begin();
         List<Vehiculo> results = null;
 
