@@ -64,6 +64,12 @@ Administracion admin1 = new Administracion();
 
 //System.out.println(admin1.getSaldoActualizadoCliente(51, 500, dao1.manager.find(MovimientoDeSaldo.class, 1000)));
 
+//MovimientoDeSaldo mov3 = new MovimientoDeSaldo(1002, 500,"FA", (dao1.manager.find(Cliente.class, 51)));
+//dao1.guardarMovimientoDeSaldo(mov3);
+//admin1.calcularNuevoSaldoCliente(51, dao1.manager.find(MovimientoDeSaldo.class, 1002));
+
+//System.out.println(dao1.manager.find(Cliente.class,51).toString());
+
     }
 
 }

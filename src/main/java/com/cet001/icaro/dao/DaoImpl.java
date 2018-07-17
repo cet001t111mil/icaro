@@ -445,4 +445,12 @@ public class DaoImpl {
         return saldo;
     }
 
+    public void guardarNuevoSaldoCliente(double nuevoSaldo, int idCliente) throws Exception {
+        manager.getTransaction().begin();
+        Cliente cli = manager.find(Cliente.class, idCliente);
+        cli.setSaldo(nuevoSaldo);
+        manager.persist(cli);
+        manager.getTransaction().commit();
+    }
+
 }
