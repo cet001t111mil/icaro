@@ -293,7 +293,7 @@ this.dispose();        // TODO add your handling code here:
             public void run() {
                 new VehiculosView().setVisible(true);
             }
-        });
+        });    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -333,4 +333,8 @@ this.dispose();        // TODO add your handling code here:
     public javax.swing.JTextPane modifVehiMode;
     public javax.swing.JTextField selePatMod;
     // End of variables declaration//GEN-END:variables
+
+    
+ 
+
 }

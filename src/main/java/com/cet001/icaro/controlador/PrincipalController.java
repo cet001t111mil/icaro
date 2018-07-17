@@ -135,6 +135,8 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 NuevoViajeView nVven = new NuevoViajeView();
                 nVven.setTitle("Nuevo Viaje");
                 nVven.setVisible(true);
+                ViajeController vCon = new ViajeController(nVven,dao);
+                        
                 break;
             }
             case "agreCliente": {

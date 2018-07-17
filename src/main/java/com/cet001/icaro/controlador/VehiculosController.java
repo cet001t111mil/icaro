@@ -44,7 +44,7 @@ public class VehiculosController implements ActionListener {
         try {
             String listaV = "";
             List<Vehiculo> vehiculos = dao.getVehiculosActivos();
-
+          
             for (Vehiculo v : vehiculos) {
                 Dlm.addElement("Patente: " + v.getPatente() + " - " + v.getMarca() + " " + v.getModelo() + " - En Viaje: " + v.isEnViaje());
             }
@@ -95,7 +95,7 @@ public class VehiculosController implements ActionListener {
                         limpBuscar();
                         break;
                 }
-               
+
             }
 
         }
