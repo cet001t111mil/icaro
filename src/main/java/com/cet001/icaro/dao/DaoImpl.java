@@ -163,10 +163,15 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         public List<Vehiculo> getVehiculosDisponiblesParaViaje() throws Exception {
         manager.getTransaction().begin();
         List<Vehiculo> results = null;
+
         results = new ArrayList<>();
-        results = manager.createQuery("Select ve "
+        Query query = manager.createQuery("Select ve "
                 + "from Vehiculo ve "
-                + "where ve.enViaje = ?1").setParameter(1, false).getResultList();
+                + "where ve.enViaje = ?1 AND ve.borradoLogico = ?2");
+        query.setParameter(1, false);
+        query.setParameter(2, false);
+        results = query.getResultList();
+        
         manager.getTransaction().commit();
         return results;
     }
