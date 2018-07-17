@@ -434,7 +434,7 @@ public class DaoImpl {
         double saldo = 0;
         Cliente c = null;
         Query query = manager.createQuery("Select c "
-                + "from Clliente c "
+                + "from Cliente c "
                 + "where c.idCliente = ?1 ");
         query.setParameter(1, idCliente);
         c = (Cliente) query.getSingleResult();

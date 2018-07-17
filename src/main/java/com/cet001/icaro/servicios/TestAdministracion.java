@@ -1,12 +1,13 @@
 package com.cet001.icaro.servicios;
 
+import com.cet001.icaro.dao.DaoImpl;
 import com.cet001.icaro.modelo.Chofer;
 import java.util.Calendar;
 
 public class TestAdministracion {
 
 //Este main es un espacio para probar todo tipo de cosas que necesitemos 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String b = "ad";
         String c = "as";
         String a = "ad";
@@ -32,8 +33,15 @@ public class TestAdministracion {
 //        a.setComisionCalculadaFinal(ch1, '2018/08/02 10:10:10', `2018/08/12 10:10:10`);
 ////        double sueldoCh1 = a.calcularSueldo(ch1);
 ////        System.out.println(sueldoCh1);
+
+
 ////hasta acá es todo para borrar más adelante
 ////
+
+//prueba Patri
+DaoImpl dao1 = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");
+
+System.out.println(dao1.getSaldoCliente(1));
     }
 
 }
