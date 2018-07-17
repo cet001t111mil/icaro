@@ -36,7 +36,7 @@ public class DaoImpl {
         emf.close();
     }
 
-/*dentro de este método se valida tipoComprobante ya que este atributo define en método calcularNuevoSaldo en Clase servicios.Administracion
+    /*dentro de este método se valida tipoComprobante ya que este atributo define en método calcularNuevoSaldo en Clase servicios.Administracion
 si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita en cta cte del Cliente y FA(factura)debita en cta cte*/
     public void guardarMovimientoDeSaldo(MovimientoDeSaldo mov) throws Exception {
         manager.getTransaction().begin();
@@ -159,8 +159,8 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         manager.getTransaction().commit();
         return results;
     }
-    
-        public List<Vehiculo> getVehiculosDisponiblesParaViaje() throws Exception {
+
+    public List<Vehiculo> getVehiculosDisponiblesParaViaje() throws Exception {
         manager.getTransaction().begin();
         List<Vehiculo> results = null;
 
@@ -171,7 +171,7 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         query.setParameter(1, false);
         query.setParameter(2, false);
         results = query.getResultList();
-        
+
         manager.getTransaction().commit();
         return results;
     }
@@ -325,8 +325,7 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
 
     }
 
-     
-    public void modificarTelefonoCliente(Cliente c,TelefonoCliente telActual, TelefonoCliente telNuevo) throws Exception {
+    public void modificarTelefonoCliente(Cliente c, TelefonoCliente telActual, TelefonoCliente telNuevo) throws Exception {
         manager.getTransaction();
         TelefonoCliente.Numero numeroActual = telActual.getNumero();
         TelefonoCliente.Numero numeroNuevo = telNuevo.getNumero();
@@ -369,4 +368,67 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         return saldo;
 
     }
+
+    public Cliente getCliente(int id) throws Exception {
+        manager.getTransaction().begin();
+        Cliente result = null;
+        Query query = manager.createQuery("Select c "
+                + "from Cliente c "
+                + "where c.idCliente = ?1");
+        query.setParameter(1, id);
+        result = (Cliente) query.getSingleResult();
+        return result;
+    }
+
+    public Chofer getChofer(int nroLegajo) throws Exception {
+        manager.getTransaction().begin();
+        Chofer result = null;
+        Query query = manager.createQuery("Select e "
+                + "from Empleado e "
+                + "where e.nroLegajo = ?1 AND e.tipoEmpleado = ?2");
+        query.setParameter(1, nroLegajo);
+        query.setParameter(2, "CH");
+        result = (Chofer) query.getSingleResult();
+        return result;
+    }
+
+    public Operador getOperador(int nroLegajo) throws Exception {
+        manager.getTransaction().begin();
+        Operador result = null;
+        Query query = manager.createQuery("Select e "
+                + "from Empleado e "
+                + "where e.nroLegajo = ?1 AND e.tipoEmpleado = ?2");
+        query.setParameter(1, nroLegajo);
+        query.setParameter(2, "OP");
+        result = (Operador) query.getSingleResult();
+        return result;
+    }
+
+    public Vehiculo getVehiculo(String patente) throws Exception {
+        manager.getTransaction().begin();
+        Vehiculo result = null;
+        Query query = manager.createQuery("Select ve "
+                + "from Vehiculo ve "
+                + "where ve.patente = ?1");
+        query.setParameter(1, patente);
+        result = (Vehiculo) query.getSingleResult();
+        return result;
+    }
+    
+    public Viaje getViaje(int idViaje) throws Exception {
+        manager.getTransaction().begin();
+        Viaje result = null;
+        Query query = manager.createQuery("Select v "
+                + "from Viaje v "
+                + "where v.idViaje = ?1");
+        query.setParameter(1, idViaje);
+        result = (Viaje) query.getSingleResult();
+        return result;
+    }
+    
+
+    
+    
+    
+    
 }
