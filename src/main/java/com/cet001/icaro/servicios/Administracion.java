@@ -1,4 +1,3 @@
-
 package com.cet001.icaro.servicios;
 
 import com.cet001.icaro.dao.DaoImpl;
@@ -21,13 +20,11 @@ public class Administracion {
     private double calcularComisionChofer(Chofer chof, Calendar i, Calendar f) throws Exception {
         DaoImpl dao = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");
         double comisionCalculada = 0;
-
         comisionCalculada = dao.obtenerFacturacionChofer(chof, i, f) * chof.getComision();
-
         return comisionCalculada;
     }
 
-    public void setComisionCalculadaFinal(Chofer chof, Calendar i, Calendar f) throws Exception  {
+    public void setComisionCalculadaFinal(Chofer chof, Calendar i, Calendar f) throws Exception {
         this.comisionCalculadaFinal = this.calcularComisionChofer(chof, i, f);
     }
 
@@ -37,7 +34,6 @@ public class Administracion {
 
     public double calcularSueldo(Empleado emp) throws Exception {
         double sueldoCalculado = 0;
-
         if (emp instanceof Operador) {
             Operador op = (Operador) emp;
             sueldoCalculado = op.getSueldo();//El operador no tiene permitido recibir ninguna comisión.(nota para dejar)
@@ -45,11 +41,10 @@ public class Administracion {
             Chofer chof = (Chofer) emp;
             sueldoCalculado = chof.getSueldo() + this.getComisionCalculadaFinal();
         }
-
         return sueldoCalculado;
     }
-//ya está validado en Clase DaoImpl q no se recibirán tipos de comprobantes que no sean RE,NC,FA o ND
 
+//ya está validado en Clase DaoImpl q no se recibirán tipos de comprobantes que no sean RE,NC,FA o ND
     public double getSaldoActualizadoCliente(Cliente c, double importe, MovimientoDeSaldo mov) throws Exception {
         DaoImpl dao = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");
         double saldoActualizado = 0;

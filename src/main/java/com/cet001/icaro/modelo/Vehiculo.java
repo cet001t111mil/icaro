@@ -17,7 +17,7 @@ public class Vehiculo implements Serializable {
     @Column(name="en_viaje")
     private boolean enViaje;
     @Column(name = "borrado_logico")
-    private String borradoLogico;
+    private boolean borradoLogico;
     @OneToMany(mappedBy="movil")
     private List<Viaje> viajes = new ArrayList<>();
 
@@ -31,7 +31,7 @@ public class Vehiculo implements Serializable {
         this.marca = marca;
         this.modelo = modelo;
         this.anio = anio;
-        this.borradoLogico = "F";
+        this.borradoLogico = false;
     }
 
     @Override
@@ -81,17 +81,15 @@ public class Vehiculo implements Serializable {
         this.enViaje = enViaje;
     }
 
-    public String getBorradoLogico() {
+    public boolean isBorradoLogico() {
         return borradoLogico;
     }
 
-    public void setBorradoLogico(String borradoLogico) {
+    public void setBorradoLogico(boolean borradoLogico) {
         this.borradoLogico = borradoLogico;
     }
 
-
    
-
     public List<Viaje> getViajes() {
         return viajes;
     }

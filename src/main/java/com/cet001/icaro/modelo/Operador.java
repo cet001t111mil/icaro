@@ -1,7 +1,6 @@
 package com.cet001.icaro.modelo;
 
 import java.io.Serializable;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
