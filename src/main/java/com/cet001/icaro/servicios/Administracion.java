@@ -48,12 +48,14 @@ public class Administracion {
     public double getSaldoActualizadoCliente(int idCliente, double importe, MovimientoDeSaldo mov) throws Exception {
         DaoImpl dao = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");
         double saldoActualizado = 0;
-        double saldoInicial = dao.getSaldoCliente(idCliente);
+        double saldo = dao.getSaldoCliente(idCliente);
         if (mov.getTipoComprobante().equals("RE") || mov.getTipoComprobante().equals("NC")) {
-            saldoActualizado = saldoInicial - importe;
+            saldoActualizado = saldo - importe;
+            saldo = saldoActualizado;
         }
         if (mov.getTipoComprobante().equals("FA") || mov.getTipoComprobante().equals("ND")) {
-            saldoActualizado = saldoInicial + importe;
+            saldoActualizado = saldo + importe;
+            saldo = saldoActualizado;
         }
         return saldoActualizado;
     }

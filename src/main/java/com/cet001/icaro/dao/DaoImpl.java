@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -437,6 +438,7 @@ public class DaoImpl {
                 + "from Cliente c "
                 + "where c.idCliente = ?1 ");
         query.setParameter(1, idCliente);
+        //saldo = (double) query.getSingleResult();
         c = (Cliente) query.getSingleResult();
         saldo = c.getSaldo();
         manager.getTransaction().commit();

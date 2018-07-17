@@ -2,17 +2,19 @@ package com.cet001.icaro.servicios;
 
 import com.cet001.icaro.dao.DaoImpl;
 import com.cet001.icaro.modelo.Chofer;
+import com.cet001.icaro.modelo.Cliente;
+import com.cet001.icaro.modelo.MovimientoDeSaldo;
 import java.util.Calendar;
 
 public class TestAdministracion {
 
 //Este main es un espacio para probar todo tipo de cosas que necesitemos 
     public static void main(String[] args) throws Exception {
-        String b = "ad";
-        String c = "as";
-        String a = "ad";
-        System.out.println(b.equals(c));
-        System.out.println(b.equals(a));
+//        String b = "ad";
+//        String c = "as";
+//        String a = "ad";
+//        System.out.println(b.equals(c));
+//        System.out.println(b.equals(a));
 
 //       //dde  acá
 //        Chofer ch1 = new Chofer();
@@ -40,8 +42,28 @@ public class TestAdministracion {
 
 //prueba Patri
 DaoImpl dao1 = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");
+Administracion admin1 = new Administracion();
 
-System.out.println(dao1.getSaldoCliente(1));
+//persistiendo cliente y trayendo saldo
+//Cliente c1 = new Cliente("Pat", "Per", 1000,"La paz 2");
+//dao1.guardarCliente(c1);
+//System.out.println(dao1.getSaldoCliente(1));
+//Cliente c3 = new Cliente("Pedro", "Picapiedras", 3000,"Lavalle 2");
+//dao1.guardarCliente(c3);
+//System.out.println(dao1.getSaldoCliente(51));
+//persistiendo MoviientoDeSaldo
+//MovimientoDeSaldo mov1 = new MovimientoDeSaldo(1000, 500,"RE", (dao1.manager.find(Cliente.class, 51)));
+//dao1.guardarMovimientoDeSaldo(mov1);
+
+//System.out.println(admin1.getSaldoActualizadoCliente(51, 500, dao1.manager.find(MovimientoDeSaldo.class, 1000)));
+
+//MovimientoDeSaldo mov2 = new MovimientoDeSaldo(1001, 800,"FA", (dao1.manager.find(Cliente.class, 51)));
+//dao1.guardarMovimientoDeSaldo(mov2);
+//MovimientoDeSaldo mov1 = new MovimientoDeSaldo(1000, 500,"RE", (dao1.manager.find(Cliente.class, 51)));
+//dao1.guardarMovimientoDeSaldo(mov1);
+
+//System.out.println(admin1.getSaldoActualizadoCliente(51, 500, dao1.manager.find(MovimientoDeSaldo.class, 1000)));
+
     }
 
 }
