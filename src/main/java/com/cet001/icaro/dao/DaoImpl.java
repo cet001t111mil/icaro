@@ -36,8 +36,8 @@ public class DaoImpl {
         emf.close();
     }
 
-    /*dentro de este método se valida tipoComprobante ya que este atributo define en método calcularNuevoSaldo en Clase servicios.Administracion
-    si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita en cta cte del Cliente y FA(factura)debita en cta cte*/
+/*dentro de este método se valida tipoComprobante ya que este atributo define en método calcularNuevoSaldo en Clase servicios.Administracion
+si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita en cta cte del Cliente y FA(factura)debita en cta cte*/
     public void guardarMovimientoDeSaldo(MovimientoDeSaldo mov) throws Exception {
         manager.getTransaction().begin();
         if (mov.getTipoComprobante().equals("RE") || mov.getTipoComprobante().equals("FA") || mov.getTipoComprobante().equals("NC") || mov.getTipoComprobante().equals("ND")) {
@@ -52,7 +52,6 @@ public class DaoImpl {
     public List<MovimientoDeSaldo> getMovimientoDeSaldo() throws Exception {
         manager.getTransaction().begin();
         List<MovimientoDeSaldo> results = null;
-
         results = new ArrayList<>();
         results = manager.createQuery("Select m "
                 + "from MovimientoDeSaldo m").getResultList();
@@ -62,7 +61,6 @@ public class DaoImpl {
 
     public void guardarTelfonoCliente(TelefonoCliente tel) throws Exception {
         manager.getTransaction().begin();
-
         manager.persist(tel);
         manager.getTransaction().commit();
 
@@ -71,7 +69,6 @@ public class DaoImpl {
     public List<TelefonoCliente> getTelefonoCliente() throws Exception {
         manager.getTransaction().begin();
         List<TelefonoCliente> results = null;
-
         results = new ArrayList<>();
         results = manager.createQuery("Select t "
                 + "from TelefonoCliente t").getResultList();
@@ -81,7 +78,6 @@ public class DaoImpl {
 
     public void guardarCliente(Cliente clien) throws Exception {
         manager.getTransaction().begin();
-
         manager.persist(clien);
         manager.getTransaction().commit();
 
@@ -90,7 +86,6 @@ public class DaoImpl {
     public List<Cliente> getClientes() throws Exception {
         manager.getTransaction().begin();
         List<Cliente> results = null;
-
         results = new ArrayList<>();
         results = manager.createQuery("Select c "
                 + "from Cliente c").getResultList();
@@ -101,18 +96,16 @@ public class DaoImpl {
     public List<Cliente> getClientesActivos() throws Exception {
         manager.getTransaction().begin();
         List<Cliente> results = null;
-
         results = new ArrayList<>();
         results = manager.createQuery("Select c "
                 + "from Cliente c "
-                + "where c.borradoLogico = ?1").setParameter(1, "F").getResultList();
+                + "where c.borradoLogico = ?1").setParameter(1, false).getResultList();
         manager.getTransaction().commit();
         return results;
     }
 
     public void guardarViaje(Viaje viaje) throws Exception {
         manager.getTransaction().begin();
-
         manager.persist(viaje);
         manager.getTransaction().commit();
 
@@ -121,7 +114,6 @@ public class DaoImpl {
     public List<Viaje> getViajes() throws Exception {
         manager.getTransaction().begin();
         List<Viaje> results = null;
-
         results = new ArrayList<>();
         results = manager.createQuery("Select v "
                 + "from Viaje v").getResultList();
@@ -132,18 +124,16 @@ public class DaoImpl {
     public List<Viaje> getViajesRealizados() throws Exception {
         manager.getTransaction().begin();
         List<Viaje> results = null;
-
         results = new ArrayList<>();
         results = manager.createQuery("Select v "
                 + "from Viaje v "
-                + "where v.borradoLogico = ?1").setParameter(1, "F").getResultList();
+                + "where v.borradoLogico = ?1").setParameter(1, false).getResultList();
         manager.getTransaction().commit();
         return results;
     }
 
     public void guardarVehiculo(Vehiculo vehiculo) throws Exception {
         manager.getTransaction().begin();
-
         manager.persist(vehiculo);
         manager.getTransaction().commit();
 
@@ -152,7 +142,6 @@ public class DaoImpl {
     public List<Vehiculo> getVehiculos() throws Exception {
         manager.getTransaction().begin();
         List<Vehiculo> results = null;
-
         results = new ArrayList<>();
         results = manager.createQuery("Select ve "
                 + "from Vehiculo ve").getResultList();
@@ -163,11 +152,10 @@ public class DaoImpl {
     public List<Vehiculo> getVehiculosActivos() throws Exception {
         manager.getTransaction().begin();
         List<Vehiculo> results = null;
-
         results = new ArrayList<>();
         results = manager.createQuery("Select ve "
                 + "from Vehiculo ve "
-                + "where ve.borradoLogico = ?1").setParameter(1, "F").getResultList();
+                + "where ve.borradoLogico = ?1").setParameter(1, false).getResultList();
         manager.getTransaction().commit();
         return results;
     }
@@ -175,7 +163,6 @@ public class DaoImpl {
         public List<Vehiculo> getVehiculosDisponiblesParaViaje() throws Exception {
         manager.getTransaction().begin();
         List<Vehiculo> results = null;
-
         results = new ArrayList<>();
         results = manager.createQuery("Select ve "
                 + "from Vehiculo ve "
@@ -186,7 +173,7 @@ public class DaoImpl {
 
     public void guardarChofer(Empleado chof) throws Exception {
         manager.getTransaction().begin();
-        System.out.println(chof.getTipoEmpleado() + "antes de persist");
+        //System.out.println(chof.getTipoEmpleado() + "antes de persist");
         manager.persist(chof);
         manager.getTransaction().commit();
 
@@ -195,7 +182,6 @@ public class DaoImpl {
     public List<Chofer> getChoferes() throws Exception {
         manager.getTransaction().begin();
         List<Chofer> results = null;
-
         results = new ArrayList<>();
         results = manager.createQuery("Select e "
                 + "from Empleado e "
@@ -208,13 +194,12 @@ public class DaoImpl {
 
         manager.getTransaction().begin();
         List<Chofer> results = null;
-
         results = new ArrayList<>();
         Query query = manager.createQuery("Select e "
                 + "from Empleado e "
                 + "where e.tipoEmpleado = ?1 AND e.borradoLogico = ?2");
         query.setParameter(1, "CH");
-        query.setParameter(2, "F");
+        query.setParameter(2, false);
         results = query.getResultList();
         manager.getTransaction().commit();
         return results;
@@ -222,16 +207,13 @@ public class DaoImpl {
 
     public void guardarOperador(Empleado operador) throws Exception {
         manager.getTransaction().begin();
-
         manager.persist(operador);
         manager.getTransaction().commit();
-
     }
 
     public List<Operador> getOperadores() throws Exception {
         manager.getTransaction().begin();
         List<Operador> results = null;
-
         results = new ArrayList<>();
         results = manager.createQuery("Select e "
                 + "from Empleado e "
@@ -244,14 +226,12 @@ public class DaoImpl {
     public List<Operador> getOperadoresActivos() throws Exception {
         manager.getTransaction().begin();
         List<Operador> results = null;
-
         results = new ArrayList<>();
-
         Query query = manager.createQuery("Select e "
                 + "from Empleado e "
                 + "where e.tipoEmpleado = ?1 AND e.borradoLogico = ?2");
         query.setParameter(1, "OP");
-        query.setParameter(2, "F");
+        query.setParameter(2, false);
         results = query.getResultList();
         manager.getTransaction().commit();
         return results;
@@ -260,7 +240,6 @@ public class DaoImpl {
     public List<Empleado> getEmpleados() throws Exception {
         manager.getTransaction().begin();
         List<Empleado> results = null;
-
         results = new ArrayList<>();
         results = manager.createQuery("Select e "
                 + "from Empleado e").getResultList();
@@ -273,7 +252,7 @@ public class DaoImpl {
     de empleado por si un chofer cambia de rol y pasa a ser operador o viceversa y un sector para el borrado lógico que,
     para mí, allá en la ventana sería mejor ponerle otro nombre en lug de borrado logico.
      */
-    public void modificarEmpleado(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, String borradoLogico) throws Exception {
+    public void modificarEmpleado(int nroLegajo, String dni, String nombre, String apellido, String tipoEmpleado, double sueldo, double comision, boolean borradoLogico) throws Exception {
         manager.getTransaction().begin();
 
         Empleado empl = manager.find(Empleado.class, nroLegajo);
@@ -290,7 +269,7 @@ public class DaoImpl {
 
     //no le vamos a permitir modif. la lista de viajes en esta vista.
     // (los viajes acá solo se verán. Para eliminar o modific. viaje habrá que ir a las correspondientes ventanas)
-    public void modificarVehiculo(String patente, String marca, String modelo, int anio, boolean enViaje, String borradoLogico) throws Exception {
+    public void modificarVehiculo(String patente, String marca, String modelo, int anio, boolean enViaje, boolean borradoLogico) throws Exception {
         manager.getTransaction().begin();
 
         Vehiculo vehic = manager.find(Vehiculo.class, patente);//patente es pk en la BD. No se permitirá modificar, pero se neces. recibir x parám. p/esta búsqueda
@@ -309,9 +288,8 @@ public class DaoImpl {
     //Si hicieramos esas vent. podriamos sacar las listas de las ventanas como ésta. Pero no creo que hagamos tantas ventanas,no?
     //lo que sí podemos hacer para eliminar las listas de estas ventanas es: titular las ventanas de modificaciones como "ver/modificar Cliente","ver/modificarViaje",etc.,
     //entonces ahí ya quedaría mejor sacar las listas de las ventanas en las que habían quedado sólo para vista.
-    public void modificarCliente(int idCliente, String nombre, String apellido, String direccion, String borradoLogico, double saldo, double limiteDeCredito) throws Exception {
+    public void modificarCliente(int idCliente, String nombre, String apellido, String direccion, boolean borradoLogico, double saldo, double limiteDeCredito) throws Exception {
         manager.getTransaction().begin();
-
         Cliente cli = manager.find(Cliente.class, idCliente);
         cli.setNombre(nombre);
         cli.setApellido(apellido);
@@ -324,7 +302,7 @@ public class DaoImpl {
 
     }
 
-    public void modificarViaje(int idViaje, String origen, String destino, double importe, int formaDePago, String borradoLogico, boolean enCurso, Vehiculo movil, Cliente cliente, Chofer chofer) throws Exception {
+    public void modificarViaje(int idViaje, String origen, String destino, double importe, int formaDePago, boolean borradoLogico, boolean enCurso, Vehiculo movil, Cliente cliente, Chofer chofer) throws Exception {
         manager.getTransaction().begin();
 
         Viaje vi = manager.find(Viaje.class, idViaje);
@@ -345,17 +323,13 @@ public class DaoImpl {
      
     public void modificarTelefonoCliente(Cliente c,TelefonoCliente telActual, TelefonoCliente telNuevo) throws Exception {
         manager.getTransaction();
-
         TelefonoCliente.Numero numeroActual = telActual.getNumero();
-
         TelefonoCliente.Numero numeroNuevo = telNuevo.getNumero();
-
         TelefonoCliente t = manager.find(TelefonoCliente.class, numeroActual);
         t.setNumero(numeroNuevo);
         t.setCliente(c);
         manager.persist(t);
         manager.getTransaction().begin();
-
     }
 
 //chicos: le cambié el parám int nroLegajo por Chofer chof xq lo necesito así para algo que estoy armando en el paq. "servicios"
@@ -371,19 +345,15 @@ public class DaoImpl {
         query.setParameter(3, f);
         result = (double) query.getSingleResult();
         manager.getTransaction().commit();
-
         return result;
-
     }
 
-    //CHICOS: èste es el mètodo que trae el saldo actualizado del cliente para luego aplicar el mètodo
+    //èste es el mètodo que trae el saldo actualizado del cliente para luego aplicar el mètodo
     //que vamos a crear en package servicios para sumarle o descontarle un importe
-    //creo que va bien pero revisar
     public double getSaldoCliente(Cliente c) throws Exception {
         manager.getTransaction().begin();
         double saldo = 0;
         int idCliente = c.getIdCliente();
-
         Query query = manager.createQuery("Select c "
                 + "from Clliente c "
                 + "where c.idCliente = ?1 ");
@@ -391,7 +361,6 @@ public class DaoImpl {
         c = (Cliente) query.getSingleResult();
         saldo = c.getSaldo();
         manager.getTransaction().commit();
-
         return saldo;
 
     }
