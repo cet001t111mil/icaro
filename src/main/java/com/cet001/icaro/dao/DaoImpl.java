@@ -37,8 +37,9 @@ public class DaoImpl {
         emf.close();
     }
 
+//mètodos para Clase MovimientoDeSaldo
     /*dentro de este método se valida tipoComprobante ya que este atributo define en método calcularNuevoSaldo en Clase servicios.Administracion
-si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita en cta cte del Cliente y FA(factura)debita en cta cte*/
+    si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita en cta cte del Cliente y FA(factura)debita en cta cte*/
     public void guardarMovimientoDeSaldo(MovimientoDeSaldo mov) throws Exception {
         manager.getTransaction().begin();
         if (mov.getTipoComprobante().equals("RE") || mov.getTipoComprobante().equals("FA") || mov.getTipoComprobante().equals("NC") || mov.getTipoComprobante().equals("ND")) {
@@ -47,7 +48,6 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         } else {
             throw new Exception("Comprobante no existente");
         }
-
     }
 
     public List<MovimientoDeSaldo> getMovimientoDeSaldo() throws Exception {
@@ -60,11 +60,11 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         return results;
     }
 
+//mètodos para Clase TelefonoCliente    
     public void guardarTelfonoCliente(TelefonoCliente tel) throws Exception {
         manager.getTransaction().begin();
         manager.persist(tel);
         manager.getTransaction().commit();
-
     }
 
     public List<TelefonoCliente> getTelefonoCliente() throws Exception {
@@ -77,11 +77,22 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         return results;
     }
 
+//mètodos para Clase Cliente    
     public void guardarCliente(Cliente clien) throws Exception {
         manager.getTransaction().begin();
         manager.persist(clien);
         manager.getTransaction().commit();
+    }
 
+    public Cliente getCliente(int id) throws Exception {
+        manager.getTransaction().begin();
+        Cliente result = null;
+        Query query = manager.createQuery("Select c "
+                + "from Cliente c "
+                + "where c.idCliente = ?1");
+        query.setParameter(1, id);
+        result = (Cliente) query.getSingleResult();
+        return result;
     }
 
     public List<Cliente> getClientes() throws Exception {
@@ -105,11 +116,22 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         return results;
     }
 
+//mètodos para Clase Viaje    
     public void guardarViaje(Viaje viaje) throws Exception {
         manager.getTransaction().begin();
         manager.persist(viaje);
         manager.getTransaction().commit();
+    }
 
+    public Viaje getViaje(int idViaje) throws Exception {
+        manager.getTransaction().begin();
+        Viaje result = null;
+        Query query = manager.createQuery("Select v "
+                + "from Viaje v "
+                + "where v.idViaje = ?1");
+        query.setParameter(1, idViaje);
+        result = (Viaje) query.getSingleResult();
+        return result;
     }
 
     public List<Viaje> getViajes() throws Exception {
@@ -133,11 +155,22 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         return results;
     }
 
+//mètodos para Clase Vehiculo    
     public void guardarVehiculo(Vehiculo vehiculo) throws Exception {
         manager.getTransaction().begin();
         manager.persist(vehiculo);
         manager.getTransaction().commit();
+    }
 
+    public Vehiculo getVehiculo(String patente) throws Exception {
+        manager.getTransaction().begin();
+        Vehiculo result = null;
+        Query query = manager.createQuery("Select ve "
+                + "from Vehiculo ve "
+                + "where ve.patente = ?1");
+        query.setParameter(1, patente);
+        result = (Vehiculo) query.getSingleResult();
+        return result;
     }
 
     public List<Vehiculo> getVehiculos() throws Exception {
@@ -177,12 +210,46 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         return results;
     }
 
+    //mètodos para Clase Empleado
+    public Empleado getEmpleado(int nroLegajo) throws Exception {
+        manager.getTransaction().begin();
+        Empleado result = null;
+        Query query = manager.createQuery("Select e "
+                + "from Empleado e "
+                + "where e.nroLegajo = ?1");
+        query.setParameter(1, nroLegajo);
+        result = (Empleado) query.getSingleResult();
+        return result;
+    }
+
+    public List<Empleado> getEmpleados() throws Exception {
+        manager.getTransaction().begin();
+        List<Empleado> results = null;
+        results = new ArrayList<>();
+        results = manager.createQuery("Select e "
+                + "from Empleado e").getResultList();
+        manager.getTransaction().commit();
+        return results;
+    }
+
+//mètodos para Clase Chofer    
     public void guardarChofer(Empleado chof) throws Exception {
         manager.getTransaction().begin();
         //System.out.println(chof.getTipoEmpleado() + "antes de persist");
         manager.persist(chof);
         manager.getTransaction().commit();
+    }
 
+    public Chofer getChofer(int nroLegajo) throws Exception {
+        manager.getTransaction().begin();
+        Chofer result = null;
+        Query query = manager.createQuery("Select e "
+                + "from Empleado e "
+                + "where e.nroLegajo = ?1 AND e.tipoEmpleado = ?2");
+        query.setParameter(1, nroLegajo);
+        query.setParameter(2, "CH");
+        result = (Chofer) query.getSingleResult();
+        return result;
     }
 
     public List<Chofer> getChoferes() throws Exception {
@@ -211,10 +278,23 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         return results;
     }
 
+//mètodos para Clase Operador
     public void guardarOperador(Empleado operador) throws Exception {
         manager.getTransaction().begin();
         manager.persist(operador);
         manager.getTransaction().commit();
+    }
+
+    public Operador getOperador(int nroLegajo) throws Exception {
+        manager.getTransaction().begin();
+        Operador result = null;
+        Query query = manager.createQuery("Select e "
+                + "from Empleado e "
+                + "where e.nroLegajo = ?1 AND e.tipoEmpleado = ?2");
+        query.setParameter(1, nroLegajo);
+        query.setParameter(2, "OP");
+        result = (Operador) query.getSingleResult();
+        return result;
     }
 
     public List<Operador> getOperadores() throws Exception {
@@ -227,7 +307,6 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         manager.getTransaction().commit();
         return results;
     }
-// #################  Chicos, a ver qué opinan: éste me parece que no tiene mucho sentido no????
 
     public List<Operador> getOperadoresActivos() throws Exception {
         manager.getTransaction().begin();
@@ -243,17 +322,8 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         return results;
     }
 
-    public List<Empleado> getEmpleados() throws Exception {
-        manager.getTransaction().begin();
-        List<Empleado> results = null;
-        results = new ArrayList<>();
-        results = manager.createQuery("Select e "
-                + "from Empleado e").getResultList();
-        manager.getTransaction().commit();
-        return results;
-    }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+//updates    
     /* En la ventana para modif op. los agregados con respecto a la de agregar chofer serían: un sector para elegir tipo
     de empleado por si un chofer cambia de rol y pasa a ser operador o viceversa y un sector para el borrado lógico que,
     para mí, allá en la ventana sería mejor ponerle otro nombre en lug de borrado logico.
@@ -326,7 +396,6 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
 
     }
 
-
     public void modificarTelefonoCliente(Numero numActual, String codAreaNuevo, String nroTelNuevo) throws Exception {
         manager.getTransaction();
 
@@ -341,6 +410,7 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         manager.getTransaction().begin();
     }
 
+//mètodos para funcionalidad de Clase Administracion
 //chicos: le cambié el parám int nroLegajo por Chofer chof xq lo necesito así para algo que estoy armando en el paq. "servicios"
     public double obtenerFacturacionChofer(Chofer chof, Calendar i, Calendar f) throws Exception {
         manager.getTransaction().begin();
@@ -359,10 +429,10 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
 
     //èste es el mètodo que trae el saldo actualizado del cliente para luego aplicar el mètodo
     //que vamos a crear en package servicios para sumarle o descontarle un importe
-    public double getSaldoCliente(Cliente c) throws Exception {
+    public double getSaldoCliente(int idCliente) throws Exception {
         manager.getTransaction().begin();
         double saldo = 0;
-        int idCliente = c.getIdCliente();
+        Cliente c = null;
         Query query = manager.createQuery("Select c "
                 + "from Clliente c "
                 + "where c.idCliente = ?1 ");
@@ -371,64 +441,6 @@ si se suma o se resta el importe pasado por parámetro. Ej: RE (recibo) acredita
         saldo = c.getSaldo();
         manager.getTransaction().commit();
         return saldo;
-
-    }
-
-    public Cliente getCliente(int id) throws Exception {
-        manager.getTransaction().begin();
-        Cliente result = null;
-        Query query = manager.createQuery("Select c "
-                + "from Cliente c "
-                + "where c.idCliente = ?1");
-        query.setParameter(1, id);
-        result = (Cliente) query.getSingleResult();
-        return result;
-    }
-
-    public Chofer getChofer(int nroLegajo) throws Exception {
-        manager.getTransaction().begin();
-        Chofer result = null;
-        Query query = manager.createQuery("Select e "
-                + "from Empleado e "
-                + "where e.nroLegajo = ?1 AND e.tipoEmpleado = ?2");
-        query.setParameter(1, nroLegajo);
-        query.setParameter(2, "CH");
-        result = (Chofer) query.getSingleResult();
-        return result;
-    }
-
-    public Operador getOperador(int nroLegajo) throws Exception {
-        manager.getTransaction().begin();
-        Operador result = null;
-        Query query = manager.createQuery("Select e "
-                + "from Empleado e "
-                + "where e.nroLegajo = ?1 AND e.tipoEmpleado = ?2");
-        query.setParameter(1, nroLegajo);
-        query.setParameter(2, "OP");
-        result = (Operador) query.getSingleResult();
-        return result;
-    }
-
-    public Vehiculo getVehiculo(String patente) throws Exception {
-        manager.getTransaction().begin();
-        Vehiculo result = null;
-        Query query = manager.createQuery("Select ve "
-                + "from Vehiculo ve "
-                + "where ve.patente = ?1");
-        query.setParameter(1, patente);
-        result = (Vehiculo) query.getSingleResult();
-        return result;
-    }
-
-    public Viaje getViaje(int idViaje) throws Exception {
-        manager.getTransaction().begin();
-        Viaje result = null;
-        Query query = manager.createQuery("Select v "
-                + "from Viaje v "
-                + "where v.idViaje = ?1");
-        query.setParameter(1, idViaje);
-        result = (Viaje) query.getSingleResult();
-        return result;
     }
 
 }

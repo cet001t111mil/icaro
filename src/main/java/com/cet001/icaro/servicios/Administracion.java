@@ -45,10 +45,10 @@ public class Administracion {
     }
 
 //ya está validado en Clase DaoImpl q no se recibirán tipos de comprobantes que no sean RE,NC,FA o ND
-    public double getSaldoActualizadoCliente(Cliente c, double importe, MovimientoDeSaldo mov) throws Exception {
+    public double getSaldoActualizadoCliente(int idCliente, double importe, MovimientoDeSaldo mov) throws Exception {
         DaoImpl dao = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");
         double saldoActualizado = 0;
-        double saldoInicial = dao.getSaldoCliente(c);
+        double saldoInicial = dao.getSaldoCliente(idCliente);
         if (mov.getTipoComprobante().equals("RE") || mov.getTipoComprobante().equals("NC")) {
             saldoActualizado = saldoInicial - importe;
         }
