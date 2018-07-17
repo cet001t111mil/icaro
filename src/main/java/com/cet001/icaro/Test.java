@@ -33,13 +33,13 @@ public static String perUnit ="remiseria?zeroDateTimeBehavior=convertToNullPU";
         pri.setVisible(true);
         con.iniciar();
         
-        //AGREGADO PARA EJEMPLO DE CONSULTA
-        try{
-        System.out.println(dao.getClientesActivos().toString());
-        }catch (Exception c){
-            c.printStackTrace();
-        }
-    
+//        //AGREGADO PARA EJEMPLO DE CONSULTA
+//        try{
+//        System.out.println(dao.getChoferesActivos().toString());
+//        }catch (Exception c){
+//            c.printStackTrace();
+//        }
+//    
     }
     
     

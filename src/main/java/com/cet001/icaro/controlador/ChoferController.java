@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
  * @author ponsa
  */
 public class ChoferController implements ActionListener {
+
     DaoImpl dao;
     private NuevoChoferView nuevoChofer;
     private ConsultarChoferesView consulChof;
@@ -35,24 +36,22 @@ public class ChoferController implements ActionListener {
         this.nuevoChofer.jButton1.addActionListener(this);
     }
     //Constructor consulta choferes
-    
-    
+
     public ChoferController(ConsultarChoferesView consultaChofer, DaoImpl dao) { //controla ventana consultas chofer
         this.dao = dao;
         this.consulChof = consultaChofer;
         this.consulChof.botonAgregar.addActionListener(this);
         this.consulChof.modificar.addActionListener(this);
-       // llenaListaChof();
+        llenaListaChof();
     }
 
-    public ChoferController (ModificarChoferView modChof , DaoImpl dao){ //controla modificar chofer
+    public ChoferController(ModificarChoferView modChof, DaoImpl dao) { //controla modificar chofer
         this.dao = dao;
         this.modChof = modChof;
         this.modChof.actualizarChofButton.addActionListener(this);
-       
+        
     }
-    
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String opcion = e.getActionCommand();
@@ -64,23 +63,22 @@ public class ChoferController implements ActionListener {
 
             case "modChof": {//ver más abajo
                 modificarChofer();
-
                 break;
             }
-            
-            case "AgregarChof" : {
-                 NuevoChoferView nChof = new NuevoChoferView();//se crea 1 obj. de tipo NuevoChofer
+
+            case "AgregarChof": {
+                NuevoChoferView nChof = new NuevoChoferView();//se crea 1 obj. de tipo NuevoChofer
                 nChof.setTitle("Nuevo Chofer");
                 nChof.setVisible(true);//hace visible al usuario el formulario para registrar los datos de 1 nuevo chofer (son los datos que luego se asignarán a nChof)
                 ChoferController connchof = new ChoferController(nChof, this.dao);//se crea 1 obj. controlador que "controlará" a nChof
                 break;
             }
-            case "modificarChofer" : {
+            case "modificarChofer": {
                 ModificarChoferView modChof = new ModificarChoferView();
                 modChof.setTitle("Modificar Chofer");
                 modChof.setVisible(true);
                 ChoferController connchof = new ChoferController(modChof, this.dao);
-              guardarChofer();
+                guardarChofer();
                 break;
             }
         }
@@ -91,18 +89,15 @@ public class ChoferController implements ActionListener {
         DefaultListModel Dlm = new DefaultListModel();
         try {
             String listaChof = "";
-            List<Chofer> choferes = this.dao.getChoferes();
+            List<Chofer> choferes = this.dao.getChoferesActivos();
 
             for (Chofer c : choferes) {
                 Dlm.addElement("Legajo: " + c.getNroLegajo() + " Nombre: " + c.getNombre() + " Apellido: " + c.getApellido());
             }
             consulChof.jListChof.setModel(Dlm);
         } catch (SQLException ex) {
-
             JOptionPane.showMessageDialog(null, ex.getMessage().toString());
-
         } catch (Exception ex) {
-
             JOptionPane.showMessageDialog(null, ex.getMessage().toString());
         }
 
@@ -116,7 +111,7 @@ public class ChoferController implements ActionListener {
         String dni = this.nuevoChofer.dni.getText();
         String comision = this.nuevoChofer.comision.getText();
         String sueldo = this.nuevoChofer.sueldo.getText();
-        Chofer chofi = new Chofer(Double.parseDouble(sueldo), Double.parseDouble(comision), dni, nombre, apellido, Integer.parseInt(legajo),"CH");
+        Chofer chofi = new Chofer(Double.parseDouble(sueldo), Double.parseDouble(comision), dni, nombre, apellido, Integer.parseInt(legajo), "CH");
         try {
             dao.guardarChofer(chofi);
             JOptionPane.showMessageDialog(null, "Chofer Guardado");
