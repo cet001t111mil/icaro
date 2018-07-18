@@ -3,36 +3,43 @@ package com.cet001.icaro.modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.*;
 
-class Vehiculo implements Serializable {
+@Entity
+public class Vehiculo implements Serializable {
 
     private static final long serialVersionUID = 4172404774480436129L;
+    @Id
     private String patente;
     private String marca;
     private String modelo;
     private int anio;
+    @Column(name="en_viaje")
     private boolean enViaje;
-    private boolean disponible;
+    @Column(name = "borrado_logico")
+    private boolean borradoLogico;
+    @OneToMany(mappedBy="movil")
     private List<Viaje> viajes = new ArrayList<>();
 
     public Vehiculo() {
     }
 
-    /*no incluímos en el constructor atributo "enViaje" xq no en todos los casos se tiene o necesita esa información al
+    /*No incluímos en el constructor atributo "enViaje" xq no en todos los casos se tiene o necesita esa información al
     instanciar un objeto de la Clase Vehiculo*/
-    public Vehiculo(String patente, String marca, String modelo, int anio, boolean disponible) {
+    public Vehiculo(String patente, String marca, String modelo, int anio) {
         this.patente = patente;
         this.marca = marca;
         this.modelo = modelo;
         this.anio = anio;
-        this.disponible = disponible;
+        this.borradoLogico = false;
     }
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "patente=" + patente + ", marca=" + marca + ", modelo=" + modelo + ", anio=" + anio + ", enViaje=" + enViaje + ", disponible=" + disponible + '}';
+        return "Vehiculo{" + "patente=" + patente + ", marca=" + marca + ", modelo=" + modelo + ", anio=" + anio + ", enViaje=" + enViaje + ", borrado lógico=" + borradoLogico + '}';
     }
 
+    
     //setters & getters
     public String getPatente() {
         return patente;
@@ -74,12 +81,18 @@ class Vehiculo implements Serializable {
         this.enViaje = enViaje;
     }
 
-    public boolean isDisponible() {
-        return disponible;
+    public boolean isBorradoLogico() {
+        return borradoLogico;
     }
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+    public void setBorradoLogico(boolean borradoLogico) {
+        this.borradoLogico = borradoLogico;
     }
+
+   
+    public List<Viaje> getViajes() {
+        return viajes;
+    }
+    
 
 }

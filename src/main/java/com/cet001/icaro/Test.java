@@ -5,9 +5,12 @@
  */
 package com.cet001.icaro;
 
-import com.cet001.icaro.controlador.ConPpal;
+import com.cet001.icaro.controlador.PrincipalController;
+import com.cet001.icaro.dao.DaoImpl;
+import com.cet001.icaro.modelo.Chofer;
+import com.cet001.icaro.modelo.Empleado;
 import com.cet001.icaro.modelo.Viaje;
-import com.cet001.icaro.vista.Principal;
+import com.cet001.icaro.vista.PrincipalView;
 import java.awt.Window;
 
 /**
@@ -15,19 +18,30 @@ import java.awt.Window;
  * @author ponsa
  */
 public class Test {
-
+public static String perUnit ="remiseria?zeroDateTimeBehavior=convertToNullPU";
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Principal pri = new Principal();
+       
+        DaoImpl dao =new DaoImpl (perUnit);
+        PrincipalView pri = new PrincipalView();
+        PrincipalController con = new PrincipalController (pri, dao);
         
-        ConPpal con = new ConPpal (pri);
-        con.iniciar();
         pri.setVisible(true);
+        con.iniciar();
         
+//        //AGREGADO PARA EJEMPLO DE CONSULTA
+//        try{
+//        System.out.println(dao.getChoferesActivos().toString());
+//        }catch (Exception c){
+//            c.printStackTrace();
+//        }
+//    
     }
+    
+    
     
 }

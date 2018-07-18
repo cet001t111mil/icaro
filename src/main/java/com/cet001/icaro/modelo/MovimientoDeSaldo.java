@@ -1,22 +1,31 @@
-
 package com.cet001.icaro.modelo;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-
-public class MovimientoDeSaldo implements Serializable{
+@Entity
+public class MovimientoDeSaldo implements Serializable {
 
     private static final long serialVersionUID = 4592438298290387661L;
-    private int id ;
+    @Id
+    @Column(name = "id_movimiento")
+    private int idMovimiento;
     private double importe;
+    @Column(name = "tipo_comprobante")
     private String tipoComprobante;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
     public MovimientoDeSaldo() {
     }
 
-    public MovimientoDeSaldo(int id, double importe, String tipoComprobante, Cliente cliente) {
-        this.id = id;
+    public MovimientoDeSaldo(int id_movimiento, double importe, String tipoComprobante, Cliente cliente) {
+        this.idMovimiento = id_movimiento;
         this.importe = importe;
         this.tipoComprobante = tipoComprobante;
         this.cliente = cliente;
@@ -24,15 +33,15 @@ public class MovimientoDeSaldo implements Serializable{
 
     @Override
     public String toString() {
-        return "MovimientoDeSaldo{" + "id=" + id + ", importe=" + importe + ", tipoComprobante=" + tipoComprobante + ", cliente=" + cliente + '}';
+        return "MovimientoDeSaldo{" + "id=" + idMovimiento + ", importe=" + importe + ", tipoComprobante=" + tipoComprobante + ", cliente=" + cliente + '}';
     }
 
     public int getId() {
-        return id;
+        return idMovimiento;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int id_movimiento) {
+        this.idMovimiento = id_movimiento;
     }
 
     public double getImporte() {
@@ -58,9 +67,5 @@ public class MovimientoDeSaldo implements Serializable{
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
-    
-    
 
-    
 }

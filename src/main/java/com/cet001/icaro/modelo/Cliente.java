@@ -3,64 +3,54 @@ package com.cet001.icaro.modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
-@Entity (name="cliente")
+@Entity
 public class Cliente implements Serializable {
-    
+
     private static final long serialVersionUID = 1044152195801582698L;
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cliente")
     private int idCliente;
     private String nombre;
     private String apellido;
     private String direccion;
+    @Column(name = "borrado_logico")
+    private boolean borradoLogico;
     private double saldo;
+    @Column(name = "limite_de_credito")
     private double limiteDeCredito;
-    
-    @OneToMany
-    @JoinColumn(name="idCliente")  
+
+    @OneToMany(mappedBy = "cliente")
     private List<TelefonoCliente> telefonos = new ArrayList<>();
-    
-    @OneToMany
-    @JoinColumn(name="idCliente")  
+    @OneToMany(mappedBy = "cliente")
     private List<MovimientoDeSaldo> movSal = new ArrayList<>();
-    @OneToMany
-    @JoinColumn(name="idCliente")  
+    @OneToMany(mappedBy = "cliente")
     private List<Viaje> viajes = new ArrayList<>();
 
     public Cliente() {
     }
 
     public Cliente(String nombre, String apellido, double saldo, String direccion) {
-        
+
         this.nombre = nombre;
         this.apellido = apellido;
         this.saldo = saldo;
         this.direccion = direccion;
-        limiteDeCredito=0;
-        TelefonoCliente tel =new TelefonoCliente ();
-        telefonos.add(tel);
-        MovimientoDeSaldo mov = new MovimientoDeSaldo();
-        movSal.add(mov);
-        Viaje viaje = new Viaje();
-        viajes.add(viaje);
-    }
+        this.borradoLogico = false;
+        this.limiteDeCredito = 0;
 
-    public void sumSaldo(double importe) {
-        saldo = this.saldo + importe;
-    }
-
-    public void subtractSaldo(double importe) {
-        saldo = this.saldo - importe;
     }
 
     @Override
     public String toString() {
-        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", saldo=" + saldo + ", direccion=" + direccion + ", limiteDeCredito=" + limiteDeCredito + ", telefonos=" + telefonos + ", movSal=" + movSal + ", viajes=" + viajes + '}';
+        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", borrado lógico=" + borradoLogico + ", saldo=" + saldo + ", limiteDeCredito=" + limiteDeCredito + ", telefonos=" + telefonos + '}';
     }
 
     //métodos setters & getters
@@ -102,6 +92,14 @@ public class Cliente implements Serializable {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public boolean isBorradoLogico() {
+        return borradoLogico;
+    }
+
+    public void setBorradoLogico(boolean borradoLogico) {
+        this.borradoLogico = borradoLogico;
     }
 
     public double getLimiteDeCredito() {

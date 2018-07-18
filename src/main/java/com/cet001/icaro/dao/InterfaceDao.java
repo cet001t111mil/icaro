@@ -11,7 +11,7 @@ import com.cet001.icaro.modelo.Cliente;
  *
  * @author ponsa
  */
-public interface IClienteDao {
+public interface InterfaceDao {
     
     
 }

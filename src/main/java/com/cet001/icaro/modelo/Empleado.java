@@ -1,41 +1,54 @@
 package com.cet001.icaro.modelo;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
-//@Entity
-//@Inheritance(InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name = "tipo_empleado")
-public abstract class Empleado implements Serializable {
+
+@Entity
+@Inheritance
+@DiscriminatorColumn(name = "tipo_empleado")
+
+
+// ### Clase Empleado ya no puede ser abstracta porque sacamos mètodo calcularSueldo que ahora està en Clase Administraciòn del package servicios
+
+public class Empleado implements Serializable {
 
     private static final long serialVersionUID = -933026923467806480L;
-//    @Id
+    @Id
+    @Column(name = "nro_legajo")
     protected int nroLegajo;
     protected String dni;
     protected String nombre;
     protected String apellido;
+    @Column(name = "tipo_empleado")
     protected String tipoEmpleado;
+    protected double sueldo;
+    @Column(name = "borrado_logico")
+    protected boolean borradoLogico;
 
     public Empleado() {
     }
 
-    public Empleado(String dni, String nombre, String apellido, int nroLegajo, String tipoEmpleado) {
+    public Empleado(String dni, String nombre, String apellido, int nroLegajo,String tipoEmpleado,double sueldo) {
+        
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.nroLegajo = nroLegajo;
         this.tipoEmpleado = tipoEmpleado;
+        this.sueldo = sueldo;
+        this.borradoLogico = false;
+        System.out.println(this.tipoEmpleado+"desde el super");
     }
 
-    public abstract double calcularSueldo(double importe);
-
+  
     @Override
     public String toString() {
-        return "Empleado{" + "dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", nroLegajo=" + nroLegajo + ", tipoEmpleado=" + tipoEmpleado + '}';
+        return "Empleado{" + "nroLegajo=" + nroLegajo + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", tipoEmpleado=" + tipoEmpleado + ", sueldo=" + sueldo + ", borrado lógico=" + borradoLogico + '}';
     }
 
     //métodos setters & getters
@@ -75,8 +88,34 @@ public abstract class Empleado implements Serializable {
         return tipoEmpleado;
     }
 
-    public void setTipoEmpleado(String tipoEmpleado) {
-        this.tipoEmpleado = tipoEmpleado;
+    /*atributo tipoEmpleado persiste automáticamente por ser columna discriminatorio en la herencia
+    no es necesario setearlo y además así evitamos tener q validar entrada de usuario*/ 
+//    public void setTipoEmpleado(String tipoEmpleado) {
+//        this.tipoEmpleado = tipoEmpleado;
+//    }
+
+    public double getSueldo() {
+        return sueldo;
     }
 
+    public void setSueldo(double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public boolean isBorradoLogico() {
+        return borradoLogico;
+    }
+
+    public void setBorradoLogico(boolean borradoLogico) {
+        this.borradoLogico = borradoLogico;
+    }
+
+    
+
+    
+
+   
+
+
+ 
 }
