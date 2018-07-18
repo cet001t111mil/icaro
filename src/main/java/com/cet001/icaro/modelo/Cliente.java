@@ -15,8 +15,8 @@ public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1044152195801582698L;
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCliente;
     private String nombre;
     private String apellido;

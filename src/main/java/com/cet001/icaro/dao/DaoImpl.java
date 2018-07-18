@@ -21,8 +21,8 @@ import javax.persistence.Query;
  *///######### manager close despues de c/consulta // emf en constructor del dao
 public class DaoImpl {
 
-    private EntityManagerFactory emf;
-    private EntityManager manager;
+    public EntityManagerFactory emf;
+    public EntityManager manager;
 
     //nombre de la unid. de persist: "remiseria?zeroDateTimeBehavior=convertToNullPU"
     //Santi: dejé acá el nombre de la unid de persist. xq no sé si lo necesitás tener a mano. 
@@ -436,7 +436,7 @@ public class DaoImpl {
     public double obtenerFacturacionChofer(Chofer chof, Calendar i, Calendar f) throws Exception {
         manager.getTransaction().begin();
         double result = 0;
-        Query query = manager.createQuery("Select sum(importe) "
+        Query query = manager.createQuery("Select sum(v.importe) "
                 + "from Viaje v "
                 + "where v.chofer = ?1 and v.fecha between ?2 and ?3 ");
         query.setParameter(1, chof);
