@@ -14,8 +14,7 @@ import com.cet001.icaro.modelo.Viaje;
 import com.cet001.icaro.vista.ConsultarChoferesView;
 import java.awt.event.ActionListener;
 import com.cet001.icaro.vista.PrincipalView;
-import com.cet001.icaro.vista.NuevoChoferView;
-import com.cet001.icaro.vista.NuevoClienteView;
+import com.cet001.icaro.vista.ClienteView;
 import com.cet001.icaro.vista.NuevoOperadorView;
 import com.cet001.icaro.vista.NuevoViajeView;
 import com.cet001.icaro.vista.VehiculosView;
@@ -138,7 +137,7 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 break;
             }
             case "agreCliente": {
-                NuevoClienteView nVclien = new NuevoClienteView();
+                ClienteView nVclien = new ClienteView();
                 nVclien.setTitle("Nuevo Cliente");
                 nVclien.setVisible(true);
                 ClienteController conNclien = new ClienteController(nVclien, dao);

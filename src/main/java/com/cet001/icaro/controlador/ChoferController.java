@@ -9,9 +9,7 @@ import com.cet001.icaro.dao.DaoImpl;
 import com.cet001.icaro.modelo.Chofer;
 import com.cet001.icaro.modelo.Empleado;
 import com.cet001.icaro.modelo.Vehiculo;
-import com.cet001.icaro.vista.NuevoChoferView;
 import com.cet001.icaro.vista.ConsultarChoferesView;
-import com.cet001.icaro.vista.ModificarChoferView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static java.lang.Double.parseDouble;
@@ -59,7 +57,7 @@ public class ChoferController implements ActionListener {
             }
 
             case "botonModificar": {//BOTON  GUARDA DATOS DESDE VENTANA MODIFICAR MODIFICAR CHOFER
-                
+
                 actualizarChofer();
                 limpiarTextosM();
                 break;
@@ -72,10 +70,10 @@ public class ChoferController implements ActionListener {
             }
             case "botonBuscar": { //abre ventana modificar chofer chofer
                 cargaDatosChofer2();
-                
+
                 consulChof.mChoLegajo.setEditable(false);
                 break;
-                
+
             }
         }
 
@@ -93,12 +91,14 @@ public class ChoferController implements ActionListener {
             consulChof.mChoDni.setText(chofBusqueda.getDni());
             consulChof.mChoComision.setText(String.valueOf(chofBusqueda.getComision()));
             consulChof.mChoSueldo.setText(String.valueOf(chofBusqueda.getSueldo()));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage().toString());
         } catch (Exception ex) {
-            Logger.getLogger(ChoferController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage().toString());
         }
     }
 
-        private void cargaDatosChofer2() {
+    private void cargaDatosChofer2() {
 
         String legajo = this.consulChof.mChoLegajo.getText();
         Chofer chofBusqueda = new Chofer();
@@ -119,11 +119,14 @@ public class ChoferController implements ActionListener {
             consulChof.mChoDni.setText(chofBusqueda.getDni());
             consulChof.mChoComision.setText(String.valueOf(chofBusqueda.getComision()));
             consulChof.mChoSueldo.setText(String.valueOf(chofBusqueda.getSueldo()));
-        } catch (Exception e) {
-
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage().toString());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage().toString());
         }
 
     }
+
     public void limpiarTextosM() {
         consulChof.mChoLegajo.setEditable(true);
         consulChof.mChoApellido.setText("");
@@ -136,7 +139,7 @@ public class ChoferController implements ActionListener {
     }
 
     public void limpiarTextosN() {
-        
+
         consulChof.nChoApellido.setText("");
         consulChof.nChoNombre.setText("");
         consulChof.nChoDni.setText("");
