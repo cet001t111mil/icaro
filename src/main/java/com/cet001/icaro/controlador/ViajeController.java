@@ -10,7 +10,7 @@ import com.cet001.icaro.modelo.Chofer;
 import com.cet001.icaro.modelo.Cliente;
 import com.cet001.icaro.modelo.Empleado;
 import com.cet001.icaro.modelo.Vehiculo;
-import com.cet001.icaro.vista.NuevoViajeView;
+import com.cet001.icaro.vista.ViajeView;
 import com.cet001.icaro.modelo.Viaje;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,10 +23,10 @@ import java.util.List;
  */
 public class ViajeController implements ActionListener {
 
-    private NuevoViajeView nuevoViaje;
+    private ViajeView nuevoViaje;
     DaoImpl dao;
 
-    public ViajeController(NuevoViajeView nuevoViaje, DaoImpl dao) {
+    public ViajeController(ViajeView nuevoViaje, DaoImpl dao) {
         this.nuevoViaje = nuevoViaje;
         this.dao = dao;
         this.nuevoViaje.guardarViaje.addActionListener(this);

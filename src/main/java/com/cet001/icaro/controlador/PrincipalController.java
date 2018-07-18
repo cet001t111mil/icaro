@@ -15,8 +15,9 @@ import com.cet001.icaro.vista.ConsultarChoferesView;
 import java.awt.event.ActionListener;
 import com.cet001.icaro.vista.PrincipalView;
 import com.cet001.icaro.vista.ClienteView;
+import com.cet001.icaro.vista.ComisionesView;
 import com.cet001.icaro.vista.NuevoOperadorView;
-import com.cet001.icaro.vista.NuevoViajeView;
+import com.cet001.icaro.vista.ViajeView;
 import com.cet001.icaro.vista.VehiculosView;
 import java.awt.Component;
 import java.awt.PopupMenu;
@@ -45,15 +46,15 @@ public class PrincipalController implements ActionListener {//esta es la clase d
 
     public void iniciar() {
         this.wPrincipal.setTitle("Icaro Gestion Remis");
-        
+
         this.wPrincipal.jMenuItem1.addActionListener(this);
         this.wPrincipal.agreCliente.addActionListener(this);
         this.wPrincipal.menuAgregarOperador.addActionListener(this);
         this.wPrincipal.menuV.addActionListener(this);
         this.wPrincipal.consultarChoferes.addActionListener(this);
+        this.wPrincipal.menuComi.addActionListener(this);
         llenarListaViajesCurso();
         llenarListaVehiculos();
-        System.out.println("no llena vehiculos");
     }
 
     public void llenarListaVehiculos() {
@@ -116,7 +117,7 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 NuevoOperadorView nOpe = new NuevoOperadorView();//se crea 1 obj. de tipo NuevoChofer
                 nOpe.setTitle("Nuevo Operador");
                 nOpe.setVisible(true);//hace visible al usuario el formulario para registrar los datos de 1 nuevo chofer (son los datos que luego se asignarán a nChof)
-                OperadorController conNOpe = new OperadorController(nOpe);//se crea 1 obj. controlador que "controlará" a nChof
+                OperadorController conNOpe = new OperadorController(nOpe, dao);//se crea 1 obj. controlador que "controlará" a nChof
                 break;
             }
 
@@ -129,11 +130,11 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
             }
             case "nviaje": {
                 System.out.println("nuevo viaje");
-                NuevoViajeView nVven = new NuevoViajeView();
+                ViajeView nVven = new ViajeView();
                 nVven.setTitle("Nuevo Viaje");
                 nVven.setVisible(true);
-                ViajeController vCon = new ViajeController(nVven,dao);
-                        
+                ViajeController vCon = new ViajeController(nVven, dao);
+
                 break;
             }
             case "agreCliente": {
@@ -147,14 +148,22 @@ de este objeto "e". El resultado es asignado a la variable "opción" de tipo Str
                 ConsultarChoferesView conChofV = new ConsultarChoferesView();
                 conChofV.setTitle("Consultar Choferes");
                 conChofV.setVisible(true);
-                ChoferController modChof = new ChoferController(conChofV,dao);
+                ChoferController modChof = new ChoferController(conChofV, dao);
                 break;
             }
-                case "menuVeh": {
+            case "menuVeh": {
                 VehiculosView vehiView = new VehiculosView();
                 vehiView.setTitle("Vehiculos");
                 vehiView.setVisible(true);
                 VehiculosController vehiCon = new VehiculosController(vehiView, this.dao);
+                break;
+            }
+
+            case "menuComi": {
+                ComisionesView comView = new ComisionesView();
+                comView.setTitle("Comisiones");
+                comView.setVisible(true);
+                ComisionesController comCon = new ComisionesController(comView, this.dao);
                 break;
             }
 
