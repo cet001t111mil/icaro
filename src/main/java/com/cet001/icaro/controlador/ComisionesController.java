@@ -90,8 +90,7 @@ public class ComisionesController implements ActionListener {
         f.set(Calendar.SECOND, 00);
         
         try {
-            i.toString();
-            f.toString()
+
             //System.out.println(adm.calcularSueldo(emp, i, f));
             //comV.resulComision.setText(String.valueOf(adm.calcularSueldo(emp, i, f)));
         } catch (Exception ex) {
