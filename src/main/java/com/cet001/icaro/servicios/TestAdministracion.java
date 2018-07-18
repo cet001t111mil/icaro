@@ -17,29 +17,79 @@ public class TestAdministracion {
 //        System.out.println(b.equals(c));
 //        System.out.println(b.equals(a));
 
-//       //dde  acá
-//        Chofer ch1 = new Chofer();
-//        ch1.setComision(0.5);
-//        Calendar c = Calendar.getInstance();
+ // **********  
+  
+  //desde acá para enviar:
+  
+//  DaoImpl daoX = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");
+//        Administracion adminX = new Administracion();
 //
-//        c.set(Calendar.YEAR, 2018);
-//        c.set(Calendar.MONTH, 07);
-//        c.set(Calendar.DAY_OF_MONTH, 07);
-//        c.set(Calendar.HOUR_OF_DAY,22);// ojo!!!! usar HOUR_OF_DAY
-//        c.set(Calendar.MINUTE, 33);
-//        c.set(Calendar.SECOND, 15);
-//        System.out.println(c);
+//        Calendar i = Calendar.getInstance();
 //
-////        System.out.println(c.toString());
-////
-//        Administracion a = new Administracion();
-//        a.setComisionCalculadaFinal(ch1, '2018/08/02 10:10:10', `2018/08/12 10:10:10`);
-////        double sueldoCh1 = a.calcularSueldo(ch1);
-////        System.out.println(sueldoCh1);
-
-
-////hasta acá es todo para borrar más adelante
-////
+//        i.set(Calendar.YEAR, 2018);
+//        i.set(Calendar.MONTH, 6);
+//        i.set(Calendar.DAY_OF_MONTH, 6);
+//        i.set(Calendar.HOUR_OF_DAY, 17);// ojo!!!! usar HOUR_OF_DAY
+//        i.set(Calendar.MINUTE, 05);
+//        i.set(Calendar.SECOND, 22);
+//
+//        String anioI = Integer.toString(i.get(Calendar.YEAR));
+//        String mesI = Integer.toString(i.get(Calendar.MONTH));
+//        String diaI = Integer.toString(i.get(Calendar.DAY_OF_MONTH));
+//        String horaI = Integer.toString(i.get(Calendar.HOUR_OF_DAY));
+//        String minutosI = Integer.toString(i.get(Calendar.MINUTE));
+//        String segundosI = Integer.toString(i.get(Calendar.SECOND));
+//
+//        Calendar f = Calendar.getInstance();
+//
+//        f.set(Calendar.YEAR, 2018);
+//        f.set(Calendar.MONTH, 7);
+//        f.set(Calendar.DAY_OF_MONTH, 7);
+//        f.set(Calendar.HOUR_OF_DAY, 22);// ojo!!!! usar HOUR_OF_DAY
+//        f.set(Calendar.MINUTE, 33);
+//        f.set(Calendar.SECOND, 15);
+//
+//        String anioF = Integer.toString(i.get(Calendar.YEAR));
+//        String mesF = Integer.toString(i.get(Calendar.MONTH));
+//        String diaF = Integer.toString(i.get(Calendar.DAY_OF_MONTH));
+//        String horaF = Integer.toString(i.get(Calendar.HOUR_OF_DAY));
+//        String minutosF = Integer.toString(i.get(Calendar.MINUTE));
+//        String segundosF = Integer.toString(i.get(Calendar.SECOND));
+//        
+//        Calendar g = Calendar.getInstance();
+//
+//        g.set(Calendar.YEAR, 2018);
+//        g.set(Calendar.MONTH, 8);
+//        g.set(Calendar.DAY_OF_MONTH, 8);
+//        g.set(Calendar.HOUR_OF_DAY, 22);// ojo!!!! usar HOUR_OF_DAY
+//        g.set(Calendar.MINUTE, 33);
+//        g.set(Calendar.SECOND, 15);
+//
+//        String anioG = Integer.toString(g.get(Calendar.YEAR));
+//        String mesG = Integer.toString(g.get(Calendar.MONTH));
+//        String diaG = Integer.toString(g.get(Calendar.DAY_OF_MONTH));
+//        String horaG = Integer.toString(g.get(Calendar.HOUR_OF_DAY));
+//        String minutosG = Integer.toString(g.get(Calendar.MINUTE));
+//        String segundosG = Integer.toString(g.get(Calendar.SECOND));
+//        
+//        Chofer chof1 = new Chofer(0.5);
+//        chof1.setNroLegajo(2320);
+//        chof1.setBorradoLogico(false);
+// 
+//        Vehiculo ve1 = new Vehiculo();
+//        Cliente cli1 = new Cliente();
+//        Viaje v1 = new Viaje(1, "Alberdi 888", i, ve1, cli1, chof1);
+//        v1.setImporte(125);
+//        Viaje v2 = new Viaje(2, "Alberdi 888", f, ve1, cli1, chof1);
+//        v1.setImporte(20);
+//        Viaje v3 = new Viaje(3, "Alberdi 888", g, ve1, cli1, chof1);
+//        v1.setImporte(200);
+//        
+//        double comisionCalculada=adminX.calcularComisionChofer(2320, i, g);
+//        System.out.println("Comisión calculada = " + comisionCalculada);
+  
+  //****** hasta acá es para probar los metodos que llevan fechas en sus parám.
+  
 
 //prueba Patri
 DaoImpl dao1 = new DaoImpl("remiseria?zeroDateTimeBehavior=convertToNullPU");

@@ -433,13 +433,13 @@ public class DaoImpl {
     }
 
 //mètodos para funcionalidad de Clase Administracion
-    public double obtenerFacturacionChofer(int nroLegajo, Calendar i, Calendar f) throws Exception {
+    public double obtenerFacturacionChofer(Chofer chof, Calendar i, Calendar f) throws Exception {
         manager.getTransaction().begin();
         double result = 0;
         Query query = manager.createQuery("Select sum(importe) "
                 + "from Viaje v "
-                + "where v.nroLegajo = ?1 and v.fecha between ?2 and ?3 ");
-        query.setParameter(1, nroLegajo);
+                + "where v.chofer = ?1 and v.fecha between ?2 and ?3 ");
+        query.setParameter(1, chof);
         query.setParameter(2, i);
         query.setParameter(3, f);
         result = (double) query.getSingleResult();
