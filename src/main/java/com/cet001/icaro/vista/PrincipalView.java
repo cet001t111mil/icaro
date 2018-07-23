@@ -42,8 +42,6 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
         choferes = new javax.swing.JMenu();
         consultarChoferes = new javax.swing.JMenuItem();
         menuComi = new javax.swing.JMenuItem();
@@ -51,7 +49,6 @@ public class PrincipalView extends javax.swing.JFrame {
         menuAgregarOperador = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         agreCliente = new javax.swing.JMenuItem();
-        jMenuMovSaldo = new javax.swing.JMenuItem();
         menuVeh = new javax.swing.JMenu();
         menuV = new javax.swing.JMenuItem();
 
@@ -86,12 +83,6 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem1);
-
-        jMenuItem8.setText("Cobrar Viaje...");
-        jMenu2.add(jMenuItem8);
-
-        jMenuItem7.setText("Cancelar Viaje...");
-        jMenu2.add(jMenuItem7);
 
         jMenuBar1.add(jMenu2);
 
@@ -140,15 +131,6 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jMenu4.add(agreCliente);
-
-        jMenuMovSaldo.setText("Movimientos de Saldo...");
-        jMenuMovSaldo.setActionCommand("movSaldo");
-        jMenuMovSaldo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuMovSaldoActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuMovSaldo);
 
         jMenuBar1.add(jMenu4);
 
@@ -242,10 +224,6 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_consultarChoferesActionPerformed
 
-    private void jMenuMovSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMovSaldoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuMovSaldoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -298,9 +276,6 @@ this.dispose();    }//GEN-LAST:event_jButton1ActionPerformed
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    public javax.swing.JMenuItem jMenuMovSaldo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
