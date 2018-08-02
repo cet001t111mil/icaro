@@ -60,6 +60,7 @@ public class ChoferController implements ActionListener {
 
                 actualizarChofer();
                 limpiarTextosM();
+                llenarListaChof();
                 break;
             }
 

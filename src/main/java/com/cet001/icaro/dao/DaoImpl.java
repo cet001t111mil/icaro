@@ -110,6 +110,7 @@ public class DaoImpl {
                 + "where c.idCliente = ?1");
         query.setParameter(1, id);
         result = (Cliente) query.getSingleResult();
+        manager.getTransaction().commit();
         return result;
     }
 
@@ -149,6 +150,7 @@ public class DaoImpl {
                 + "where v.idViaje = ?1");
         query.setParameter(1, idViaje);
         result = (Viaje) query.getSingleResult();
+        manager.getTransaction().commit();
         return result;
     }
 
@@ -188,6 +190,7 @@ public class DaoImpl {
                 + "where ve.patente = ?1");
         query.setParameter(1, patente);
         result = (Vehiculo) query.getSingleResult();
+        manager.getTransaction().commit();
         return result;
     }
 
@@ -237,6 +240,7 @@ public class DaoImpl {
                 + "where e.nroLegajo = ?1");
         query.setParameter(1, nroLegajo);
         result = (Empleado) query.getSingleResult();
+        manager.getTransaction().commit();
         return result;
     }
 
@@ -267,6 +271,7 @@ public class DaoImpl {
         query.setParameter(1, nroLegajo);
         query.setParameter(2, "CH");
         result = (Chofer) query.getSingleResult();
+        manager.getTransaction().commit();
         return result;
     }
 
@@ -312,6 +317,7 @@ public class DaoImpl {
         query.setParameter(1, nroLegajo);
         query.setParameter(2, "OP");
         result = (Operador) query.getSingleResult();
+        manager.getTransaction().commit();
         return result;
     }
 
